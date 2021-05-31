@@ -1,0 +1,141 @@
+$spacing: 8px;
+
+//override boostrap css
+.table-bordered {
+  td {
+    border-top: none !important;
+    border-bottom: none !important;
+  }
+
+  &:last-child {
+    border-bottom: 1px solid #DEE2E6 !important;
+  }
+}
+
+.table td, th {
+  position: relative;
+}
+
+.form-check {
+  padding: 0 !important;
+  display: flex !important;
+  position: absolute !important;
+  top: 35%;
+  left: 28%;
+
+  .form-check-input {
+    margin: 0;
+  }
+}
+
+//page css
+.project-list {
+  width: 80%;
+
+  .headline {
+    color: #666666;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .form {
+    margin-top: $spacing * 3;
+    margin-bottom: $spacing * 5;
+    .search-list{
+      display: flex;
+      flex-direction: column;
+      grid-row-gap: 16px;
+    }
+    .form-event-btn {
+      display: flex;
+      flex-wrap: wrap;
+      height: auto;
+      button {
+        min-height: 30px;
+        padding: 0 20px;
+        font-size: 14px;
+        font-weight: bold;
+        transition: .3s;
+        width: 50%;
+
+        &:nth-child(1) {
+          color: white;
+          background: #1890ff;
+
+          &:hover {
+            background: #096dd9;
+          }
+        }
+
+        &:nth-child(2) {
+          color: #1890ff;
+          border: none;
+          &:hover {
+            background: none;
+            color: #0050b3;
+          }
+        }
+      }
+    }
+
+  }
+
+  .table {
+    margin-bottom: $spacing * 3;
+    width: 100%;
+    tr {
+      color: #666666;
+      height: $spacing * 4;
+    }
+
+    th {
+      font-weight: normal;
+      vertical-align: middle;
+      padding: 0 $spacing * 2;
+
+    }
+
+    td {
+      padding: $spacing * 1 $spacing * 2;
+    }
+
+    .delete-icon {
+      button {
+        margin: auto;
+        i {
+          color: red;
+          cursor: pointer;
+          transition: .3s;
+
+          &:hover {
+            transform: scale(2);
+          }
+        }
+      }
+    }
+    .table-footer{
+      background: #F6F9FF;
+      border-top: 1px solid #DEE2E6 !important;
+      div{
+        display: flex;
+        justify-content: space-between;
+        span{
+          color: #5799FB;
+          font-weight: bold;
+          &:last-child{
+            color: red;
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+
+  .pagination {
+    width: fit-content;
+    margin-left: auto;
+  }
+}
+
+
+
