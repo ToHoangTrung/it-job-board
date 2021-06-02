@@ -14,10 +14,6 @@ import tht.closure.operator.util.ApplicationMapper;
 
 
 @SpringBootApplication(scanBasePackages = "tht.closure.operator")
-@ComponentScan(basePackageClasses = {
-        AbstractController.class,
-        ApplicationMapper.class,
-})
 @EnableJpaRepositories
 @PropertySource({"classpath:/application.properties", "classpath:/messages.properties"})
 public class ApplicationWebConfig extends SpringBootServletInitializer {

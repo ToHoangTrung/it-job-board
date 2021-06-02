@@ -8,8 +8,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import tht.closure.operator.model.entity.Candidate;
+import tht.closure.operator.model.entity.Recruiter;
 import tht.closure.operator.model.entity.User;
 import tht.closure.operator.model.exception.user.PasswordNotCorrectException;
+import tht.closure.operator.repository.CandidateRepository;
+import tht.closure.operator.repository.RecruiterRepository;
 import tht.closure.operator.repository.UserRepository;
 import tht.closure.operator.security.dto.JwtResponse;
 import tht.closure.operator.security.dto.LoginRequestDto;
@@ -31,6 +35,12 @@ public class AuthServiceImpl implements AuthService {
     private UserRepository userRepository;
 
     @Autowired
+    private CandidateRepository candidateRepository;
+
+    @Autowired
+    private RecruiterRepository recruiterRepository;
+
+    @Autowired
     private AuthValidator authValidator;
 
     @Autowired
@@ -50,6 +60,15 @@ public class AuthServiceImpl implements AuthService {
         authValidator.validateRegisterRequest(registerDto);
         User user = new User(registerDto.getUsername(), registerDto.getEmail(), encoder.encode(registerDto.getPassword()), registerDto.getRole());
         userRepository.save(user);
+        if (registerDto.getRole().equals("CAN")) {
+            Candidate candidate = new Candidate();
+            candidate.setUser(user);
+            candidateRepository.save(candidate);
+        } else {
+            Recruiter recruiter = new Recruiter();
+            recruiter.setUser(user);
+            recruiterRepository.save(recruiter);
+        }
     }
 
     @Override

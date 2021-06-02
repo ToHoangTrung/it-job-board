@@ -32,7 +32,6 @@ public class Recruiter extends AbstractEntity{
     private List<Recruitment> recruitments;
 
     @Column
-    @NotNull
     @Enumerated(EnumType.STRING)
     private Type type;
 

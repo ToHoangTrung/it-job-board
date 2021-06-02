@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,11 +37,11 @@ public class User extends AbstractEntity{
 
     @CreationTimestamp
     @Column
-    private LocalDateTime createdDate;
+    private LocalDate createdDate;
 
     @UpdateTimestamp
     @Column
-    private LocalDateTime updatedDate;
+    private LocalDate updatedDate;
 
     @Enumerated(EnumType.STRING)
     @Column
