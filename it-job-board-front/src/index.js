@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import i18next from "i18next";
 import {I18nextProvider} from "react-i18next";
 import en from '../src/Material/lang/en.json';
-import fr from '../src/Material/lang/fr.json'
+import vn from '../src/Material/lang/vn.json';
 
 i18next.init({
     interpolation: { escapeValue: false },
@@ -17,7 +17,7 @@ i18next.init({
             common: en
         },
         fr: {
-            common: fr
+            common: vn
         },
     },
 });

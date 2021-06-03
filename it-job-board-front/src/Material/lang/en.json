@@ -1,84 +1,13 @@
 {
   "header" : {
-    "name" : "Project Information Management",
-    "help": "Help",
-    "logout": "Log out"
-  },
-  "navigation" : {
-    "title" : "Project list",
-    "new" : "New",
-    "project" : "Project",
-    "customer" : "Customer",
-    "supplier" : "Supplier"
-  },
-  "errorScreen" : {
-    "unexpected" : "Unexpected error occurred",
-    "please" : "Please",
-    "contact" : "contact your administrator",
-    "or" : "or",
-    "back" : "back to search project"
-  },
-  "newEditProjectScreen": {
-    "newProject": "New Project",
-    "editProject": "Edit Project Information",
-    "label": {
-      "number": "Project Number",
-      "name": "Project Name",
-      "customer": "Customer",
-      "group": "Group",
-      "member": "Members",
-      "status": "Status",
-      "startDate": "Start Date",
-      "endDate": "End Date"
-    },
-    "button": {
-      "cancel": "Cancel",
-      "acceptNew": "Create Project",
-      "acceptEdit": "Edit Project"
-    },
-    "validate": {
-      "missing": "Please enter all the mandatory fields (*)",
-      "number": "Project Number can not be blank",
-      "name": "Project Name can not be blank",
-      "customer": "Customer can not be blank",
-      "startDate": "Start Date can not be blank"
-    }
-  },
-  "projectListScreen": {
-    "headline": "Project List",
-    "form": {
-      "label": "Project number, name, customer name",
-      "button": {
-        "search": "SEARCH PROJECT",
-        "reset": "RESET SEARCH"
-      }
-    },
-    "table":  {
-      "number": "Number",
-      "name": "Name",
-      "status": "Status",
-      "customer": "Customer",
-      "startDate": "Start Date",
-      "delete": "Delete"
-    },
-    "delete": {
-      "one": {
-        "headline": "Are you sure want to delete this project",
-        "body": "After delete, the project will be no longer exist in application, think twice before click accept",
-        "button": {
-          "denied": "No, I dont want to delete",
-          "accept": "Yes, delete this project please"
-        }
-      },
-      "many": {
-        "headline": "Are you sure want to delete these selected project",
-        "body": "After delete, those selected projects selected will be no longer exist in application, think twice before click accept",
-        "button": {
-          "denied": "No, I dont want to delete",
-          "accept": "Yes, delete these projects please"
-        }
-      }
-    }
+    "home": "Home",
+    "it-job": "All Jobs",
+    "it-company": "IT Companies",
+    "blog": "Blog",
+    "logout": "Log out",
+    "login": "Log in",
+    "recruiter": "Recruiter",
+    "recruiter-introduce": "Post jobs and find resumes"
   }
 }
 

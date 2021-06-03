@@ -17,13 +17,17 @@ const useStyles = makeStyles((theme) => ({
 
 const MainPage = () => {
 
-    const [spacing] = useState(2);
-    const classes = useStyles(spacing);
+    const classes = useStyles();
 
     return (
         <div className={classes.root}>
             <Container fluid>
                 <BrowserRouter>
+                    <Row>
+                        <Col>
+                            <Header/>
+                        </Col>
+                    </Row>
                     <Row>
                         <Col>
                             <Header/>
