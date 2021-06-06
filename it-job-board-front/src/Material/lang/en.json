@@ -8,6 +8,18 @@
     "login": "Log in",
     "recruiter": "Recruiter",
     "recruiter-introduce": "Post jobs and find resumes"
+  },
+  "recruitment-search": {
+    "headline": "Find your dream job here with just 1 CLICK",
+    "placeholder": {
+      "keyword": "Keyword",
+      "location": "Location",
+      "position": "Position"
+    },
+    "button": "Search Now"
+  },
+  "recruitment-card": {
+    "apply": "Apply Now"
   }
 }
 

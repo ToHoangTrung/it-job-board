@@ -2,7 +2,7 @@ import React from 'react';
 import {Col, Container, Form, Nav, Row} from 'react-bootstrap';
 import {useTranslation, withTranslation} from "react-i18next";
 import {makeStyles} from "@material-ui/core";
-import {DefaultTheme} from '../../theme';
+import {DefaultTheme} from '../../../theme';
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({

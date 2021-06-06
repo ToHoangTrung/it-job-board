@@ -1,7 +1,7 @@
 import {Col, Form, InputGroup, Row} from "react-bootstrap";
 import React from "react";
 import {makeStyles} from "@material-ui/core";
-import '../Style/CustomFormGroup.scss';
+import '../../Style/CustomFormGroup.scss';
 import Select from "react-select";
 
 

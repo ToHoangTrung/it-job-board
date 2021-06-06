@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Divider} from "@material-ui/core";
 import {Form} from "react-bootstrap";
-import CustomSimpleFormGroup from "../Component/CustomSimpleFormGroup";
-import CustomSimpleAlert from "../Component/CustomSimpleAlert";
+import CustomSimpleFormGroup from "../Component/Custom/CustomSimpleFormGroup";
+import CustomSimpleAlert from "../Component/Custom/CustomSimpleAlert";
 import '../Style/NewEditProject.scss';
 import {getAllProjectStatus, getProjectById, updateProject} from "../Feature/ProjectFeature";
 import {getAllGroup} from "../Feature/GroupFeature";
