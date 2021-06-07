@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {makeStyles} from "@material-ui/core";
-import {Col, Container, Nav, Row} from "react-bootstrap";
+import {Col, Container, Form, Nav, Row} from "react-bootstrap";
 import {DefaultTheme, PolarGreenTheme} from "../../../theme";
 import Button from "@material-ui/core/Button";
 import {useTranslation} from "react-i18next";
+import CustomFormGroup from "../Custom/CustomFormGroup";
 
 const useStyles = makeStyles((props) => ({
     root: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles((props) => ({
     },
     form: {
         marginBottom: 10,
-        width: '80%',
+        width: '100%',
         display: 'flex',
         margin: '0px auto',
         justifyContent: "space-between",
@@ -66,28 +67,17 @@ const RecruitmentSearch = () => {
         <div className={classes.root}>
             <Container fluid>
                 <Row>
-                    <Col xl={2}></Col>
-                    <Col xl={8} className={classes.headline}>
-                        <p>{t('recruitment-search.headline')}</p>
-                    </Col>
-                    <Col xl={2}></Col>
-                </Row>
-                <Row>
                     <Col xl={1}></Col>
                     <Col xl={10}>
-                        <form className={classes.form} onSubmit={handleSearch}>
-                            <input name={"keyword"} value={search.keyword || ""} style={{width: '50%'}}
-                                   placeholder={t('recruitment-search.placeholder.keyword')}
-                                   onChange={(event => handleChange(event))}/>
-                            <input name={"position"} value={search.location || ""} style={{width: '15%'}}
-                                   placeholder={t('recruitment-search.placeholder.location')}
-                                   onChange={(event => handleChange(event))}/>
-                            <input name={"position"} value={search.position || ""} style={{width: '15%'}}
-                                   placeholder={t('recruitment-search.placeholder.position')}
-                                   onChange={(event => handleChange(event))}/>
-                            <Button variant={"contained"} style={{width: '15%'}}
-                            >{t('recruitment-search.button')}</Button>
-                        </form>
+                        <Form className={classes.form} onSubmit={handleSearch}>
+                            <CustomFormGroup placeholder={t('recruitment-search.placeholder.keyword')} name={"keyword"} value={search.keyword}
+                                             onChangeValue={(e) => handleChange(e)}/>
+                            <CustomFormGroup placeholder={t('recruitment-search.placeholder.location')} name={"location"} value={search.location}
+                                             onChangeValue={(e) => handleChange(e)}/>
+                            <CustomFormGroup placeholder={t('recruitment-search.placeholder.position')} name={"location"} value={search.position}
+                                             onChangeValue={(e) => handleChange(e)}/>
+                            <Button variant={"contained"} style={{width: '15%'}}>{t('recruitment-search.button')}</Button>
+                        </Form>
                     </Col>
                     <Col xl={1}></Col>
                 </Row>

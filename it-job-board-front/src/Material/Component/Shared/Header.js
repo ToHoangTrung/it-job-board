@@ -7,41 +7,70 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        fontSize: 16,
-        height: 60,
+        fontSize: 17,
+        height: 90,
         borderBottom: `1px solid ${DefaultTheme.gray5}`,
         '& a':{
-            fontWeight: "bold",
-            color: DefaultTheme.default6,
+            fontWeight: 500,
+            color: 'black',
             textAlign: 'center',
+            transition: '0.3s',
             '&:hover' :{
-                color: DefaultTheme.default8,
+                color: DefaultTheme.default6,
             }
         }
     },
     logo: {
         display: 'flex',
         alignItems: "center",
+        justifyContent: "flex-start",
         '& img':{
-            height: 50,
-            width: 50,
+            height: 70,
+            width: 70,
+            marginRight: 20
+        },
+        '& a':{
+            fontSize: 30,
+            fontWeight: 'bold',
+            color: DefaultTheme.default6,
+            '&:hover':{
+                color: DefaultTheme.default6,
+            }
         }
     },
     nav: {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-    },
-    lan:{
-        width: 70
+        '& a': {
+            minWidth: 100,
+        },
     },
     btn:{
-        height: '90%',
-        color: DefaultTheme.default6,
+        height: '70%',
+        border: `1px solid ${DefaultTheme.default6}`,
         background: "white",
-        width: 100,
-        padding: '0 20px'
-    }
+        width: 150,
+        padding: '0 20px',
+        transition: '0.3s',
+        '&:nth-child(1)': {
+            fontWeight: 'bold',
+            background: DefaultTheme.default6,
+            color: 'white',
+            '&:hover':{
+                color: 'white',
+                background: DefaultTheme.default7,
+            }
+        },
+        '&:nth-child(2)': {
+            fontWeight: 'bold',
+            color: DefaultTheme.default6,
+            '&:hover':{
+                color: DefaultTheme.default6,
+                background: DefaultTheme.default1,
+            }
+        }
+    },
 }));
 
 const Header = () => {
@@ -60,10 +89,13 @@ const Header = () => {
             <Container fluid style={{height: '100%'}}>
                 <Row style={{alignItems: "stretch", height: '100%'}}>
                     <Col xl={1}></Col>
-                    <Col xl={1} className={classes.logo}>
+                    <Col xl={3} className={classes.logo}>
                         <img src={process.env.PUBLIC_URL + "/logo.png"} alt="logo"/>
+                        <Nav.Link href="/">
+                            IT CLOSURE JOB
+                        </Nav.Link>
                     </Col>
-                    <Col xl={4} className={classes.nav}>
+                    <Col xl={4} className={classes.nav} style={{justifyContent: "space-evenly"}}>
                         <Nav.Link href="/">
                             {t('header.home')}
                         </Nav.Link>
@@ -77,15 +109,7 @@ const Header = () => {
                             {t('header.blog')}
                         </Nav.Link>
                     </Col>
-                    <Col xl={1}>
-
-                    </Col>
-                    <Col xl={4} className={classes.nav} style={{justifyContent: "flex-end"}}>
-                        <div className={classes.nav + " " + classes.lan}>
-                            <Nav.Link onClick={() => handleChangeLanguage("en")} style={i18n.language === "en" ? {color: DefaultTheme.default8} : null}>EN</Nav.Link>
-                            <div style={{margin: '0px -5px'}}>|</div>
-                            <Nav.Link onClick={() => handleChangeLanguage("vn")} style={i18n.language === "fr" ? {color: DefaultTheme.default8} : null}>VN</Nav.Link>
-                        </div>
+                    <Col xl={3} className={classes.nav} style={{justifyContent: "flex-end", gridColumnGap: 10}}>
                         <Button href="/" className={classes.btn}>
                             {t('header.login')}
                         </Button>
@@ -93,6 +117,7 @@ const Header = () => {
                             {t('header.recruiter')}
                         </Button>
                     </Col>
+                    <Col xl={1}></Col>
                 </Row>
             </Container>
         </div>

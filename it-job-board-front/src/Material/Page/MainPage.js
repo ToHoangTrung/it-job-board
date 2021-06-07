@@ -2,13 +2,10 @@ import React, {useState} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Header from '../Component/Shared/Header';
-import ErrorScreen from './ErrorScreen';
 import {makeStyles} from "@material-ui/core";
-import NewProject from "./NewProject";
-import ProjectsList from "./ProjectsList";
-import EditProject from "./EditProject";
 import RecruitmentSearch from "../Component/Shared/RecruitmentSearch";
 import Recruitment from "./Candidate/Recruitment";
+import '../Style/MainPage.scss'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
     },
     main: {
         background: '#FBFBFB'
+    },
+    top: {
+        backgroundImage: `url(${process.env.PUBLIC_URL + "/background.png"})`,
+        backgroundRepeat: "no-repeat",
     }
 }));
 
@@ -27,16 +28,18 @@ const MainPage = () => {
         <div className={classes.root}>
             <Container fluid>
                 <BrowserRouter>
-                    <Row>
-                        <Col>
-                            <Header/>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <RecruitmentSearch/>
-                        </Col>
-                    </Row>
+                    <div className={"header"}>
+                        <Row>
+                            <Col>
+                                <Header/>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <RecruitmentSearch/>
+                            </Col>
+                        </Row>
+                    </div>
                     <Row className={classes.main}>
                         <Col xl={1}></Col>
                         <Col xl={10} style={{padding: 0, paddingTop: 32}}>

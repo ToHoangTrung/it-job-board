@@ -4,7 +4,7 @@ import {Col, Form, Row, Table} from "react-bootstrap";
 import '../Style/ProjectList.scss';
 import {deleteManyProject, getAllProjectStatus, searchProjectByCustomKeywordAndStatus} from "../Feature/ProjectFeature";
 import CustomSimpleAlert from "../Component/Custom/CustomSimpleAlert";
-import CustomSimpleFormGroup from "../Component/Custom/CustomSimpleFormGroup";
+import CustomFormGroup from "../Component/Custom/CustomFormGroup";
 import CustomSimpleModal from "../Component/Custom/CustomSimpleModal";
 import {Link, useHistory} from "react-router-dom";
 import {useTranslation} from "react-i18next";
@@ -222,19 +222,19 @@ const ProjectsList = () => {
                                 <Col sm={6} className={"search-list"}>
                                     <Row>
                                         <Col sm={8}>
-                                            <CustomSimpleFormGroup name={"keyword"} value={search.keyword}
-                                                                   placeholder={t('projectListScreen.form.label')} required={false}
-                                                                   onChangeValue={(e) => handleChangeSearchValue(e)}/>
+                                            <CustomFormGroup name={"keyword"} value={search.keyword}
+                                                             placeholder={t('projectListScreen.form.label')} required={false}
+                                                             onChangeValue={(e) => handleChangeSearchValue(e)}/>
                                         </Col>
                                         <Col sm={4}>
-                                            <CustomSimpleFormGroup name={"status"} value={search.status} type={"select"}
-                                                                   data={
+                                            <CustomFormGroup name={"status"} value={search.status} type={"select"}
+                                                             data={
                                                                        statusList.map((row) => {
                                                                            return { value : row.name, label : row.label}
                                                                        })
                                                                    }
-                                                                   defaultOption={true} defaultValue={""} defaultLabel={"Project status"}
-                                                                   onChangeValue={(e) => handleChangeSearchValue(e)}/>
+                                                             defaultOption={true} defaultValue={""} defaultLabel={"Project status"}
+                                                             onChangeValue={(e) => handleChangeSearchValue(e)}/>
                                         </Col>
                                     </Row>
                                 </Col>

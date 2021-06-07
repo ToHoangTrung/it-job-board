@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Divider} from "@material-ui/core";
 import {Form} from "react-bootstrap";
-import CustomSimpleFormGroup from "../Component/Custom/CustomSimpleFormGroup";
+import CustomFormGroup from "../Component/Custom/CustomFormGroup";
 import CustomSimpleAlert from "../Component/Custom/CustomSimpleAlert";
 import '../Style/NewEditProject.scss';
 import {getAllProjectStatus, getProjectById, updateProject} from "../Feature/ProjectFeature";
@@ -160,57 +160,57 @@ const EditProject = ({match}) => {
                 isLoading === false ? (
                     <>
                         <Form noValidate validated={validated} className={"form"} id={"form-edit"} onSubmit={handleSubmit}>
-                            <CustomSimpleFormGroup label={t('newEditProjectScreen.label.number')} name={"number"} value={projectInfo.number}
-                                                   invalidMessage={t('newEditProjectScreen.validate.number')} ipWidth={3} disabled={true}
-                                                   onChangeValue={(e) => handleChange(e)}/>
-                            <CustomSimpleFormGroup label={t('newEditProjectScreen.label.name')} name={"name"} value={projectInfo.name}
-                                                   invalidMessage={t('newEditProjectScreen.validate.name')}
-                                                   onChangeValue={(e) => handleChange(e)}/>
-                            <CustomSimpleFormGroup label={t('newEditProjectScreen.label.customer')} name={"customer"} value={projectInfo.customer}
-                                                   invalidMessage={t('newEditProjectScreen.validate.customer')}
-                                                   onChangeValue={(e) => handleChange(e)}/>
-                            <CustomSimpleFormGroup label={t('newEditProjectScreen.label.group')} name={"group"} value={projectInfo.group.id}
-                                                   type={"select"} ipWidth={3}
-                                                   data={
+                            <CustomFormGroup label={t('newEditProjectScreen.label.number')} name={"number"} value={projectInfo.number}
+                                             invalidMessage={t('newEditProjectScreen.validate.number')} ipWidth={3} disabled={true}
+                                             onChangeValue={(e) => handleChange(e)}/>
+                            <CustomFormGroup label={t('newEditProjectScreen.label.name')} name={"name"} value={projectInfo.name}
+                                             invalidMessage={t('newEditProjectScreen.validate.name')}
+                                             onChangeValue={(e) => handleChange(e)}/>
+                            <CustomFormGroup label={t('newEditProjectScreen.label.customer')} name={"customer"} value={projectInfo.customer}
+                                             invalidMessage={t('newEditProjectScreen.validate.customer')}
+                                             onChangeValue={(e) => handleChange(e)}/>
+                            <CustomFormGroup label={t('newEditProjectScreen.label.group')} name={"group"} value={projectInfo.group.id}
+                                             type={"select"} ipWidth={3}
+                                             data={
                                                        groupList.map((row) => {
                                                            return { value : row.id, label : row.name}
                                                        })
                                                    }
-                                                   onChangeValue={(e, type = "groups") => handleChange(e, type)}/>
-                            <CustomSimpleFormGroup label={t('newEditProjectScreen.label.member')} name={"users"}
-                                                   type={"multi-select"} required={false}
-                                                   data={
+                                             onChangeValue={(e, type = "groups") => handleChange(e, type)}/>
+                            <CustomFormGroup label={t('newEditProjectScreen.label.member')} name={"users"}
+                                             type={"multi-select"} required={false}
+                                             data={
                                                        userList.map((row) => {
                                                            return { value : row.id, label : row.displayName}
                                                        })
                                                    }
-                                                   value={
+                                             value={
                                                        projectInfo.users.map((row) => {
                                                            return { value : row.id, label : row.displayName}
                                                        })
                                                    }
-                                                   onChangeValue={(name, value, type="users") => handleChangeByNameAndValue(name, value, type)}/>
-                            <CustomSimpleFormGroup label={t('newEditProjectScreen.label.status')} name={"status"} value={projectInfo.status.id}
-                                                   type={"select"} ipWidth={3}
-                                                   data={
+                                             onChangeValue={(name, value, type="users") => handleChangeByNameAndValue(name, value, type)}/>
+                            <CustomFormGroup label={t('newEditProjectScreen.label.status')} name={"status"} value={projectInfo.status.id}
+                                             type={"select"} ipWidth={3}
+                                             data={
                                                        statusList.map((row) => {
                                                            return { value : row.id, label : row.label}
                                                        })
                                                    }
-                                                   onChangeValue={(e, type = "status") => handleChange(e, type)}/>
+                                             onChangeValue={(e, type = "status") => handleChange(e, type)}/>
                             <div style={{display: 'flex'}}>
                                 <div style={{flexBasis: '50%'}}>
-                                    <CustomSimpleFormGroup label={t('newEditProjectScreen.label.startDate')} name={"startDate"} value={projectInfo.startDate}
-                                                           type={"date"} lbWidth={4} ipWidth={6}
-                                                           invalidMessage={t('newEditProjectScreen.validate.startDate')}
-                                                           onChangeValue={(e) => handleChange(e)}/>
+                                    <CustomFormGroup label={t('newEditProjectScreen.label.startDate')} name={"startDate"} value={projectInfo.startDate}
+                                                     type={"date"} lbWidth={4} ipWidth={6}
+                                                     invalidMessage={t('newEditProjectScreen.validate.startDate')}
+                                                     onChangeValue={(e) => handleChange(e)}/>
                                 </div>
                                 <div style={{width: '50%'}}>
-                                    <CustomSimpleFormGroup label={t('newEditProjectScreen.label.endDate')} name={"endDate"} value={projectInfo.endDate}
-                                                           type={"date"} required={false} lbWidth={4} ipWidth={6}
-                                                           labelStyle={{marginLeft: 'auto'}}
-                                                           iputStyle={{marginLeft: 'auto'}}
-                                                           onChangeValue={(e) => handleChange(e)}/>
+                                    <CustomFormGroup label={t('newEditProjectScreen.label.endDate')} name={"endDate"} value={projectInfo.endDate}
+                                                     type={"date"} required={false} lbWidth={4} ipWidth={6}
+                                                     labelStyle={{marginLeft: 'auto'}}
+                                                     iputStyle={{marginLeft: 'auto'}}
+                                                     onChangeValue={(e) => handleChange(e)}/>
                                 </div>
                             </div>
                         </Form>
