@@ -13,7 +13,6 @@ import tht.closure.operator.model.exception.main.ConcurrentUpdateException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,7 +38,7 @@ public class GlobalExceptionHandler {
         ex.getBindingResult().getAllErrors().forEach(error -> {
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
-            errors.add(fieldName.concat(": ").concat(Objects.requireNonNullElse(errorMessage, "Type invalid")));
+            errors.add(fieldName.concat(": ").concat(errorMessage));
         });
         ExceptionResponse exceptionResponse = new ExceptionResponse("The following input type is incorrect", ItJobBoardExceptionErrorCode.UN_HANDLE_EXCEPTION, HttpStatus.CONFLICT, errors);
         return new ResponseEntity<>(exceptionResponse, HttpStatus.CONFLICT);

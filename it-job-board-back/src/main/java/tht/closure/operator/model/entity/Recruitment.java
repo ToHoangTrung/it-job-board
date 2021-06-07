@@ -2,8 +2,6 @@ package tht.closure.operator.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -18,16 +16,32 @@ public class Recruitment extends AbstractEntity{
     @Column
     private String headline;
 
-    @CreationTimestamp
     @Column
-    private LocalDate createdDate;
+    private String overviewContentUrl;
 
-    @UpdateTimestamp
     @Column
-    private LocalDate updatedDate;
+    private String responsibilityContentUrl;
+
+    @Column
+    private String requirementContentUrl;
+
+    @Column
+    private String benefitContentUrl;
+
+    @Column
+    private LocalDate startDate;
+
+    @Column
+    private LocalDate endDate;
+
+    @Column
+    private Integer recruitQuantity;
+
+    @Column
+    private Integer salary;
 
     @OneToMany(mappedBy = "recruitment")
-    private List<RecruitmentCatalog> recruitmentCategories = new ArrayList<>();
+    private List<RecruitmentSubCatalog> recruitmentSubCatalogs = new ArrayList<>();
 
     @OneToMany(mappedBy = "recruitment")
     private List<CandidateRecruitment> candidateRecruitments = new ArrayList<>();
@@ -35,5 +49,21 @@ public class Recruitment extends AbstractEntity{
     @ManyToOne
     @JoinColumn
     private Recruiter recruiter;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Type type;
+
+    public enum Type {
+        INT("Internship"),
+        FRE("Fresher"),
+        FUL("Full-time"),
+        PAR("Part-time");
+        public final String label;
+
+        Type(String label) {
+            this.label = label;
+        }
+    }
 
 }

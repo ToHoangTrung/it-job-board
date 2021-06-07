@@ -2,11 +2,8 @@ package tht.closure.operator.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +24,11 @@ public class Candidate extends AbstractEntity{
     @Column
     private String description;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(mappedBy = "candidate")
+    @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private List<CandidateRecruitment> candidateRecruitments = new ArrayList<>();
 
 }

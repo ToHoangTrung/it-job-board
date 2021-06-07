@@ -5,10 +5,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity(name = "t_recruitment_catalog")
+@Entity(name = "t_recruitment_sub_catalog")
 @Getter
 @Setter
-public class RecruitmentCatalog extends AbstractEntity{
+public class RecruitmentSubCatalog extends AbstractEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
@@ -16,5 +16,5 @@ public class RecruitmentCatalog extends AbstractEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
-    private Catalog catalog;
+    private SubCatalog subCatalog;
 }

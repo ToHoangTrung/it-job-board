@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import tht.closure.operator.model.dto.UserDto;
 import tht.closure.operator.model.entity.Candidate;
 import tht.closure.operator.model.entity.Recruiter;
 import tht.closure.operator.model.entity.User;
@@ -90,7 +91,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public User getUserInfoFromJwt(HttpServletRequest request) {
+    public UserDto getUserFromJwt(HttpServletRequest request) {
         return null;
     }
 }
