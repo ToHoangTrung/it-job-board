@@ -1,6 +1,6 @@
 package tht.closure.operator.service;
 
-import tht.closure.operator.model.entity.User;
+import tht.closure.operator.model.dto.UserDto;
 import tht.closure.operator.security.dto.JwtResponse;
 import tht.closure.operator.security.dto.LoginRequestDto;
 import tht.closure.operator.security.dto.RegisterRequestDto;
@@ -13,5 +13,5 @@ public interface AuthService {
 
     JwtResponse userLogin(LoginRequestDto loginRequestDto);
 
-    User getUserInfoFromJwt(HttpServletRequest request);
+    UserDto getUserFromJwt(HttpServletRequest request);
 }

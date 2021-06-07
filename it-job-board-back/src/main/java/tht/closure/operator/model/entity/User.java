@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -59,9 +58,9 @@ public class User extends AbstractEntity{
     }
 
     public enum Role {
-        CAN("Candidate"),
-        REC("Recruiter"),
-        ADM("Admin");
+        ROLE_CAN("Candidate"),
+        ROLE_REC("Recruiter"),
+        ROLE_ADM("Admin");
 
         public final String label;
 

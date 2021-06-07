@@ -2,12 +2,9 @@ package tht.closure.operator.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "t_recruiter")
@@ -19,17 +16,23 @@ public class Recruiter extends AbstractEntity{
     private String name;
 
     @Column
-    private String websiteUrl;
+    private String website;
 
     @Column
-    private String facebookUrl;
+    private String facebook;
 
-    @OneToOne
+    @Column
+    private String location;
+
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(mappedBy = "recruiter")
-    private List<Recruitment> recruitments;
+    @OneToMany(mappedBy = "recruiter", fetch = FetchType.LAZY)
+    private List<Recruitment> recruitments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "recruiter", fetch = FetchType.LAZY)
+    private List<RecruiterSubCatalog> recruiterSubCatalogs = new ArrayList<>();
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -45,4 +48,8 @@ public class Recruiter extends AbstractEntity{
             this.label = label;
         }
     }
+
+    @ManyToOne
+    @JoinColumn
+    private City city;
 }
