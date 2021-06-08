@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Container, Form, Nav, Row} from 'react-bootstrap';
+import {Col, Container, Nav, Row} from 'react-bootstrap';
 import {useTranslation, withTranslation} from "react-i18next";
 import {makeStyles} from "@material-ui/core";
 import {DefaultTheme} from '../../../theme';
@@ -52,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
         background: "white",
         width: 150,
         padding: '0 20px',
-        transition: '0.3s',
         '&:nth-child(1)': {
             fontWeight: 'bold',
             background: DefaultTheme.default6,

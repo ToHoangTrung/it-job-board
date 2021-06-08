@@ -1,33 +1,10 @@
 import React from "react";
 import {makeStyles} from "@material-ui/core";
 import '../../Style/CustomFormGroup.scss';
-
+import Select from 'react-select';
 
 const useStyles = makeStyles(props => ({
     formGroup: {
-        margin: 0,
-        padding: 0,
-        height: 30,
-        breakAfter: 'always',
-        '& input': {
-            height: 30,
-            display: 'flex',
-            alignItems: 'center',
-            fontSize: 14,
-        },
-        '& select':{
-            height: 30,
-            fontSize: 14,
-            paddingTop: 0,
-            paddingBottom: 0,
-        },
-        '& label': {
-            padding: 0,
-            height: 30,
-            fontSize: 14,
-            display: 'flex',
-            alignItems: 'center',
-        },
     },
 }));
 
@@ -59,7 +36,13 @@ const CustomFormGroup = ((props) => {
     let customInput;
 
     if (type === "select") {
-
+        customInput =
+            <Select
+                defaultValue={data[0]}
+                isSearchable
+                name="color"
+                options={data}
+            />
     }
     else {
         customInput =
@@ -74,7 +57,7 @@ const CustomFormGroup = ((props) => {
                   onFocus={onFocusValue}/>
     }
     return (
-        <div className={customStyle}>
+        <div className={classes.formGroup} style={customStyle}>
              {
                  label && (
                      <label style={labelStyle}>{label}</label>

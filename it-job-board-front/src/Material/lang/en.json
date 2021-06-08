@@ -13,12 +13,36 @@
     "placeholder": {
       "keyword": "Keyword",
       "location": "Location",
-      "position": "Position"
+      "position": "Position",
+      "type": "Job type",
+      "experience": "Experience",
+      "catalog": "Category",
+      "salary": "Salary"
     },
     "button": "Search Now"
   },
+  "recruitment-sort": {
+    "headline": "Jobs Found",
+    "label": "Sort by",
+    "placeholder": {
+      "date": ""
+    }
+  },
   "recruitment-card": {
-    "apply": "Apply Now"
+    "apply": "Apply Now",
+    "save": "Save Job",
+    "job-description": "Job Description",
+    "requirement": "Your Skills and Experience",
+    "benefit": "Why You'll Love Working Here",
+    "information": "Recruitment Information"
+  },
+  "recruiter-card": {
+    "followBtn": "Follow",
+    "reviewBtn": "Write a review",
+    "jobTab": "Jobs",
+    "reviewTab": "Reviews",
+    "overviewTab": "Overview",
+    "overviewContent": "Overview about"
   }
 }
 
