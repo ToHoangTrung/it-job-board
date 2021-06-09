@@ -3,15 +3,15 @@ VALUES
 ('candidate1', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email1@gmail.com', 'phone1','avatar-url1.png', 'ROLE_CAN', '2020-01-01','2020-01-01'),
 ('candidate2', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email2@gmail.com', 'phone2','avatar-url2.png', 'ROLE_CAN', '2020-01-01','2020-01-01'),
 ('candidate3', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email3@gmail.com', 'phone3','avatar-url3.png', 'ROLE_CAN', '2020-01-01','2020-01-01'),
-('recruiter1', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email4@gmail.com', 'phone4','avatar-url4.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
-('recruiter2', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email5@gmail.com', 'phone5','avatar-url5.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
-('recruiter3', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email6@gmail.com', 'phone6','avatar-url6.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
-('recruiter4', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email7@gmail.com', 'phone7','avatar-url7.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
-('recruiter5', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email8@gmail.com', 'phone8','avatar-url8.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
-('recruiter6', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email9@gmail.com', 'phone9','avatar-url9.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
-('recruiter7', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email10@gmail.com', 'phone10','avatar-url10.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
-('recruiter8', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email11@gmail.com', 'phone11','avatar-url11.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
-('recruiter9', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email12@gmail.com', 'phone12','avatar-url12.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
+('recruiter1', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email4@gmail.com', 'phone4','grab-(vietnam)-ltd.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
+('recruiter2', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email5@gmail.com', 'phone5','bocasay.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
+('recruiter3', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email6@gmail.com', 'phone6','knorex.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
+('recruiter4', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email7@gmail.com', 'phone7','zalora-group.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
+('recruiter5', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email8@gmail.com', 'phone8','haravan.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
+('recruiter6', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email9@gmail.com', 'phone9','cinnamon-ai-labs.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
+('recruiter7', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email10@gmail.com', 'phone10','restaff.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
+('recruiter8', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email11@gmail.com', 'phone11','kpmg-digital-enablement.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
+('recruiter9', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email12@gmail.com', 'phone12','techbase-vietnam.png', 'ROLE_REC', '2020-01-01','2020-01-01'),
 ('admin1', '$2a$10$lKQgrwnq8SzQF39QQB9NdegtX6d2iQ6TErLcqwZHsV2CqGX5yLA26', 'email13@gmail.com', 'phone13','avatar-url13.png', 'ROLE_ADM', '2020-01-01','2020-01-01');
 
 INSERT INTO T_CANDIDATE(FIRST_NAME, LAST_NAME, CV_URL, DESCRIPTION, USER_ID)
@@ -22,15 +22,15 @@ VALUES
 
 INSERT INTO T_RECRUITER(NAME, TYPE, WEBSITE, FACEBOOK, USER_ID)
 VALUES
-('name1', 'PRO', 'website_url1', 'facebook_url1','4'),
-('name2', 'PRO', 'website_url2', 'facebook_url2','5'),
-('name3', 'OUT', 'website_url3', 'facebook_url3','6'),
-('name4', 'PRO', 'website_url4', 'facebook_url4','7'),
-('name5', 'PRO', 'website_url5', 'facebook_url5','8'),
-('name6', 'OUT', 'website_url6', 'facebook_url6','9'),
-('name7', 'PRO', 'website_url7', 'facebook_url7','10'),
-('name8', 'PRO', 'website_url8', 'facebook_url8','11'),
-('name9', 'OUT', 'website_url9', 'facebook_url9','12');
+('Grab (Vietnam) Ltd', 'PRO', 'website_url1', 'facebook_url1','4'),
+('BOCASAY', 'PRO', 'website_url2', 'facebook_url2','5'),
+('Knorex', 'OUT', 'website_url3', 'facebook_url3','6'),
+('ZALORA Group', 'PRO', 'website_url4', 'facebook_url4','7'),
+('HARAVAN', 'PRO', 'website_url5', 'facebook_url5','8'),
+('Cinnamon AI Labs', 'OUT', 'website_url6', 'facebook_url6','9'),
+('Restaff', 'PRO', 'website_url7', 'facebook_url7','10'),
+('KPMG Digital Enablement', 'PRO', 'website_url8', 'facebook_url8','11'),
+('Techbase Vietnam', 'OUT', 'website_url9', 'facebook_url9','12');
 
 INSERT INTO T_CATALOG(NAME)
 VALUES

@@ -9,6 +9,7 @@ import tht.closure.operator.security.dto.LoginRequestDto;
 import tht.closure.operator.security.dto.RegisterRequestDto;
 import tht.closure.operator.service.AuthService;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController extends AbstractController{

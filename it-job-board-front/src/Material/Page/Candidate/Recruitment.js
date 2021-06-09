@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {makeStyles} from "@material-ui/core";
 import RecruitmentCard from "../../Component/Candidate/RecruitmentCard";
 import {Row, Col, Container, Form} from "react-bootstrap";
@@ -7,6 +7,10 @@ import CustomFormGroup from "../../Component/Custom/CustomFormGroup";
 import Button from "@material-ui/core/Button";
 import {DefaultTheme} from "../../../theme";
 import Pagination from '@material-ui/lab/Pagination';
+import {useDispatch, useSelector} from "react-redux";
+import { useHistory } from 'react-router-dom'
+import {fetchAllSubCatalog, selectAllSubCatalog} from "../../Feature/CatalogSlice";
+import {searchRecruitments, selectAllRecruitment} from "../../Feature/RecruitmentSlice";
 
 const salaryRange = [
     {
@@ -104,9 +108,7 @@ const useStyles = makeStyles((props) => ({
     },
 }));
 
-
-
-const RecruitmentSearch = () => {
+const RecruitmentSearch = (props) => {
 
     const [t] = useTranslation('common');
     const classes = useStyles();
@@ -114,7 +116,7 @@ const RecruitmentSearch = () => {
         keyword: "",
         location: "",
         position: "",
-        catalog: "",
+        subCatalog: "",
         experience: "",
         salary: "",
         type: "",
@@ -145,8 +147,14 @@ const RecruitmentSearch = () => {
             <div className={classes.inputGroup}>
                 <CustomFormGroup placeholder={t('recruitment-search.placeholder.keyword')} name={"keyword"} value={search.keyword}
                                  onChangeValue={(e) => handleChange(e)} inputStyle={inputStyle} />
-                <CustomFormGroup placeholder={t('recruitment-search.placeholder.salary')} name={"keyword"} value={search.keyword}
-                                 onChangeValue={(e) => handleChange(e)} data={salaryRange} type={"select"}/>
+                <CustomFormGroup placeholder={t('recruitment-search.placeholder.sub_catalog')} name={"keyword"} value={search.subCatalog}
+                                 onChangeValue={(e) => handleChange(e)}
+                                 data={
+                                     props.subCatalogs.map((row) => {
+                                         return { value : row.id, label : row.name}
+                                     })
+                                 }
+                                 type={"select"}/>
                 <CustomFormGroup placeholder={t('recruitment-search.placeholder.experience')} name={"location"} value={search.position}
                                  onChangeValue={(e) => handleChange(e)} data={experienceRange} type={"select"}/>
                 <CustomFormGroup placeholder={t('recruitment-search.placeholder.salary')} name={"keyword"} value={search.keyword}
@@ -189,10 +197,22 @@ const Recruitment = () => {
 
     const classes = useStyles();
     const [t] = useTranslation('common');
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const [isLoading, setIsLoading] = useState(true);
+
+    const subCatalogs = useSelector(selectAllSubCatalog);
+    const recruitments = useSelector(selectAllRecruitment);
 
     const handleSearch = (event) => {
 
     }
+
+    useEffect(() => {
+        dispatch(fetchAllSubCatalog());
+        dispatch(searchRecruitments(1));
+        setIsLoading(false);
+    },[])
 
     return (
         <div className={classes.root}>
@@ -200,7 +220,11 @@ const Recruitment = () => {
                 <Row>
                     <Col sm={3}>
                         <div style={{width: '92%'}}>
-                            <RecruitmentSearch/>
+                            {
+                                !isLoading && (
+                                    <RecruitmentSearch subCatalogs={subCatalogs}/>
+                                )
+                            }
                         </div>
                     </Col>
                     <Col sm={9}>

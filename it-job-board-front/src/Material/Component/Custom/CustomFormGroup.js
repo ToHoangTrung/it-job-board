@@ -36,6 +36,7 @@ const CustomFormGroup = ((props) => {
     let customInput;
 
     if (type === "select") {
+        console.log(data)
         customInput =
             <Select
                 defaultValue={data[0]}

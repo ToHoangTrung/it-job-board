@@ -16,7 +16,7 @@
       "position": "Position",
       "type": "Job type",
       "experience": "Experience",
-      "catalog": "Category",
+      "sub_catalog": "Category",
       "salary": "Salary"
     },
     "button": "Search Now"
