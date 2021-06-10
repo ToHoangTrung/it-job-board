@@ -10,7 +10,12 @@ import Pagination from '@material-ui/lab/Pagination';
 import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from 'react-router-dom'
 import {fetchAllSubCatalog, selectAllSubCatalog} from "../../Feature/CatalogSlice";
-import {searchRecruitments, selectAllRecruitment} from "../../Feature/RecruitmentSlice";
+import {
+    fetchAllRecruitmentPosition,
+    searchRecruitments,
+    selectAllRecruitment,
+    selectAllRecruitmentPosition
+} from "../../Feature/RecruitmentSlice";
 
 const salaryRange = [
     {
@@ -155,17 +160,22 @@ const RecruitmentSearch = (props) => {
                                      })
                                  }
                                  type={"select"}/>
-                <CustomFormGroup placeholder={t('recruitment-search.placeholder.experience')} name={"location"} value={search.position}
+                <CustomFormGroup placeholder={t('recruitment-search.placeholder.position')} name={"position"} value={search.position}
+                                 onChangeValue={(e) => handleChange(e)} type={"select"}
+                                 data={
+                                     props.positions.map((row) => {
+                                         return { value : row.name, label : row.enTranslate}
+                                     })
+                                 }/>
+                <CustomFormGroup placeholder={t('recruitment-search.placeholder.salary')} name={"keyword"} value={search.keyword}
+                                 onChangeValue={(e) => handleChange(e)} data={salaryRange} type={"select"}/>
+                <CustomFormGroup placeholder={t('recruitment-search.placeholder.location')} name={"location"} value={search.position}
                                  onChangeValue={(e) => handleChange(e)} data={experienceRange} type={"select"}/>
                 <CustomFormGroup placeholder={t('recruitment-search.placeholder.salary')} name={"keyword"} value={search.keyword}
                                  onChangeValue={(e) => handleChange(e)} data={salaryRange} type={"select"}/>
                 <CustomFormGroup placeholder={t('recruitment-search.placeholder.experience')} name={"location"} value={search.position}
                                  onChangeValue={(e) => handleChange(e)} data={experienceRange} type={"select"}/>
-                <CustomFormGroup placeholder={t('recruitment-search.placeholder.salary')} name={"keyword"} value={search.keyword}
-                                 onChangeValue={(e) => handleChange(e)} data={salaryRange} type={"select"}/>
-                <CustomFormGroup placeholder={t('recruitment-search.placeholder.experience')} name={"location"} value={search.position}
-                                 onChangeValue={(e) => handleChange(e)} data={experienceRange} type={"select"}/>
-                <Button variant={"contained"}>{t('recruitment-search.button')}</Button>
+                <Button variant={"contained"}>{t('recruitment-search.search')}</Button>
             </div>
         </Form>
     )
@@ -202,6 +212,7 @@ const Recruitment = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const subCatalogs = useSelector(selectAllSubCatalog);
+    const positions = useSelector(selectAllRecruitmentPosition);
     const recruitments = useSelector(selectAllRecruitment);
 
     const handleSearch = (event) => {
@@ -210,9 +221,10 @@ const Recruitment = () => {
 
     useEffect(() => {
         dispatch(fetchAllSubCatalog());
-        dispatch(searchRecruitments(1));
+        dispatch(fetchAllRecruitmentPosition());
         setIsLoading(false);
-    },[])
+    },[]);
+
 
     return (
         <div className={classes.root}>
@@ -222,7 +234,7 @@ const Recruitment = () => {
                         <div style={{width: '92%'}}>
                             {
                                 !isLoading && (
-                                    <RecruitmentSearch subCatalogs={subCatalogs}/>
+                                    <RecruitmentSearch subCatalogs={subCatalogs} positions={positions}/>
                                 )
                             }
                         </div>

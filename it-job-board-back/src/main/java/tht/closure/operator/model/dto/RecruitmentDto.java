@@ -13,8 +13,6 @@ public class RecruitmentDto extends AbstractDto{
 
     private String headline;
 
-    private String overviewContentUrl;
-
     private String responsibilityContentUrl;
 
     private String requirementContentUrl;
@@ -27,12 +25,15 @@ public class RecruitmentDto extends AbstractDto{
 
     private Integer recruitQuantity;
 
-    private Integer salary;
+    private String salary;
+
+    private String location;
 
     private List<SubCatalogDto> subCatalogs = new ArrayList<>();
 
     private RecruiterDto recruiter;
 
-    private String type;
+    private PositionDto position;
 
+    public static class PositionDto extends MultilingualDto{}
 }

@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity(name = "t_recruiter")
@@ -28,14 +28,6 @@ public class Recruiter extends AbstractEntity{
     @Column
     private Integer employeeQuantity;
 
-    @Column
-    private DayOfWeek startWorkDay;
-
-    @Column
-    private DayOfWeek startEndDay;
-
-    @Column
-
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
@@ -50,30 +42,36 @@ public class Recruiter extends AbstractEntity{
     @Enumerated(EnumType.STRING)
     private Type type;
 
+    @Getter
     public enum Type {
-        PRODUCT("Product"),
-        OUTSOURCE("Outsource");
+        PRODUCT("Product", "Sản phẩm"),
+        OUTSOURCE("Outsource", "Mã nguồn mở");
 
-        public final String label;
+        public final String enTranslate;
+        public final String vnTranslate;
 
-        Type(String label) {
-            this.label = label;
+        Type(String vnTranslate, String enTranslate) {
+            this.vnTranslate = vnTranslate;
+            this.enTranslate = enTranslate;
         }
     }
 
     @Column
     @Enumerated(EnumType.STRING)
-    private OutSource outSource;
+    private Overtime overtime;
 
-    public enum OutSource {
-        EXTRA_SALARY_FOR_OT("Extra salary for OT"),
-        NO("No OT");
+    public enum Overtime {
+        EXTRA_SALARY_FOR_OT("Thêm lương OT", "Extra salary for OT"),
+        NO("Không OT", "No OT");
 
-        public final String label;
+        public final String vnTranslate;
+        public final String enTranslate;
 
-        OutSource(String label) {
-            this.label = label;
+        Overtime(String vnTranslate, String enTranslate) {
+            this.vnTranslate = vnTranslate;
+            this.enTranslate = enTranslate;
         }
+
     }
 
     @Column
@@ -81,17 +79,46 @@ public class Recruiter extends AbstractEntity{
     private Country country;
 
     public enum Country {
-        VN(""),
-        JP("No OT");
+        VN("Việt Nam", "Vietnam", "vn.png"),
+        JP("Nhật Bản", "Japan", "jp.png"),
+        KO("Hàn Quốc", "Korea", "ko.png");
 
-        public final String label;
+        public final String vnTranslate;
+        public final String enTranslate;
+        public final String flagImage;
 
-        Country(String label) {
-            this.label = label;
+        Country(String vnTranslate, String enTranslate, String flagImage) {
+            this.vnTranslate = vnTranslate;
+            this.enTranslate = enTranslate;
+            this.flagImage = flagImage;
         }
+
     }
 
-    @ManyToOne
-    @JoinColumn
-    private City city;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private DayOfWeek workStartDay;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private DayOfWeek workEndDay;
+
+    public enum DayOfWeek {
+        MONDAY("Thứ 2", "Monday"),
+        TUESDAY("Thứ 3", "Thứ 3"),
+        WEDNESDAY("Thứ 4", "Wednesday"),
+        THURSDAY("Thứ 5", "Thursday"),
+        FRIDAY("Thứ 6", "Friday"),
+        SATURDAY("Thứ 7", "Saturday"),
+        SUNDAY("Chủ Nhật", "Sunday");
+
+        public final String vnTranslate;
+        public final String enTranslate;
+
+        DayOfWeek(String vnTranslate, String enTranslate) {
+            this.vnTranslate = vnTranslate;
+            this.enTranslate = enTranslate;
+        }
+
+    }
 }

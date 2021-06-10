@@ -20,17 +20,17 @@ VALUES
 ('firstname2', 'lastname2', 'cv-url2.pdf', 'description2','2'),
 ('firstname3', 'lastname3', 'cv-url3.pdf', 'description3','3');
 
-INSERT INTO T_RECRUITER(NAME, TYPE, WEBSITE, FACEBOOK, USER_ID)
+INSERT INTO T_RECRUITER(NAME, TYPE, WEBSITE, FACEBOOK, USER_ID, OVERTIME, COUNTRY, EMPLOYEE_QUANTITY, WORk_START_DAY, WORk_END_DAY, LOCATION)
 VALUES
-('Grab (Vietnam) Ltd', 'PRO', 'website_url1', 'facebook_url1','4'),
-('BOCASAY', 'PRO', 'website_url2', 'facebook_url2','5'),
-('Knorex', 'OUT', 'website_url3', 'facebook_url3','6'),
-('ZALORA Group', 'PRO', 'website_url4', 'facebook_url4','7'),
-('HARAVAN', 'PRO', 'website_url5', 'facebook_url5','8'),
-('Cinnamon AI Labs', 'OUT', 'website_url6', 'facebook_url6','9'),
-('Restaff', 'PRO', 'website_url7', 'facebook_url7','10'),
-('KPMG Digital Enablement', 'PRO', 'website_url8', 'facebook_url8','11'),
-('Techbase Vietnam', 'OUT', 'website_url9', 'facebook_url9','12');
+('Grab (Vietnam) Ltd', 'PRODUCT', 'website_url1', 'facebook_url1','4', 'NO', 'VN', '500', 'MONDAY', 'FRIDAY', 'location1'),
+('BOCASAY', 'PRODUCT', 'website_url2', 'facebook_url2','5', 'NO', 'VN', '500', 'MONDAY', 'FRIDAY', 'location1'),
+('Knorex', 'OUTSOURCE', 'website_url3', 'facebook_url3','6', 'NO', 'VN', '500', 'MONDAY', 'FRIDAY', 'location1'),
+('ZALORA Group', 'PRODUCT', 'website_url4', 'facebook_url4','7', 'NO', 'VN', '500', 'MONDAY', 'FRIDAY', 'location1'),
+('HARAVAN', 'PRODUCT', 'website_url5', 'facebook_url5','8', 'NO', 'VN', '500', 'MONDAY', 'FRIDAY', 'location1'),
+('Cinnamon AI Labs', 'OUTSOURCE', 'website_url6', 'facebook_url6','9', 'NO', 'VN', '500', 'MONDAY', 'FRIDAY', 'location1'),
+('Restaff', 'PRODUCT', 'website_url7', 'facebook_url7','10', 'NO', 'VN', '500', 'MONDAY', 'FRIDAY', 'location1'),
+('KPMG Digital Enablement', 'PRODUCT', 'website_url8', 'facebook_url8','11', 'NO', 'VN', '500', 'MONDAY', 'FRIDAY', 'location1'),
+('Techbase Vietnam', 'OUTSOURCE', 'website_url9', 'facebook_url9','12', 'NO', 'VN', '500', 'MONDAY', 'FRIDAY', 'location1');
 
 INSERT INTO T_CATALOG(NAME)
 VALUES
@@ -68,26 +68,26 @@ VALUES
 ('Trợ giảng', 4),
 ('Đào tạo', 4);
 
-INSERT INTO T_RECRUITMENT(HEADLINE, OVERVIEW_CONTENT_URL, BENEFIT_CONTENT_URL, REQUIREMENT_CONTENT_URL, RESPONSIBILITY_CONTENT_URL, SALARY, START_DATE, END_DATE, TYPE, RECRUITER_ID)
+INSERT INTO T_RECRUITMENT(HEADLINE, BENEFIT_CONTENT_URL, REQUIREMENT_CONTENT_URL, RESPONSIBILITY_CONTENT_URL, SALARY, START_DATE, END_DATE, POSITION , RECRUITER_ID, LOCATION)
 VALUES
-('Product Owner','overview-content-1.txt','benefit-content-1.txt','requirement-content-1.txt', 'responsibility-content-1.txt',3000000, '2020-07-06', '2020-08-06', 'FUL', 1),
-('Thực Tập Sinh Đào Tạo Và Phát Triển','overview-content-2.txt','benefit-content-2.txt','requirement-content-2.txt', 'responsibility-content-2.txt',2000000, '2020-07-06', '2020-08-06', 'INT', 1),
-('JAVA INTERNSHIP PROGRAM','overview-content-3.txt','benefit-content-3.txt','requirement-content-3.txt', 'responsibility-content-3.txt',4000000, '2020-07-06', '2020-08-06', 'FRE', 2),
-('Thực Tập Sinh Thiết Kế','overview-content-4.txt','benefit-content-4.txt','requirement-content-4.txt', 'responsibility-content-4.txt',3000000, '2020-07-06', '2020-08-06', 'PAR', 2),
-('Thực Tập Sinh Quản Trị Nhân Sự','overview-content-5.txt','benefit-content-5.txt','requirement-content-5.txt', 'responsibility-content-5.txt',5000000, '2020-07-06', '2020-08-06', 'FUL', 3),
-('Internship Robotics Process Automation (RPA)','overview-content-6.txt','benefit-content-6.txt','requirement-content-6.txt', 'responsibility-content-6.txt',6000000, '2020-07-06', '2020-08-06', 'INT', 3),
-('Product Owner','overview-content-7.txt','benefit-content-7.txt','requirement-content-7.txt', 'responsibility-content-7.txt',4000000, '2020-07-06', '2020-08-06', 'FRE', 4),
-('Thực Tập Sinh Đào Tạo Và Phát Triển','overview-content-8.txt','benefit-content-8.txt','requirement-content-8.txt', 'responsibility-content-8.txt',5000000, '2020-07-06', '2020-08-06', 'PAR', 4),
-('JAVA INTERNSHIP PROGRAM','overview-content-9.txt','benefit-content-9.txt','requirement-content-9.txt', 'responsibility-content-9.txt',7000000, '2020-07-06', '2020-08-06', 'FUL', 5),
-('Thực Tập Sinh Thiết Kế','overview-content-10.txt','benefit-content-10.txt','requirement-content-10.txt', 'responsibility-content-10.txt',8000000, '2020-07-06', '2020-08-06', 'INT', 5),
-('Thực Tập Sinh Quản Trị Nhân Sự','overview-content-11.txt','benefit-content-11.txt','requirement-content-11.txt', 'responsibility-content-11.txt',3000000, '2020-07-06', '2020-08-06', 'FRE', 6),
-('Product Owner','overview-content-12.txt','benefit-content-12.txt','requirement-content-12.txt', 'responsibility-content-12.txt',2000000, '2020-07-06', '2020-08-06', 'PAR', 6),
-('Thực Tập Sinh Đào Tạo Và Phát Triển','overview-content-13.txt','benefit-content-13.txt','requirement-content-13.txt', 'responsibility-content-13.txt',4000000, '2020-07-06', '2020-08-06', 'FUL', 7),
-('JAVA INTERNSHIP PROGRAM','overview-content-14.txt','benefit-content-14.txt','requirement-content-14.txt', 'responsibility-content-14.txt',8000000, '2020-07-06', '2020-08-06', 'INT', 7),
-('Thực Tập Sinh Thiết Kế','overview-content-15.txt','benefit-content-15.txt','requirement-content-15.txt', 'responsibility-content-15.txt',1000000, '2020-07-06', '2020-08-06', 'FRE', 8),
-('Thực Tập Sinh Quản Trị Nhân Sự','overview-content-16.txt','benefit-content-16.txt','requirement-content-16.txt', 'responsibility-content-16.txt',4000000, '2020-07-06', '2020-08-06', 'FUL', 8),
-('Internship Robotics Process Automation (RPA)','overview-content-17.txt','benefit-content-17.txt','requirement-content-17.txt', 'responsibility-content-17.txt',6000000, '2020-07-06', '2020-08-06', 'INT', 9),
-('Product Owner','overview-content-18.txt','benefit-content-18.txt','requirement-content-18.txt', 'responsibility-content-18.txt',3000000, '2020-07-06', '2020-08-06', 'INT', 9);
+('Product Owner', 'benefit-content-1.txt','requirement-content-1.txt', 'responsibility-content-1.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 1, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Thực Tập Sinh Đào Tạo Và Phát Triển', 'benefit-content-2.txt','requirement-content-2.txt', 'responsibility-content-2.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 1, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('JAVA INTERNSHIP PROGRAM', 'benefit-content-3.txt','requirement-content-3.txt', 'responsibility-content-3.txt','From $2,500', '2020-07-06', '2020-08-06', 'FRESHER', 2, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Thực Tập Sinh Thiết Kế', 'benefit-content-4.txt','requirement-content-4.txt', 'responsibility-content-4.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 2, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Thực Tập Sinh Quản Trị Nhân Sự', 'benefit-content-5.txt','requirement-content-5.txt', 'responsibility-content-5.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 3, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Internship Robotics Process Automation (RPA)', 'benefit-content-6.txt','requirement-content-6.txt', 'responsibility-content-6.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 3, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Product Owner', 'benefit-content-7.txt','requirement-content-7.txt', 'responsibility-content-7.txt','From $2,500', '2020-07-06', '2020-08-06', 'FRESHER', 4, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Thực Tập Sinh Đào Tạo Và Phát Triển', 'benefit-content-8.txt','requirement-content-8.txt', 'responsibility-content-8.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 4, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('JAVA INTERNSHIP PROGRAM', 'benefit-content-9.txt','requirement-content-9.txt', 'responsibility-content-9.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 5, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Thực Tập Sinh Thiết Kế', 'benefit-content-10.txt','requirement-content-10.txt', 'responsibility-content-10.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 5, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Thực Tập Sinh Quản Trị Nhân Sự', 'benefit-content-11.txt','requirement-content-11.txt', 'responsibility-content-11.txt','From $2,500', '2020-07-06', '2020-08-06', 'FRESHER', 6, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Product Owner', 'benefit-content-12.txt','requirement-content-12.txt', 'responsibility-content-12.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 6, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Thực Tập Sinh Đào Tạo Và Phát Triển', 'benefit-content-13.txt','requirement-content-13.txt', 'responsibility-content-13.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 7, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('JAVA INTERNSHIP PROGRAM', 'benefit-content-14.txt','requirement-content-14.txt', 'responsibility-content-14.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 7, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Thực Tập Sinh Thiết Kế', 'benefit-content-15.txt','requirement-content-15.txt', 'responsibility-content-15.txt','From $2,500', '2020-07-06', '2020-08-06', 'FRESHER', 8, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Thực Tập Sinh Quản Trị Nhân Sự', 'benefit-content-16.txt','requirement-content-16.txt', 'responsibility-content-16.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 8, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Internship Robotics Process Automation (RPA)', 'benefit-content-17.txt','requirement-content-17.txt', 'responsibility-content-17.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 9, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh'),
+('Product Owner', 'benefit-content-18.txt','requirement-content-18.txt', 'responsibility-content-18.txt','From $2,500', '2020-07-06', '2020-08-06', 'INTERN', 9, '21-23 Nguyễn Thị Minh Khai, Bến Nghé, District 1, Ho Chi Minh');
 
 INSERT INTO T_RECRUITMENT_SUB_CATALOG(RECRUITMENT_ID, SUB_CATALOG_ID)
 VALUES

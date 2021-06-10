@@ -17,9 +17,6 @@ public class Recruitment extends AbstractEntity{
     private String headline;
 
     @Column
-    private String overviewContentUrl;
-
-    @Column
     private String responsibilityContentUrl;
 
     @Column
@@ -38,7 +35,10 @@ public class Recruitment extends AbstractEntity{
     private Integer recruitQuantity;
 
     @Column
-    private Integer salary;
+    private String location;
+
+    @Column
+    private String salary;
 
     @OneToMany(mappedBy = "recruitment")
     private List<RecruitmentSubCatalog> recruitmentSubCatalogs = new ArrayList<>();
@@ -52,17 +52,18 @@ public class Recruitment extends AbstractEntity{
 
     @Column
     @Enumerated(EnumType.STRING)
-    private Type type;
+    private Position position;
 
-    public enum Type {
-        INT("Internship"),
-        FRE("Fresher"),
-        FUL("Full-time"),
-        PAR("Part-time");
-        public final String label;
+    public enum Position {
+        INTERN("Internship", "Thực tập sinh"),
+        FRESHER("Fresher", "");
 
-        Type(String label) {
-            this.label = label;
+        public final String enTranslate;
+        public final String vnTranslate;
+
+        Position(String enTranslate, String vnTranslate) {
+            this.enTranslate = enTranslate;
+            this.vnTranslate = vnTranslate;
         }
     }
 

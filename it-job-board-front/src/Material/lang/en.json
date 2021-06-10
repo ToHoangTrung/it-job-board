@@ -9,7 +9,6 @@
     "recruiter": "Become Recruiter"
   },
   "recruitment-search": {
-    "headline": "Find your dream job here with just 1 CLICK",
     "placeholder": {
       "keyword": "Keyword",
       "location": "Location",
@@ -19,7 +18,8 @@
       "sub_catalog": "Category",
       "salary": "Salary"
     },
-    "button": "Search Now"
+    "search": "Search Now",
+    "reset": "Reset search"
   },
   "recruitment-sort": {
     "headline": "Jobs Found",
