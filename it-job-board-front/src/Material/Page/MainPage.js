@@ -7,6 +7,7 @@ import Recruitment from "./Candidate/Recruitment";
 import '../Style/MainPage.scss'
 import RecruitmentDetail from "./Candidate/RecruitmentDetail";
 import RecruiterDetail from "./Candidate/RecruiterDetail";
+import LoginRegister from "./Candidate/LoginRegister";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,6 +43,7 @@ const MainPage = () => {
                             <Route path="/jobs" component={Recruitment} exact/>
                             <Route path="/jobs/:recruitmentId" component={RecruitmentDetail}/>
                             <Route path="/companies/:recruiterId" component={RecruiterDetail}/>
+                            <Route path="/login" component={LoginRegister}/>
                         </Col>
                         <Col xl={1}></Col>
                     </Row>

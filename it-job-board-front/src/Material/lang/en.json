@@ -43,6 +43,27 @@
     "reviewTab": "Reviews",
     "overviewTab": "Overview",
     "overviewContent": "Overview about"
+  },
+  "login-form": {
+    "placeholder": {
+      "email": "Email",
+      "password": "Password",
+      "username": "Username",
+      "confirm-password": "Password Confirm"
+    },
+    "button": {
+      "login": "Login",
+      "register": "Register"
+    },
+    "headline": {
+      "login": "Login",
+      "register": "Register"
+    },
+    "help": {
+      "forgot-username-password": "Forgot Username / Password?",
+      "change-to-register": "Doesn't have an account, create one here",
+      "change-to-login": "Already have an account, login here"
+    }
   }
 }
 
