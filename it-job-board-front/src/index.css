@@ -16,7 +16,6 @@ body {
 a {
   text-decoration: none;
   color: black;
-  transition: .3s;
 }
 
 a:hover{
@@ -52,4 +51,13 @@ input {
 
 p{
   margin-bottom: 0 !important;
+}
+
+.dropdown-item {
+  padding: 0 !important;
+}
+
+.dropdown-menu {
+  padding: 0 !important;
+  border: none !important;
 }

@@ -11,6 +11,7 @@ import QueryBuilderOutlinedIcon from '@material-ui/icons/QueryBuilderOutlined';
 import Button from "@material-ui/core/Button";
 import {TabContext, TabList, TabPanel} from "@material-ui/lab";
 import ReactHtmlParser from "react-html-parser";
+import '../../Style/MainPage.scss'
 
 const description = "<p style=\"box-sizing: border-box; margin: 1em 0px; color: rgb(58, 58, 58); font-family: Roboto, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">LG Electronics Vehicle ComponentSolutions Company focuses on eco-friendly automotive components. The VS Company produces high-quality&nbsp;In-Vehicle&nbsp;Infotainment (IVI) systems that deliver both information and entertainment on-the-go for many of the world&lsquo;s biggest automobile brands.<br style=\"box-sizing: border-box;\"><br style=\"box-sizing: border-box;\">We, LG Electronics Development Center Vietnam (VS DCV), conduct core R&amp;D activities, and various product reliability tests in support of our vehicle component business.<br style=\"box-sizing: border-box;\"><br style=\"box-sizing: border-box;\">As the&nbsp;<strong style=\"box-sizing: border-box; font-weight: 700;\">Leader of Software Development Part</strong>, your roles &amp; responsibilities will be as below:&nbsp;</p>\n" +
     "<ul style=\"box-sizing: border-box; margin: 1em 0px; padding: 0px 0px 0px 40px; color: rgb(58, 58, 58); font-family: Roboto, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">\n" +
@@ -25,9 +26,6 @@ const RecruiterIntroduce = ({recruiter}) => {
 
     const useStyles = makeStyles((props) => ({
         root: {
-            background: 'white',
-            padding: 24,
-            border: `1px solid ${DefaultTheme.gray5}`,
         },
         logo: {
             width: '100%',
@@ -54,6 +52,7 @@ const RecruiterIntroduce = ({recruiter}) => {
         },
         icon:{
             display: "flex",
+            flexBasis: '33%',
             alignItems: "center",
             gridColumnGap: 8,
         },
@@ -117,12 +116,12 @@ const RecruiterIntroduce = ({recruiter}) => {
                 <Col sm={8}>
                     <div className={classes.info}>
                         <p className={classes.headline}>LG Vehicle Component Solutions Development Center Vietnam (LG VS DCV)</p>
-                        <div style={{display: 'flex', justifyContent: 'space-between', width: '50%'}}>
+                        <div style={{display: 'flex', width: '70%'}}>
                             <p className={classes.icon}><LocationOnOutlinedIcon/>Ha Noi, Da Nang</p>
                             <p className={classes.icon}><EventAvailableOutlinedIcon/>Product</p>
                             <p className={classes.icon}><GroupOutlinedIcon/>300 - 500</p>
                         </div>
-                        <div style={{display: 'flex', justifyContent: 'space-between', width: '50%'}}>
+                        <div style={{display: 'flex', width: '70%'}}>
                             <p className={classes.icon}><QueryBuilderOutlinedIcon/>Extra salary for OT</p>
                             <p className={classes.icon}><SettingsOutlinedIcon/>Product</p>
                         </div>
@@ -200,40 +199,43 @@ const RecruiterDetail = ({match}) => {
     return (
         <div className={classes.root}>
             <Container fluid>
-                <Row>
-                    <Col>
-                        <div style={{marginBottom: 16}}>
-                            <RecruiterIntroduce/>
-                        </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={8}>
-                        <div style={{width: '98%', background: 'white', border: `1px solid ${DefaultTheme.gray5}`}}>
-                            <TabContext value={value}>
-                                <AppBar position="static" style={{background: DefaultTheme.default5, width: '100%'}}>
-                                    <TabList onChange={handleChangeView} variant={"fullWidth"} TabIndicatorProps={{style:{background: DefaultTheme.default7, height: 5}}}>
-                                        <Tab label={t('recruiter-card.jobTab')} value="1" style={{fontWeight: 'bold'}}/>
-                                        <Tab label={t('recruiter-card.overviewTab')} value="2" style={{fontWeight: 'bold'}}/>
-                                        <Tab label={t('recruiter-card.reviewTab')} value="3" style={{fontWeight: 'bold'}} />
-                                    </TabList>
-                                </AppBar>
-                                <TabPanel value="1">
+                <div className={"content-list"}>
+                    <Row>
+                        <Col>
+                            <div className={"content-list"}>
+                                <div className={"content-item"}>
+                                    <RecruiterIntroduce/>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm={8}>
+                            <div className={"content-list"}>
+                                <div className={"content-item"} style={{width: '98%'}}>
+                                    <TabContext value={value}>
+                                        <AppBar position="static" style={{background: DefaultTheme.default5, width: '100%'}}>
+                                            <TabList onChange={handleChangeView} variant={"fullWidth"} TabIndicatorProps={{style:{background: DefaultTheme.default7, height: 5}}}>
+                                                <Tab label={t('recruiter-card.jobTab')} value="1" style={{fontWeight: 'bold'}}/>
+                                                <Tab label={t('recruiter-card.overviewTab')} value="2" style={{fontWeight: 'bold'}}/>
+                                                <Tab label={t('recruiter-card.reviewTab')} value="3" style={{fontWeight: 'bold'}} />
+                                            </TabList>
+                                        </AppBar>
+                                        <TabPanel value="1">
 
-                                </TabPanel>
-                                <TabPanel value="2">
-                                    <RecruiterDescription/>
-                                </TabPanel>
-                                <TabPanel value="3">
+                                        </TabPanel>
+                                        <TabPanel value="2">
+                                            <RecruiterDescription/>
+                                        </TabPanel>
+                                        <TabPanel value="3">
 
-                                </TabPanel>
-                            </TabContext>
-                        </div>
-                    </Col>
-                    <Col sm={4}>
-
-                    </Col>
-                </Row>
+                                        </TabPanel>
+                                    </TabContext>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
             </Container>
         </div>
     );

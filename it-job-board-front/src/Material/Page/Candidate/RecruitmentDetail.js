@@ -5,6 +5,7 @@ import {Button, Col, Container, Row} from "react-bootstrap";
 import {DefaultTheme, PolarGreenTheme} from "../../../theme";
 import QueryBuilderOutlinedIcon from '@material-ui/icons/QueryBuilderOutlined';
 import ReactHtmlParser from 'react-html-parser';
+import '../../Style/MainPage.scss'
 
 const description = "<p style=\"box-sizing: border-box; margin: 1em 0px; color: rgb(58, 58, 58); font-family: Roboto, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">LG Electronics Vehicle ComponentSolutions Company focuses on eco-friendly automotive components. The VS Company produces high-quality&nbsp;In-Vehicle&nbsp;Infotainment (IVI) systems that deliver both information and entertainment on-the-go for many of the world&lsquo;s biggest automobile brands.<br style=\"box-sizing: border-box;\"><br style=\"box-sizing: border-box;\">We, LG Electronics Development Center Vietnam (VS DCV), conduct core R&amp;D activities, and various product reliability tests in support of our vehicle component business.<br style=\"box-sizing: border-box;\"><br style=\"box-sizing: border-box;\">As the&nbsp;<strong style=\"box-sizing: border-box; font-weight: 700;\">Leader of Software Development Part</strong>, your roles &amp; responsibilities will be as below:&nbsp;</p>\n" +
     "<ul style=\"box-sizing: border-box; margin: 1em 0px; padding: 0px 0px 0px 40px; color: rgb(58, 58, 58); font-family: Roboto, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">\n" +
@@ -19,9 +20,6 @@ const RecruitmentIntroduce = ({recruitment}) => {
 
     const useStyles = makeStyles((props) => ({
         root: {
-            background: 'white',
-            padding: 24,
-            border: `1px solid ${DefaultTheme.gray5}`
         },
         logo: {
             width: '100%',
@@ -122,9 +120,6 @@ const RecruitmentDescription = ({recruitment}) => {
 
     const useStyles = makeStyles((props) => ({
         root: {
-            background: 'white',
-            padding: 24,
-            border: `1px solid ${DefaultTheme.gray5}`
         },
         description: {
 
@@ -159,9 +154,6 @@ const RecruitmentDescription = ({recruitment}) => {
 const RecruitmentInformation = ({recruitment}) => {
     const useStyles = makeStyles((props) => ({
         root: {
-            background: 'white',
-            padding: 24,
-            border: `1px solid ${DefaultTheme.gray5}`
         },
     }))
 
@@ -192,25 +184,34 @@ const RecruitmentDetail = ({match}) => {
     return (
         <div className={classes.root}>
             <Container fluid>
-                <Row>
-                    <Col>
-                        <div style={{marginBottom: 16}}>
-                            <RecruitmentIntroduce/>
-                        </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={8}>
-                        <div style={{width: '98%'}}>
-                            <RecruitmentDescription/>
-                        </div>
-                    </Col>
-                    <Col sm={4}>
-                        <div>
-                            <RecruitmentInformation/>
-                        </div>
-                    </Col>
-                </Row>
+                <div className={"content-list"}>
+                    <Row>
+                        <Col>
+                            <div className={"content-list"}>
+                                <div className={"content-item"}>
+                                    <RecruitmentIntroduce/>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm={8}>
+                            <div className={"content-list"}>
+                                <div className={"content-item"} style={{width: '98%'}}>
+                                    <RecruitmentDescription/>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col sm={4}>
+                            <div className={"content-list"}>
+                                <div className={"content-item"}>
+                                    <RecruitmentInformation/>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
+
             </Container>
         </div>
     );

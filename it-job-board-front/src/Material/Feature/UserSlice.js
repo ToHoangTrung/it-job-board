@@ -1,57 +1,37 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import axios from 'axios'
-import UserApi from "../Api/UserApi";
+import axiosClient from "../../axiosClient";
 
-export const userLogin = createAsyncThunk(
-    'user/signIn',
-    async (params, thunkAPI) => {
-        const response = await UserApi.login(params);
-        const { access_token, token_type} = response;
-        localStorage.setItem('token_type', token_type)
-        localStorage.setItem('access_token', access_token);
-    }
-);
-
-export const userGetMe = createAsyncThunk(
-    'user/getMe',
-    async (params) => UserApi.getMe(params)
-);
-
-export const userSignUp = createAsyncThunk('user/userSignUp', async (userInfo, {rejectWithValue}) => {
-    try{
-        const response = await axios.post(`/api/users/auth/signup`,
-            {
-                'username': userInfo.username,
-                'password': userInfo.password,
-                'email': userInfo.email,
-                'role': [userInfo.role],
-            })
-        return response.data
-    }catch(err){
-        return rejectWithValue(err.response.data)
-    }
-});
-
-export const userSignIn = createAsyncThunk('user/userSignIn', async (userInfo, { rejectWithValue }) => {
-    try{
-        const response = await axios.post(`/api/users/auth/signin`,
-            {
-                'username': userInfo.username,
-                'password': userInfo.password,
-            })
-        return response.data
-    }catch(err){
-        return rejectWithValue(err.response.data)
-    }
-});
-
-export const getMe = createAsyncThunk('user/getMe', async () => {
-    const response = await axios.get(`/api/users/auth/me/`,{
-        headers: {
-            Authorization: localStorage.getItem('token_type') + ' ' + localStorage.getItem('access_token')
+export const userLogin = createAsyncThunk('user/login',
+    async (params, {rejectWithValue}) => {
+        try {
+            const response = await axiosClient.post("/api/auth/login", params)
+            const { token, type} = response.data;
+            localStorage.setItem('token_type', type)
+            localStorage.setItem('access_token', token);
+        } catch (err) {
+            throw new rejectWithValue(err.response.data);
         }
-    })
-    return response.data
+    }
+);
+
+export const userRegister = createAsyncThunk('user/register',
+    async (params, {rejectWithValue}) => {
+    try {
+        const response = await axiosClient.post(`/api/auth/register`, params);
+        return response.data;
+    } catch (err) {
+        throw new rejectWithValue(err.response.data);
+    }
+});
+
+export const userGetInfo = createAsyncThunk('user/getInfo',
+    async (params,{rejectWithValue}) => {
+    try{
+        const response = await axiosClient.get('/api/auth/getInfo');
+        return response.data;
+    } catch (err) {
+        throw new rejectWithValue(err.response.data);
+    }
 });
 
 const userSlice = createSlice({
@@ -60,21 +40,22 @@ const userSlice = createSlice({
         currentUser: {},
     },
     reducers: {
-        logOut: state => {
+        userLogOut: state => {
             state.currentUser = {}
             localStorage.setItem('access_token', '')
             localStorage.setItem('token_type', '')
         }
     },
     extraReducers: {
-        [getMe.fulfilled]: (state, action) => {
+        [userGetInfo.fulfilled]: (state, action) => {
             state.currentUser = action.payload || {};
         }
     }
 })
 
-export default userSlice.reducer
+const { reducer: userReducer } = userSlice;
+export default userReducer;
 
-export const getCurrentUser = state => state.auth.currentUser
+export const getCurrentUser = state => state.user.currentUser
 
-export const { logOut } = userSlice.actions
+export const { userLogOut } = userSlice.actions

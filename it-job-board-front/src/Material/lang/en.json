@@ -6,7 +6,9 @@
     "blog": "Blog",
     "logout": "Log out",
     "login": "Log in",
-    "recruiter": "Become Recruiter"
+    "recruiter": "Become Recruiter",
+    "account": "My Account",
+    "apply-job": "Applied Jobs"
   },
   "recruitment-search": {
     "placeholder": {
@@ -50,6 +52,16 @@
       "password": "Password",
       "username": "Username",
       "confirm-password": "Password Confirm"
+    },
+    "error": {
+      "email-missing": "Email is required",
+      "username-missing": "Username is required",
+      "password-missing": "Password is required",
+      "password-not-match": "Password does not match",
+      "email-duplicate": "Email have already exist",
+      "username-duplicate": "Username have already exist",
+      "email-not-found": "Email does not found",
+      "username-not-found": "Username does not found"
     },
     "button": {
       "login": "Login",

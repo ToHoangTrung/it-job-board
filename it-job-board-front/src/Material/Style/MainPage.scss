@@ -1,7 +1,10 @@
-//.header{
-//  background-image:
-//          linear-gradient(to right bottom, rgba(142, 158, 252, .8), rgba(28, 62, 255, .8)),
-//          url("/public/background.png");
-//  background-size: cover;
-//  background-position: top;
-//}
+.content-list{
+  display: flex;
+  flex-direction: column;
+  grid-gap: 24px;
+}
+.content-item{
+  background: white;
+  border: 1px solid #d9d9d9;
+  padding: 24px;
+}

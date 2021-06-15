@@ -1,7 +1,7 @@
 import React from 'react';
 import {Col, Container, Row} from 'react-bootstrap';
 import {BrowserRouter, Route} from 'react-router-dom';
-import Header from '../Component/Shared/Header';
+import Header from '../Component/Candidate/Header';
 import {makeStyles} from "@material-ui/core";
 import Recruitment from "./Candidate/Recruitment";
 import '../Style/MainPage.scss'
@@ -39,11 +39,13 @@ const MainPage = () => {
                     </div>
                     <Row className={classes.main}>
                         <Col xl={1}></Col>
-                        <Col xl={10} style={{padding: 0, paddingTop: 32}}>
-                            <Route path="/jobs" component={Recruitment} exact/>
-                            <Route path="/jobs/:recruitmentId" component={RecruitmentDetail}/>
-                            <Route path="/companies/:recruiterId" component={RecruiterDetail}/>
-                            <Route path="/login" component={LoginRegister}/>
+                        <Col xl={10}>
+                            <div style={{margin: '24px auto'}}>
+                                <Route path="/jobs" component={Recruitment} exact/>
+                                <Route path="/jobs/:recruitmentId" component={RecruitmentDetail}/>
+                                <Route path="/companies/:recruiterId" component={RecruiterDetail}/>
+                                <Route path="/login" component={LoginRegister}/>
+                            </div>
                         </Col>
                         <Col xl={1}></Col>
                     </Row>

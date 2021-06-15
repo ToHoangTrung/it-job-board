@@ -12,10 +12,10 @@ import { useHistory } from 'react-router-dom'
 import {fetchAllSubCatalog, selectAllSubCatalog} from "../../Feature/CatalogSlice";
 import {
     fetchAllRecruitmentPosition,
-    searchRecruitments,
     selectAllRecruitment,
     selectAllRecruitmentPosition
 } from "../../Feature/RecruitmentSlice";
+import '../../Style/MainPage.scss'
 
 const salaryRange = [
     {
@@ -80,40 +80,26 @@ const resultFilter = [
     },
 ]
 
-const useStyles = makeStyles((props) => ({
-    root: {
-        margin: '30px 0px'
-    },
-    formSearch: {
-        background: 'white',
-        padding: 24,
-        border: `1px solid ${DefaultTheme.gray5}`
-    },
-    formSort: {
-        background: 'white',
-        padding: 24,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        border: `1px solid ${DefaultTheme.gray5}`
-    },
-    inputGroup: {
-        display: 'flex',
-        flexDirection: "column",
-        gridRowGap: 24,
-        '& button':{
-            padding: 12,
-            fontWeight: 'bold',
-            background: DefaultTheme.default6,
-            color: 'white',
-            '&:hover':{
-                background: DefaultTheme.default7,
-            }
-        }
-    },
-}));
-
 const RecruitmentSearch = (props) => {
+
+    const useStyles = makeStyles((props) => ({
+        root: {
+        },
+        inputGroup: {
+            display: 'flex',
+            flexDirection: "column",
+            gridRowGap: 24,
+            '& button':{
+                padding: 12,
+                fontWeight: 'bold',
+                background: DefaultTheme.default6,
+                color: 'white',
+                '&:hover':{
+                    background: DefaultTheme.default7,
+                }
+            }
+        },
+    }));
 
     const [t] = useTranslation('common');
     const classes = useStyles();
@@ -147,7 +133,7 @@ const RecruitmentSearch = (props) => {
     }
 
     return (
-        <Form className={classes.formSearch} onSubmit={handleSearch}>
+        <Form className={classes.root} onSubmit={handleSearch}>
             <p style={{fontSize: 20, paddingBottom: 20}}>Filter</p>
             <div className={classes.inputGroup}>
                 <CustomFormGroup placeholder={t('recruitment-search.placeholder.keyword')} name={"keyword"} value={search.keyword}
@@ -183,6 +169,28 @@ const RecruitmentSearch = (props) => {
 
 const RecruitmentSort = () => {
 
+    const useStyles = makeStyles((props) => ({
+        root: {
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+        },
+        inputGroup: {
+            display: 'flex',
+            flexDirection: "column",
+            gridRowGap: 24,
+            '& button':{
+                padding: 12,
+                fontWeight: 'bold',
+                background: DefaultTheme.default6,
+                color: 'white',
+                '&:hover':{
+                    background: DefaultTheme.default7,
+                }
+            }
+        },
+    }));
+
     const [t] = useTranslation('common');
     const classes = useStyles();
     const [sort, setSort] = useState("");
@@ -195,7 +203,7 @@ const RecruitmentSort = () => {
     }
 
     return (
-        <Form className={classes.formSort} onSubmit={handleSort}>
+        <Form className={classes.root} onSubmit={handleSort}>
             <p style={{fontSize: 20}}>Jobs Found</p>
             <CustomFormGroup placeholder={t('recruitment-search.placeholder.experience')} name={"location"} value={sort}
                              onChangeValue={(e) => handleChange(e)} data={experienceRange} type={"select"} customStyle={{width: '20%'}}/>
@@ -204,6 +212,11 @@ const RecruitmentSort = () => {
 }
 
 const Recruitment = () => {
+
+    const useStyles = makeStyles((props) => ({
+        root: {
+        },
+    }));
 
     const classes = useStyles();
     const [t] = useTranslation('common');
@@ -229,33 +242,34 @@ const Recruitment = () => {
     return (
         <div className={classes.root}>
             <Container fluid>
-                <Row>
-                    <Col sm={3}>
-                        <div style={{width: '92%'}}>
-                            {
-                                !isLoading && (
-                                    <RecruitmentSearch subCatalogs={subCatalogs} positions={positions}/>
-                                )
-                            }
-                        </div>
-                    </Col>
-                    <Col sm={9}>
-                        <div style={{marginBottom: 16}}>
-                            <RecruitmentSort/>
-                        </div>
-                        <div style={{display: 'flex', flexDirection: 'column', gridRowGap: 16}}>
-                            <RecruitmentCard/>
-                            <RecruitmentCard/>
-                            <RecruitmentCard/>
-                            <RecruitmentCard/>
-                            <RecruitmentCard/>
-                            <RecruitmentCard/>
-                        </div>
-                        <div style={{marginTop: 32, display: 'flex', justifyContent: 'center'}}>
-                            <Pagination count={10} color="primary" />
-                        </div>
-                    </Col>
-                </Row>
+                <div className={"content-list"}>
+                    <Row>
+                        <Col sm={3}>
+                            <div className={"content-list"}>
+                                <div className={"content-item"} style={{width: '92%'}}>
+                                    {
+                                        !isLoading && (
+                                            <RecruitmentSearch subCatalogs={subCatalogs} positions={positions}/>
+                                        )
+                                    }
+                                </div>
+                            </div>
+                        </Col>
+                        <Col sm={9}>
+                            <div className={"content-list"}>
+                                <div className={"content-item"}>
+                                    <RecruitmentSort/>
+                                </div>
+                                <div className={"content-item"} style={{padding: 0}}>
+                                    <RecruitmentCard/>
+                                </div>
+                                <div className={"content-item"}>
+                                    <Pagination count={10} color="primary" />
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
             </Container>
         </div>
     );

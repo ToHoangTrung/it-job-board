@@ -31,7 +31,7 @@ public class RecruitmentValidator {
         Optional<CandidateRecruitment> candidateRecruitment  = candidate.getCandidateRecruitments()
                 .stream().filter(candidateRecruitment1 -> candidateRecruitment1.getRecruitment().getId().equals(recruitmentId))
                 .findFirst();
-        if (candidateRecruitment.isEmpty()) {
+        if (!candidateRecruitment.isPresent()) {
             throw new RecruitmentNotFoundException(
                     String.format("Recruitment with id: %s does not exist in this candidate recruitment apply list", recruitmentId)
             );

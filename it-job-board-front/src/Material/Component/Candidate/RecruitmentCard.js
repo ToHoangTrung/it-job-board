@@ -13,10 +13,9 @@ import {Link} from "react-router-dom";
 const useStyles = makeStyles((props) => ({
     root: {
         padding: 24,
-        background: 'white',
         minWidth: 120,
         transition: '0.3s',
-        border: `1px solid ${DefaultTheme.gray5}`
+        border: `1px solid transparent`
     },
     headline: {
         color: 'black',

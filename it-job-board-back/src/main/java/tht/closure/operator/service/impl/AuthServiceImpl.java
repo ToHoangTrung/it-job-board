@@ -1,6 +1,7 @@
 package tht.closure.operator.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,6 +24,7 @@ import tht.closure.operator.security.jwt.AuthTokenFilter;
 import tht.closure.operator.security.jwt.JwtUtils;
 import tht.closure.operator.security.service.UserDetailsImpl;
 import tht.closure.operator.service.AuthService;
+import tht.closure.operator.util.UserMapper;
 import tht.closure.operator.validator.AuthValidator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -91,7 +93,15 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public UserDto getUserFromJwt(HttpServletRequest request) {
+    public UserDto getUserInfoFromJwt(HttpServletRequest request) {
+
+        String token = authTokenFilter.parseJwt(request);
+        if (token != null) {
+            String username = jwtUtils.getUserNameFromJwtToken(token);
+            System.out.println(username);
+            User user = userRepository.findByUsername(username);
+            return UserMapper.userToUserDtoNoRelationShip(user);
+        }
         return null;
     }
 }
