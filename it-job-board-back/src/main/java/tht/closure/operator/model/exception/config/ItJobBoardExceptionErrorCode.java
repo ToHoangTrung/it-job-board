@@ -10,10 +10,14 @@ public class ItJobBoardExceptionErrorCode {
     public static final String INPUT_TYPE_INVALID_EXCEPTION = "EX-INPUT-TYPE-INVALID";
 
     //user error code
-    public static final String USER_USERNAME_HAVE_ALREADY_EXIST = "EX-USER-USERNAME-HAVE-ALREADY-EXIST";
-    public static final String USER_EMAIL_HAVE_ALREADY_EXIST = "EX-USER-EMAIL-HAVE-ALREADY-EXIST";
-    public static final String USER_EMAIL_NOT_FOUND = "EX-USER-USERNAME-NOT-FOUND";
-    public static final String USER_USERNAME_NOT_FOUND = "EX-USER-EMAIL-NOT-FOUND";
-    public static final String USER_PASSWORD_NOT_CORRECT = "EX-USER-PASSWORD-NOT-CORRECT";
-    public static final String USER_ROLE_NOT_SUPPORT = "EX-USER-ROLE-NOT-SUPPORT";
+    public static final String USER_USERNAME_HAVE_ALREADY_EXIST_EXCEPTION = "EX-USER-USERNAME-HAVE-ALREADY-EXIST";
+    public static final String USER_EMAIL_HAVE_ALREADY_EXIST_EXCEPTION = "EX-USER-EMAIL-HAVE-ALREADY-EXIST";
+    public static final String USER_EMAIL_NOT_FOUND_EXCEPTION = "EX-USER-USERNAME-NOT-FOUND";
+    public static final String USER_USERNAME_NOT_FOUND_EXCEPTION = "EX-USER-EMAIL-NOT-FOUND";
+    public static final String USER_PASSWORD_NOT_CORRECT_EXCEPTION = "EX-USER-PASSWORD-NOT-CORRECT";
+    public static final String USER_ROLE_NOT_SUPPORT_EXCEPTION = "EX-USER-ROLE-NOT-SUPPORT";
+
+    //recruitment error code
+    public static final String RECRUITMENT_NOT_FOUND_EXCEPTION = "EX-RECRUITMENT-NOT-FOUND";
+    public static final String RECRUITMENT_APPLY_STATUS_NOT_SUPPORT_EXCEPTION = "EX-RECRUITMENT-APPLY-STATUS-NOT-SUPPORT";
 }

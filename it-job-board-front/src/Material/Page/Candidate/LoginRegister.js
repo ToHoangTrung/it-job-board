@@ -5,6 +5,7 @@ import {Col, Container, Form, Row} from "react-bootstrap";
 import CustomFormGroup from "../../Component/Custom/CustomFormGroup";
 import Button from "@material-ui/core/Button";
 import {DefaultTheme} from "../../../theme";
+import {useForm} from "react-hook-form";
 
 const Login = () => {
 
@@ -82,6 +83,12 @@ const Login = () => {
     );
 }
 
+const SmallErrorMessage = (message, style) => {
+    return (
+        <small style={style}>{message}</small>
+    )
+}
+
 const Register = () => {
 
     const useStyles = makeStyles((props) => ({
@@ -128,19 +135,10 @@ const Register = () => {
         password: '',
         confirmPassword: '',
     });
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const handleChange = (e) => {
-        const {name, value} = e.target
-        console.log(name, value)
-        setUserInfo(prevState => ({
-            ...prevState,
-            [name]: value
-        }))
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(userInfo)
+    const onSubmit = (data) => {
+        console.log(data)
     }
 
     const inputStyle = {
@@ -153,17 +151,28 @@ const Register = () => {
     return (
         <div className={classes.root}>
             <p className={classes.headline}>{t('login-form.headline.register')}</p>
-            <Form className={classes.form} onSubmit={handleSubmit}>
-                <CustomFormGroup placeholder={t('login-form.placeholder.username')} name={"username"} value={userInfo.username}
-                                 onChangeValue={(e) => handleChange(e)} inputStyle={inputStyle} type={"text"}/>
-                <CustomFormGroup placeholder={t('login-form.placeholder.email')} name={"email"} value={userInfo.email}
-                                 onChangeValue={(e) => handleChange(e)} inputStyle={inputStyle} type={"email"}/>
-                <CustomFormGroup placeholder={t('login-form.placeholder.password')} name={"password"} value={userInfo.password}
-                                 onChangeValue={(e) => handleChange(e)} inputStyle={inputStyle} type={"password"}/>
-                <CustomFormGroup placeholder={t('login-form.placeholder.confirm-password')} name={"confirmPassword"} value={userInfo.confirmPassword}
-                                 onChangeValue={(e) => handleChange(e)} inputStyle={inputStyle} type={"password"}/>
+            <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+                <input {...register("email", {required: true})} style={inputStyle} placeholder={t('login-form.placeholder.username')}/>
+                {errors.email?.type === 'required' &&  <small>Email is required</small>}
+                <input {...register("username", {required: true})} style={inputStyle} placeholder={t('login-form.placeholder.email')}/>
+                {errors.username?.type === 'required' && "Username is required"}
+                <input {...register("password", {required: true})} style={inputStyle} placeholder={t('login-form.placeholder.password')}/>
+                {errors.password?.type === 'required' && "Password is required"}
+                <input {...register("confirmPassword", {required: true})} style={inputStyle} placeholder={t('login-form.placeholder.confirm-password')} />
+                {errors.firstName?.type === 'required' && "Password does not match"}
                 <Button variant={"contained"} type={"submit"}>{t('login-form.button.register')}</Button>
-            </Form>
+            </form>
+            {/*<Form className={classes.form} onSubmit={handleSubmit}>*/}
+            {/*    <CustomFormGroup placeholder={t('login-form.placeholder.username')} name={"username"} value={userInfo.username}*/}
+            {/*                     onChangeValue={(e) => handleChange(e)} inputStyle={inputStyle} type={"text"}/>*/}
+            {/*    <CustomFormGroup placeholder={t('login-form.placeholder.email')} name={"email"} value={userInfo.email}*/}
+            {/*                     onChangeValue={(e) => handleChange(e)} inputStyle={inputStyle} type={"email"}/>*/}
+            {/*    <CustomFormGroup placeholder={t('login-form.placeholder.password')} name={"password"} value={userInfo.password}*/}
+            {/*                     onChangeValue={(e) => handleChange(e)} inputStyle={inputStyle} type={"password"}/>*/}
+            {/*    <CustomFormGroup placeholder={t('login-form.placeholder.confirm-password')} name={"confirmPassword"} value={userInfo.confirmPassword}*/}
+            {/*                     onChangeValue={(e) => handleChange(e)} inputStyle={inputStyle} type={"password"}/>*/}
+            {/*    <Button variant={"contained"} type={"submit"}>{t('login-form.button.register')}</Button>*/}
+            {/*</Form>*/}
         </div>
     );
 }

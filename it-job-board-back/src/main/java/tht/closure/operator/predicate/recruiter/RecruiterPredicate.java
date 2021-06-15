@@ -1,34 +1,24 @@
-package tht.closure.operator.predicate;
+package tht.closure.operator.predicate.recruiter;
 
-import com.querydsl.core.types.dsl.*;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.NumberPath;
+import com.querydsl.core.types.dsl.PathBuilder;
+import com.querydsl.core.types.dsl.StringPath;
 import tht.closure.operator.model.dto.SearchCriteria;
-import tht.closure.operator.model.entity.QRecruitment;
-import tht.closure.operator.model.entity.Recruitment;
+import tht.closure.operator.model.entity.Recruiter;
 
-public class RecruitmentPredicate {
+public class RecruiterPredicate {
 
     private SearchCriteria criteria;
 
-    public RecruitmentPredicate(final SearchCriteria criteria) {
+    public RecruiterPredicate(final SearchCriteria criteria) {
         this.criteria = criteria;
     }
 
     public BooleanExpression getPredicate() {
-        final PathBuilder<Recruitment> entityPath = new PathBuilder<>(Recruitment.class, "recruitment");
+        final PathBuilder<Recruiter> entityPath = new PathBuilder<>(Recruiter.class, "recruiter");
 
         switch (criteria.getKey()) {
-            case "subCatalogId": {
-                if (criteria.getOperation().equalsIgnoreCase(":")) {
-                    return QRecruitment.recruitment.recruitmentSubCatalogs.any().subCatalog.id.eq((long) Integer.parseInt(getCriteria().getValue().toString()));
-                }
-                break;
-            }
-            case "recruiterId": {
-                if (criteria.getOperation().equalsIgnoreCase(":")) {
-                    return QRecruitment.recruitment.recruiter.id.eq((long) Integer.parseInt(getCriteria().getValue().toString()));
-                }
-                break;
-            }
             default: {
                 if (isNumeric(criteria.getValue().toString())) {
                     final NumberPath<Integer> path = entityPath.getNumber(criteria.getKey(), Integer.class);

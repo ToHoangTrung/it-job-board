@@ -6,7 +6,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "t_recruitment")
 @Getter
@@ -44,7 +46,7 @@ public class Recruitment extends AbstractEntity{
     private List<RecruitmentSubCatalog> recruitmentSubCatalogs = new ArrayList<>();
 
     @OneToMany(mappedBy = "recruitment")
-    private List<CandidateRecruitment> candidateRecruitments = new ArrayList<>();
+    private Set<CandidateRecruitment> candidateRecruitments = new LinkedHashSet<>();
 
     @ManyToOne
     @JoinColumn

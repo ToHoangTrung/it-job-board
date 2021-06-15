@@ -11,15 +11,16 @@ import java.util.Set;
 @Setter
 public class UserDto extends AbstractDto{
 
-    @NotNull
+    @NotNull(message = "Username can not be blank")
     private String username;
 
-    @NotNull
+    @NotNull(message = "Email can not be blank")
     private String email;
 
-    @NotNull
+    @NotNull(message = "Password can not be blank")
     private String password;
 
+    @NotNull(message = "Phone can not be blank")
     private String phone;
 
     public UserDto(String username, String password, String email){

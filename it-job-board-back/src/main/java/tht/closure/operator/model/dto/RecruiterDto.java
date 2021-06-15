@@ -3,18 +3,22 @@ package tht.closure.operator.model.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
 @Setter
 public class RecruiterDto extends AbstractDto{
 
+    @NotNull(message = "Name can not be blank")
     private String name;
 
+    @NotNull(message = "Website can not be blank")
     private String website;
 
     private String facebook;
 
+    @NotNull(message = "Location can not be blank")
     private String location;
 
     private List<RecruitmentDto> recruitments;
@@ -27,6 +31,7 @@ public class RecruiterDto extends AbstractDto{
 
     private OvertimeDto overtime;
 
+    @NotNull(message = "Country can not be blank")
     private CountryDto country;
 
     private TypeDto type;

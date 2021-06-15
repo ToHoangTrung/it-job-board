@@ -5,7 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "t_candidate")
 @Getter
@@ -29,6 +31,6 @@ public class Candidate extends AbstractEntity{
     private User user;
 
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
-    private List<CandidateRecruitment> candidateRecruitments = new ArrayList<>();
+    private Set<CandidateRecruitment> candidateRecruitments = new LinkedHashSet<>();
 
 }

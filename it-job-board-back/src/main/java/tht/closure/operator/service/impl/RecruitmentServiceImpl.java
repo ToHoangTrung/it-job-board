@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tht.closure.operator.model.dto.RecruitmentDto;
 import tht.closure.operator.model.entity.*;
-import tht.closure.operator.predicate.RecruitmentPredicatesBuilder;
+import tht.closure.operator.predicate.recruitment.RecruitmentPredicatesBuilder;
 import tht.closure.operator.repository.RecruitmentRepository;
 import tht.closure.operator.service.RecruitmentService;
 import tht.closure.operator.util.RecruitmentMapper;
@@ -44,6 +44,16 @@ public class RecruitmentServiceImpl implements RecruitmentService {
                 .fetchJoin()
                 .where(exp).fetch();
         return recruitments.stream().map(RecruitmentMapper::recruitmentToRecruitmentDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public void createNewRecruitment(RecruitmentDto recruitmentDto) {
+
+    }
+
+    @Override
+    public void updateRecruitment(RecruitmentDto recruitmentDto) {
+
     }
 
     private BooleanExpression createBooleanExpressionFromParam(String keyword) {

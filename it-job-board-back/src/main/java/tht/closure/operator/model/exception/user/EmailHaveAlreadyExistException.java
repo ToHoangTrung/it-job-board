@@ -6,6 +6,6 @@ import tht.closure.operator.model.exception.main.ResourceHaveAlreadyExistExcepti
 public class EmailHaveAlreadyExistException extends ResourceHaveAlreadyExistException {
 
     public EmailHaveAlreadyExistException(String message) {
-        super(message, ItJobBoardExceptionErrorCode.USER_EMAIL_HAVE_ALREADY_EXIST);
+        super(message, ItJobBoardExceptionErrorCode.USER_EMAIL_HAVE_ALREADY_EXIST_EXCEPTION);
     }
 }

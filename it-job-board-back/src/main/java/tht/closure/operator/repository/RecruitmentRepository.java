@@ -22,4 +22,7 @@ public interface RecruitmentRepository extends JpaRepository<Recruitment, Long>,
         bindings.excluding(root.id);
     }
 
+    default Recruitment findById() {
+        return findById();
+    }
 }

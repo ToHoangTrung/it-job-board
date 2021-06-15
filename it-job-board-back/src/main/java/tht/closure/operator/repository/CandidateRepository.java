@@ -6,4 +6,6 @@ import tht.closure.operator.model.entity.Candidate;
 
 @Repository
 public interface CandidateRepository extends JpaRepository<Candidate, Long> {
+
+    Candidate findByUserId(Long id);
 }

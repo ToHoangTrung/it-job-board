@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface RecruitmentService {
     List<RecruitmentDto> searchRecruitments(String keyword);
+
+    void createNewRecruitment(RecruitmentDto recruitmentDto);
+
+    void updateRecruitment(RecruitmentDto recruitmentDto);
 }

@@ -24,8 +24,9 @@ public class AuthController extends AbstractController{
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody LoginRequestDto loginRequestDto) {
+    public ResponseEntity<Object> userLogin(@RequestBody LoginRequestDto loginRequestDto) {
         JwtResponse jwtResponse = authService.userLogin(loginRequestDto);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(jwtResponse);
     }
+
 }

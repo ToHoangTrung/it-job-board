@@ -1,4 +1,4 @@
-package tht.closure.operator.predicate;
+package tht.closure.operator.predicate.recruitment;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
