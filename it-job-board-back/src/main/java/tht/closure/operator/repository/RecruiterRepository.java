@@ -10,15 +10,19 @@ import org.springframework.data.querydsl.binding.SingleValueBinding;
 import org.springframework.stereotype.Repository;
 import tht.closure.operator.model.entity.QRecruiter;
 import tht.closure.operator.model.entity.Recruiter;
+import tht.closure.operator.repository.custom.RecruiterRepositoryCustom;
 
 @Repository
 public interface RecruiterRepository extends JpaRepository<Recruiter, Long>,
-        QuerydslPredicateExecutor<Recruiter>, QuerydslBinderCustomizer<QRecruiter> {
+//        QuerydslPredicateExecutor<Recruiter>, QuerydslBinderCustomizer<QRecruiter>,
+        RecruiterRepositoryCustom {
 
-    @Override
-    default void customize(final QuerydslBindings bindings, final QRecruiter root) {
-        bindings.bind(String.class)
-                .first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
-        bindings.excluding(root.id);
-    }
+    Recruiter findByUserId(Long id);
+
+//    @Override
+//    default void customize(final QuerydslBindings bindings, final QRecruiter root) {
+//        bindings.bind(String.class)
+//                .first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
+//        bindings.excluding(root.id);
+//    }
 }

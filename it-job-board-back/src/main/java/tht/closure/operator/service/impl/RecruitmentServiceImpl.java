@@ -1,19 +1,21 @@
 package tht.closure.operator.service.impl;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tht.closure.operator.model.dto.RecruitmentDto;
 import tht.closure.operator.model.entity.*;
 import tht.closure.operator.predicate.recruitment.RecruitmentPredicatesBuilder;
 import tht.closure.operator.repository.RecruitmentRepository;
+import tht.closure.operator.service.main.PageResult;
 import tht.closure.operator.service.RecruitmentService;
+import tht.closure.operator.service.main.impl.PagePagingImp;
+import tht.closure.operator.service.main.impl.PageResultImpl;
 import tht.closure.operator.util.RecruitmentMapper;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,24 +28,14 @@ public class RecruitmentServiceImpl implements RecruitmentService {
     @Autowired
     private RecruitmentRepository recruitmentRepository;
 
-    @PersistenceContext
-    private EntityManager em;
-
     @Override
-    public List<RecruitmentDto> searchRecruitments(String keyword) {
+    public PageResult<RecruitmentDto> searchRecruitments(String keyword, Long page) {
         BooleanExpression exp = createBooleanExpressionFromParam(keyword);
-        List<Recruitment> recruitments = new JPAQuery<Recruitment>(em)
-                .from(QRecruitment.recruitment).distinct()
-                .innerJoin(QRecruitment.recruitment.recruitmentSubCatalogs, QRecruitmentSubCatalog.recruitmentSubCatalog)
-                .fetchJoin()
-                .innerJoin(QRecruitmentSubCatalog.recruitmentSubCatalog.subCatalog, QSubCatalog.subCatalog)
-                .fetchJoin()
-                .innerJoin(QRecruitment.recruitment.recruiter, QRecruiter.recruiter)
-                .fetchJoin()
-                .innerJoin(QRecruiter.recruiter.user, QUser.user)
-                .fetchJoin()
-                .where(exp).fetch();
-        return recruitments.stream().map(RecruitmentMapper::recruitmentToRecruitmentDto).collect(Collectors.toList());
+        PageResult<Recruitment> pageResult = recruitmentRepository.searchRecruitment(exp, new PagePagingImp(5,page * 5));
+        return new PageResultImpl<>(
+                pageResult.getContent().stream().map(RecruitmentMapper::recruitmentToRecruitmentDto).collect(Collectors.toList()),
+                pageResult.getTotalElements(),
+                new PagePagingImp(5,page * 5));
     }
 
     @Override
@@ -54,6 +46,45 @@ public class RecruitmentServiceImpl implements RecruitmentService {
     @Override
     public void updateRecruitment(RecruitmentDto recruitmentDto) {
 
+    }
+
+    @Override
+    public List<RecruitmentDto.PositionDto> getAllRecruitmentPosition() {
+        List<RecruitmentDto.PositionDto> positions = new ArrayList<>();
+        Arrays.stream(Recruitment.Position.values()).map(position -> {
+            RecruitmentDto.PositionDto positionDto = new RecruitmentDto.PositionDto();
+            positionDto.setName(position.name());
+            positionDto.setEnTranslate(position.enTranslate);
+            positionDto.setVnTranslate(position.vnTranslate);
+            return positionDto;
+        }).forEachOrdered(positions::add);
+        return positions;
+    }
+
+    @Override
+    public List<RecruitmentDto.ExperienceDto> getAllRecruitmentExperence() {
+        List<RecruitmentDto.ExperienceDto> experiences = new ArrayList<>();
+        Arrays.stream(Recruitment.Experience.values()).map(position -> {
+            RecruitmentDto.ExperienceDto experienceDto = new RecruitmentDto.ExperienceDto();
+            experienceDto.setName(position.name());
+            experienceDto.setEnTranslate(position.enTranslate);
+            experienceDto.setVnTranslate(position.vnTranslate);
+            return experienceDto;
+        }).forEachOrdered(experiences::add);
+        return experiences;
+    }
+
+    @Override
+    public List<RecruitmentDto.CityDto> getAllRecruitmentCity() {
+        List<RecruitmentDto.CityDto> cities = new ArrayList<>();
+        Arrays.stream(Recruitment.City.values()).map(position -> {
+            RecruitmentDto.CityDto cityDto = new RecruitmentDto.CityDto();
+            cityDto.setName(position.name());
+            cityDto.setEnTranslate(position.enTranslate);
+            cityDto.setVnTranslate(position.vnTranslate);
+            return cityDto;
+        }).forEachOrdered(cities::add);
+        return cities;
     }
 
     private BooleanExpression createBooleanExpressionFromParam(String keyword) {

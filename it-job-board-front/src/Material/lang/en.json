@@ -13,15 +13,17 @@
   "recruitment-search": {
     "placeholder": {
       "keyword": "Keyword",
-      "location": "Location",
+      "city": "Location",
       "position": "Position",
-      "type": "Job type",
       "experience": "Experience",
-      "sub_catalog": "Category",
+      "sub-catalog": "Category",
+      "type": "Job type",
       "salary": "Salary"
     },
-    "search": "Search Now",
-    "reset": "Reset search"
+    "button": {
+      "search": "Search Now",
+      "reset": "Reset Search"
+    }
   },
   "recruitment-sort": {
     "headline": "Jobs Found",
@@ -36,7 +38,9 @@
     "job-description": "Job Description",
     "requirement": "Your Skills and Experience",
     "benefit": "Why You'll Love Working Here",
-    "information": "Recruitment Information"
+    "information": "Recruitment Information",
+    "start-date": "Upload date",
+    "end-date": "Deadline"
   },
   "recruiter-card": {
     "followBtn": "Follow",
@@ -75,6 +79,24 @@
       "forgot-username-password": "Forgot Username / Password?",
       "change-to-register": "Doesn't have an account, create one here",
       "change-to-login": "Already have an account, login here"
+    }
+  },
+  "recruiter-detail": {
+    "overview": "Overview"
+  },
+  "recruitment-apply-page": {
+    "label": {
+      "user-name": "Your name",
+      "user-email": "Your email",
+      "user-phone": "Your phone",
+      "user-cv": "Your CV",
+      "user-description": "What skills, work projects or achievements make you a strong candidate?"
+    },
+    "placeholder": {
+      "name": "Enter your full name here",
+      "phone": "Enter your phone number here",
+      "email": "Enter your email here",
+      "cv": "Select your CV..."
     }
   }
 }

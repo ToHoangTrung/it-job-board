@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core";
 import {Row, Col, Container} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import Button from "@material-ui/core/Button";
-import {DefaultTheme, PolarGreenTheme} from "../../../theme";
+import {DefaultTheme, NeutralGrayTheme, PolarGreenTheme} from "../../../theme";
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import EventAvailableOutlinedIcon from '@material-ui/icons/EventAvailableOutlined';
@@ -21,6 +21,7 @@ const useStyles = makeStyles((props) => ({
         color: 'black',
         fontSize: 25,
         fontWeight: 500,
+        transition: '0.3s',
         '&:hover':{
             color: DefaultTheme.default6
         }
@@ -28,11 +29,13 @@ const useStyles = makeStyles((props) => ({
     logo: {
         width: 100,
         height: 100,
+        border: `1px solid ${DefaultTheme.gray5}`,
+        display: 'flex',
+        alignItems: 'center',
         '& img': {
-            border: `1px solid ${DefaultTheme.gray5}`,
             padding: 16,
-            width: '100%',
-            height: '100%',
+            maxWidth: '100%',
+            maxHeight: '100%',
         }
     },
     info: {
@@ -65,7 +68,7 @@ const useStyles = makeStyles((props) => ({
         padding: 4,
         transition: '0.3s',
         '&:hover':{
-            background: 'white',
+            background: NeutralGrayTheme.gray5,
             color: DefaultTheme.default6,
             border: `1px solid ${DefaultTheme.default6}`,
         }
@@ -77,7 +80,11 @@ const useStyles = makeStyles((props) => ({
     }
 }))
 
-const RecruitmentCard = ({recruitment}) => {
+const RecruitmentCard = (props) => {
+
+    const {
+        recruitment,
+    } = props;
 
     const classes = useStyles();
     const [t] = useTranslation('common');
@@ -90,34 +97,42 @@ const RecruitmentCard = ({recruitment}) => {
     return (
         <div className={classes.root} onMouseEnter={handleHover} onMouseLeave={handleHover} style={highLight === true ? {border: `1px solid ${DefaultTheme.default6}`} : null}>
             <Container fluid>
-                <Row>
-                    <Col sm={2}>
-                        <div className={classes.logo}>
-                            <img src={"https://preview.colorlib.com/theme/jobsco/assets/img/icon/1.svg"} alt={""}/>
-                        </div>
-                    </Col>
-                    <Col sm={10}>
-                        <div className={classes.info}>
-                            <div className={classes.row}>
-                                <Link to={"#"} style={highLight === true ? {color: DefaultTheme.default6} : null} className={classes.headline}>Automation Tester (1+ year)</Link>
-                                <Button className={classes.applyBtn}>{t('recruitment-card.apply')}</Button>
+                {
+                    <Row>
+                        <Col sm={2}>
+                            <div className={classes.logo}>
+                                <img src={process.env.PUBLIC_URL + "/assets/user/avatar/" + recruitment.recruiter.avatarUrl} alt={""}/>
                             </div>
-                            <div className={classes.row}>
-                                <p style={{color: PolarGreenTheme.color6}} className={classes.icon}><MonetizationOnOutlinedIcon/>500 - 2000$</p>
-                                <p style={{color: DefaultTheme.default6, margin: '0 auto 0 16px'}} className={classes.icon}><TurnedInNotOutlinedIcon/>FRESHER</p>
-                                <p style={{color: DefaultTheme.gray6}} className={classes.icon}><LocationOnOutlinedIcon/>Ho Chi Minh</p>
-                            </div>
-                            <div className={classes.row}>
-                                <div className={classes.catalogs}>
-                                    <Button href={"#"} className={classes.catalogBtn + " " + "catalog-btn"} style={highLight === true ? {color: DefaultTheme.default6, border: `1px solid ${DefaultTheme.default6}`} : null}>Java</Button>
-                                    <Button href={"#"} className={classes.catalogBtn + " " + "catalog-btn"} style={highLight === true ? {color: DefaultTheme.default6, border: `1px solid ${DefaultTheme.default6}`} : null}>C</Button>
-                                    <Button href={"#"} className={classes.catalogBtn + " " + "catalog-btn"} style={highLight === true ? {color: DefaultTheme.default6, border: `1px solid ${DefaultTheme.default6}`} : null}>Python</Button>
+                        </Col>
+                        <Col sm={10}>
+                            <div className={classes.info}>
+                                <div className={classes.row}>
+                                    <Link to={"/jobs/detail/" + recruitment.id} style={highLight === true ? {color: DefaultTheme.default6} : null} className={classes.headline}>{recruitment.headline}</Link>
+                                    <Button className={classes.applyBtn}>{t('recruitment-card.apply')}</Button>
                                 </div>
-                                <p style={{color: DefaultTheme.gray6}} className={classes.icon}><EventAvailableOutlinedIcon/>1h</p>
+                                <div className={classes.row}>
+                                    <p style={{color: PolarGreenTheme.color6}} className={classes.icon}><MonetizationOnOutlinedIcon/>${recruitment.salaryMin} - ${recruitment.salaryMax}</p>
+                                    <p style={{color: DefaultTheme.default6, margin: '0 auto 0 16px', fontWeight: 'bold'}} className={classes.icon}><TurnedInNotOutlinedIcon/>{recruitment.position.enTranslate}</p>
+                                    <p style={{color: DefaultTheme.gray6}} className={classes.icon}><LocationOnOutlinedIcon/>{recruitment.city.enTranslate}</p>
+                                </div>
+                                <div className={classes.row}>
+                                    <div className={classes.catalogs}>
+                                        {
+                                            recruitment.subCatalogs.map((subCatalog, index) => (
+                                                <Button
+                                                    key={index}
+                                                    href={"#"} className={classes.catalogBtn}
+                                                    style={highLight === true ? {color: DefaultTheme.default6, border: `1px solid ${DefaultTheme.default6}`} : null}
+                                                >{subCatalog.name}</Button>
+                                            ))
+                                        }
+                                    </div>
+                                    <p style={{color: DefaultTheme.gray6}} className={classes.icon}><EventAvailableOutlinedIcon/>1h</p>
+                                </div>
                             </div>
-                        </div>
-                    </Col>
-                </Row>
+                        </Col>
+                    </Row>
+                }
             </Container>
         </div>
     );

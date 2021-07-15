@@ -33,7 +33,7 @@ public class AuthValidator {
     }
 
     public void validateRoleValid(String role) {
-        List<String> roles = User.Role.getUserRoles();
+        List<String> roles = User.getAllUserRole();
         if (!roles.contains(role)) {
             throw new RoleNotSupportException(String.format("User does not support this role: %s", role));
         }

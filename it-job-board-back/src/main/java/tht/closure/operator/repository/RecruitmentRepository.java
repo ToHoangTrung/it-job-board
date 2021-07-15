@@ -10,10 +10,11 @@ import org.springframework.data.querydsl.binding.SingleValueBinding;
 import org.springframework.stereotype.Repository;
 import tht.closure.operator.model.entity.QRecruitment;
 import tht.closure.operator.model.entity.Recruitment;
+import tht.closure.operator.repository.custom.RecruitmentRepositoryCustom;
 
 @Repository
 public interface RecruitmentRepository extends JpaRepository<Recruitment, Long>,
-        QuerydslPredicateExecutor<Recruitment>, QuerydslBinderCustomizer<QRecruitment> {
+        QuerydslPredicateExecutor<Recruitment>, QuerydslBinderCustomizer<QRecruitment>, RecruitmentRepositoryCustom {
 
     @Override
     default void customize(final QuerydslBindings bindings, final QRecruitment root) {
@@ -22,7 +23,4 @@ public interface RecruitmentRepository extends JpaRepository<Recruitment, Long>,
         bindings.excluding(root.id);
     }
 
-    default Recruitment findById() {
-        return findById();
-    }
 }

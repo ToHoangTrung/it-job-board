@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import {Link, makeStyles} from "@material-ui/core";
-import {Button, Col, Container, Row} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import {DefaultTheme, PolarGreenTheme} from "../../../theme";
 import QueryBuilderOutlinedIcon from '@material-ui/icons/QueryBuilderOutlined';
 import ReactHtmlParser from 'react-html-parser';
 import '../../Style/MainPage.scss'
+import {unwrapResult} from "@reduxjs/toolkit";
+import {useDispatch} from "react-redux";
+import {fetchRecruitmentDetailById} from "../../Feature/RecruitmentSlice";
+import EmojiTransportationOutlinedIcon from '@material-ui/icons/EmojiTransportationOutlined';
+import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
+import Button from "@material-ui/core/Button";
 
 const description = "<p style=\"box-sizing: border-box; margin: 1em 0px; color: rgb(58, 58, 58); font-family: Roboto, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">LG Electronics Vehicle ComponentSolutions Company focuses on eco-friendly automotive components. The VS Company produces high-quality&nbsp;In-Vehicle&nbsp;Infotainment (IVI) systems that deliver both information and entertainment on-the-go for many of the world&lsquo;s biggest automobile brands.<br style=\"box-sizing: border-box;\"><br style=\"box-sizing: border-box;\">We, LG Electronics Development Center Vietnam (VS DCV), conduct core R&amp;D activities, and various product reliability tests in support of our vehicle component business.<br style=\"box-sizing: border-box;\"><br style=\"box-sizing: border-box;\">As the&nbsp;<strong style=\"box-sizing: border-box; font-weight: 700;\">Leader of Software Development Part</strong>, your roles &amp; responsibilities will be as below:&nbsp;</p>\n" +
     "<ul style=\"box-sizing: border-box; margin: 1em 0px; padding: 0px 0px 0px 40px; color: rgb(58, 58, 58); font-family: Roboto, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">\n" +
@@ -16,44 +22,55 @@ const description = "<p style=\"box-sizing: border-box; margin: 1em 0px; color: 
     "    <li style=\"box-sizing: border-box;\">Make reports and communicate with local and head quarter management.</li>\n" +
     "</ul>"
 
-const RecruitmentIntroduce = ({recruitment}) => {
+const RecruitmentIntroduce = (props) => {
+
+    const {
+        recruitment,
+    } = props
 
     const useStyles = makeStyles((props) => ({
         root: {
         },
         logo: {
             width: '100%',
-            height: '100%',
+            height: 200,
+            border: `1px solid ${DefaultTheme.gray5}`,
+            display: 'flex',
+            alignItems: 'center',
             '& img':{
-                border: `1px solid ${DefaultTheme.gray5}`,
                 padding: 16,
-                height: '100%',
-                width: '100%'
+                maxHeight: '100%',
+                maxWidth: '100%'
             }
         },
         info: {
             marginLeft: 20,
             display: 'flex',
             flexDirection: 'column',
-            gridRowGap: 12
+            gridRowGap: 10,
         },
         headline: {
             fontSize: 30,
             color: DefaultTheme.default6,
             fontWeight: "bold"
         },
+        icon:{
+            height: '100%',
+            display: "flex",
+            alignItems: "center",
+            gridColumnGap: 8,
+            flexGrow: 1,
+            flexBasis: '50%',
+        },
         recruiter: {
             color: 'black',
             fontWeight: 'bold',
             cursor: "pointer",
+            transition: '0.3s',
+            fontSize: 20,
             '&:hover':{
                 color: DefaultTheme.default6,
             }
-        },
-        time:{
-            display: "flex",
-            alignItems: "center",
-            gridColumnGap: 8,
         },
         event: {
             height: '100%',
@@ -84,6 +101,21 @@ const RecruitmentIntroduce = ({recruitment}) => {
                 }
             }
         },
+        catalogs: {
+            display: 'flex',
+            gridColumnGap: 8,
+            '& a': {
+                border: `1px solid ${DefaultTheme.gray5}`,
+                background: 'white',
+                fontSize: 12,
+                padding: '8px 4px',
+                '&:hover':{
+                    background: 'white',
+                    color: DefaultTheme.default6,
+                    border: `1px solid ${DefaultTheme.default6}`,
+                }
+            }
+        },
     }))
 
     const classes = useStyles();
@@ -94,15 +126,29 @@ const RecruitmentIntroduce = ({recruitment}) => {
             <Row noGutters>
                 <Col sm={2}>
                     <div className={classes.logo}>
-                        <img src={"https://preview.colorlib.com/theme/jobsco/assets/img/icon/1.svg"} alt={""}/>
+                        <img src={process.env.PUBLIC_URL + "/assets/user/avatar/" + recruitment.recruiter.avatarUrl} alt={""}/>
                     </div>
                 </Col>
                 <Col sm={8}>
                     <div className={classes.info}>
-                        <p className={classes.headline}>NHÂN VIÊN TELESALES (THU NHẬP TỪ 10-30 TRIỆU/THÁNG)</p>
-                        <Link to={"#"} className={classes.recruiter}>CÔNG TY TNHH DƯỢC LIỆU QUỐC TẾ NGỌC NGÂN</Link>
-                        <p>Địa chỉ làm việc : Tầng 2, Toà HH2 Bắc Hà, số 15 Tố Hữu, Trung Văn, Nam Từ Liêm, Hà Nội</p>
-                        <p className={classes.time}><QueryBuilderOutlinedIcon/>Hạn nộp hồ sơ: 01/07/2021</p>
+                        <p className={classes.headline}>{recruitment.headline}</p>
+                        <div style={{display: 'flex'}}>
+                            <Link to={"#"} className={classes.icon + " " + classes.recruiter}><EmojiTransportationOutlinedIcon/>{recruitment.recruiter.name}</Link>
+                        </div>
+                        <div style={{display: 'flex'}}>
+                            <p className={classes.icon}><LocationOnOutlinedIcon/>{recruitment.location}</p>
+                        </div>
+                        <div style={{display: 'flex'}}>
+                            <p className={classes.icon}><QueryBuilderOutlinedIcon/>{t('recruitment-card.start-date')}: {recruitment.startDate}</p>
+                            <p className={classes.icon}><QueryBuilderOutlinedIcon/>{t('recruitment-card.end-date')}: {recruitment.endDate}</p>
+                        </div>
+                        <div className={classes.catalogs}>
+                            {
+                                recruitment.subCatalogs.map((subCatalog, index) => (
+                                    <Button href={"#"} key={index}>{subCatalog.name}</Button>
+                                ))
+                            }
+                        </div>
                     </div>
                 </Col>
                 <Col sm={2}>
@@ -170,7 +216,7 @@ const RecruitmentInformation = ({recruitment}) => {
     )
 }
 
-const RecruitmentDetail = ({match}) => {
+const RecruitmentDetailPage = ({match}) => {
 
     const useStyles = makeStyles((props) => ({
         root: {
@@ -178,8 +224,23 @@ const RecruitmentDetail = ({match}) => {
         },
     }))
 
+    const {recruitmentId} = match.params;
+
     const classes = useStyles();
     const [t] = useTranslation('common');
+    const dispatch = useDispatch();
+
+    const [recruitment, setRecruitment] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchRecruitment = async () => {
+            const result = unwrapResult(await dispatch(fetchRecruitmentDetailById(recruitmentId)));
+            setRecruitment(result);
+            setIsLoading(false);
+        }
+        fetchRecruitment();
+    }, [recruitmentId])
 
     return (
         <div className={classes.root}>
@@ -189,7 +250,11 @@ const RecruitmentDetail = ({match}) => {
                         <Col>
                             <div className={"content-list"}>
                                 <div className={"content-item"}>
-                                    <RecruitmentIntroduce/>
+                                    {
+                                        !isLoading && (
+                                            <RecruitmentIntroduce recruitment={recruitment}/>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </Col>
@@ -217,4 +282,4 @@ const RecruitmentDetail = ({match}) => {
     );
 };
 
-export default RecruitmentDetail;
+export default RecruitmentDetailPage;

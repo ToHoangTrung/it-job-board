@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 @Entity(name = "t_recruiter_sub_catalog")
 @Getter
 @Setter
-public class RecruiterSubCatalog extends AbstractEntity{
+public class RecruiterSubCatalog extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
@@ -19,5 +19,5 @@ public class RecruiterSubCatalog extends AbstractEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
-    private SubCatalog SubCatalog;
+    private SubCatalog subCatalog;
 }

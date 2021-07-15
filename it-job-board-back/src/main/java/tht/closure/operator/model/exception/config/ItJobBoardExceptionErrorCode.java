@@ -8,6 +8,7 @@ public class ItJobBoardExceptionErrorCode {
     public static final String CONCURRENT_UPDATE_EXCEPTION = "EX-MAIN-CONCURRENT-UPDATE";
     public static final String UN_HANDLE_EXCEPTION = "EX-UN-HANDLER";
     public static final String INPUT_TYPE_INVALID_EXCEPTION = "EX-INPUT-TYPE-INVALID";
+    public static final String CLOSURE_ENTITY_MANAGER_FACTORY = "CLOSURE-ENTITY-MANAGER-FACTORY";
 
     //user error code
     public static final String USER_USERNAME_HAVE_ALREADY_EXIST_EXCEPTION = "EX-USER-USERNAME-HAVE-ALREADY-EXIST";

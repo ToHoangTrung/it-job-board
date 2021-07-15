@@ -4,15 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity(name = "t_candidate")
 @Getter
 @Setter
-public class Candidate extends AbstractEntity{
+public class Candidate extends AbstractEntity {
 
     @Column
     private String firstName;
@@ -26,11 +24,11 @@ public class Candidate extends AbstractEntity{
     @Column
     private String description;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "candidate")
     private Set<CandidateRecruitment> candidateRecruitments = new LinkedHashSet<>();
 
 }

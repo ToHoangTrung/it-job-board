@@ -1,7 +1,8 @@
-package tht.closure.operator.model.dto;
+package tht.closure.operator.model.dto.main;
 
 import lombok.Getter;
 import lombok.Setter;
+import tht.closure.operator.model.dto.RecruitmentDto;
 
 @Getter
 @Setter

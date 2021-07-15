@@ -1,7 +1,13 @@
 package tht.closure.operator.util;
 
+import org.springframework.util.CollectionUtils;
 import tht.closure.operator.model.dto.RecruiterDto;
-import tht.closure.operator.model.entity.Recruiter;
+import tht.closure.operator.model.dto.RecruitmentDto;
+import tht.closure.operator.model.entity.*;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class RecruiterMapper {
 
@@ -38,7 +44,7 @@ public class RecruiterMapper {
         return dto;
     }
 
-    public static RecruiterDto recruiterToRecruiterDtoNoRelationShip(Recruiter entity) {
+    public static RecruiterDto recruiterToRecruiterDtoNR(Recruiter entity) {
         RecruiterDto dto = new RecruiterDto();
         dto.setId(entity.getId());
         dto.setFacebook(entity.getFacebook());
@@ -46,8 +52,11 @@ public class RecruiterMapper {
         dto.setLocation(entity.getLocation());
         dto.setName(entity.getName());
         dto.setVersion(entity.getVersion());
-        dto.setEmployeeQuantity(entity.getEmployeeQuantity());
+        dto.setEmployeeQuantityMin(entity.getEmployeeQuantityMin());
+        dto.setEmployeeQuantityMax(entity.getEmployeeQuantityMax());
         dto.setWebsite(entity.getWebsite());
+        dto.setOverviewContentUrl(entity.getOverviewContentUrl());
+        dto.setAdvertiseContentUrl(entity.getAdvertiseContentUrl());
         dto.setOvertime(recruiterOverTimeToRecruiterOverTimeDto(entity.getOvertime()));
         dto.setWorkStartDate(recruiterDayOfWeekToRecruiterDayOfWeekDto(entity.getWorkStartDay()));
         dto.setWorkEndDate(recruiterDayOfWeekToRecruiterDayOfWeekDto(entity.getWorkEndDay()));
@@ -57,9 +66,22 @@ public class RecruiterMapper {
     }
 
     public static RecruiterDto recruiterToRecruiterDto(Recruiter entity) {
-        RecruiterDto dto = recruiterToRecruiterDtoNoRelationShip(entity);
-        dto.setUser(UserMapper.userToUserDto(entity.getUser()));
+        RecruiterDto dto = recruiterToRecruiterDtoNR(entity);
+        if (entity.getRecruiterSubCatalogs() != null) {
+            List<SubCatalog> subCatalogs = getSubCatalogsFromRecruiter(entity);
+            dto.setSubCatalogs(subCatalogs.stream().map(CatalogMapper::subCatalogToSubCatalogDto).collect(Collectors.toList()));
+        }
+        if (entity.getRecruitments() != null) {
+            dto.setRecruitments(entity.getRecruitments().stream().map(RecruitmentMapper::recruitmentToRecruitmentDtoNoRecruiter).collect(Collectors.toList()));
+        }
+        if (entity.getUser() != null) {
+            dto.setAvatarUrl(entity.getUser().getAvatarUrl());
+        }
         return dto;
+    }
+
+    public static List<SubCatalog> getSubCatalogsFromRecruiter(Recruiter entity) {
+        return entity.getRecruiterSubCatalogs().stream().map(RecruiterSubCatalog::getSubCatalog).collect(Collectors.toList());
     }
 
     public static Recruiter recruiterDtoToRecruiter(RecruiterDto dto) {
@@ -71,7 +93,6 @@ public class RecruiterMapper {
         entity.setWebsite(dto.getWebsite());
         entity.setFacebook(dto.getFacebook());
         entity.setVersion(dto.getVersion());
-        entity.setUser(UserMapper.userDtoToUser(dto.getUser()));
         return entity;
     }
 }

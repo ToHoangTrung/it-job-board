@@ -15,6 +15,7 @@
     "bootstrap": "^4.5.2",
     "i18next": "^20.3.0",
     "node-sass": "^4.0.0",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.6.0",
     "react-datepicker": "^3.8.0",

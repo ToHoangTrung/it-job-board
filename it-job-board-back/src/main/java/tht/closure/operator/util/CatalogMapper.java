@@ -9,17 +9,14 @@ import java.util.stream.Collectors;
 
 public class CatalogMapper {
 
-    public static CatalogDto catalogToCatalogDtoNoRelationShip(Catalog entity) {
+    public static CatalogDto catalogToCatalogDto(Catalog entity) {
         CatalogDto dto = new CatalogDto();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setVersion(entity.getVersion());
-        return dto;
-    }
-
-    public static CatalogDto catalogToCatalogDto(Catalog entity) {
-        CatalogDto dto = catalogToCatalogDtoNoRelationShip(entity);
-        dto.setSubCatalogs(entity.getSubCatalogs().stream().map(CatalogMapper::subCatalogToSubCatalogDto).collect(Collectors.toList()));
+        if (entity.getSubCatalogs() != null) {
+            dto.setSubCatalogs(entity.getSubCatalogs().stream().map(CatalogMapper::subCatalogToSubCatalogDto).collect(Collectors.toList()));
+        }
         return dto;
     }
 
@@ -31,16 +28,11 @@ public class CatalogMapper {
         return entity;
     }
 
-    public static SubCatalogDto subCatalogToSubCatalogDtoNoRelationShip(SubCatalog entity) {
+    public static SubCatalogDto subCatalogToSubCatalogDto(SubCatalog entity) {
         SubCatalogDto dto = new SubCatalogDto();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
-        dto.setVersion(entity.getVersion());
-        return dto;
-    }
-
-    public static SubCatalogDto subCatalogToSubCatalogDto(SubCatalog entity) {
-        SubCatalogDto dto = subCatalogToSubCatalogDtoNoRelationShip(entity);
+        dto.setVersion(entity.getVersion());;
         return dto;
     }
 

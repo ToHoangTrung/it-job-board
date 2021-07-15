@@ -61,3 +61,11 @@ p{
   padding: 0 !important;
   border: none !important;
 }
+
+label {
+  margin-bottom: 0 !important;
+}
+
+input[type=checkbox], input[type=radio] {
+  padding: 0 !important;
+}

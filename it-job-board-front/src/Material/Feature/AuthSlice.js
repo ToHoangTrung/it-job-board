@@ -27,14 +27,14 @@ export const userRegister = createAsyncThunk('user/register',
 export const userGetInfo = createAsyncThunk('user/getInfo',
     async (params,{rejectWithValue}) => {
     try{
-        const response = await axiosClient.get('/api/auth/getInfo');
+        const response = await axiosClient.get('/api/auth/get-user-info');
         return response.data;
     } catch (err) {
         throw new rejectWithValue(err.response.data);
     }
 });
 
-const userSlice = createSlice({
+const authSlice = createSlice({
     name: 'user',
     initialState: {
         currentUser: {},
@@ -53,9 +53,9 @@ const userSlice = createSlice({
     }
 })
 
-const { reducer: userReducer } = userSlice;
-export default userReducer;
+const { reducer: authReducer } = authSlice;
+export default authReducer;
 
-export const getCurrentUser = state => state.user.currentUser
+export const getCurrentUser = state => state.auth.currentUser
 
-export const { userLogOut } = userSlice.actions
+export const { userLogOut } = authSlice.actions

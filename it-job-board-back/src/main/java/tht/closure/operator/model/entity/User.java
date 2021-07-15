@@ -5,10 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +14,7 @@ import java.util.stream.Stream;
 @Entity(name = "t_user")
 @Getter
 @Setter
-public class User extends AbstractEntity{
+public class User extends AbstractEntity {
 
     @Column
     private String username;
@@ -58,19 +55,21 @@ public class User extends AbstractEntity{
     }
 
     public enum Role {
-        ROLE_CAN("Candidate"),
-        ROLE_REC("Recruiter"),
-        ROLE_ADM("Admin");
+        ROLE_CAN("Candidate", "Ứng Cử Viên"),
+        ROLE_REC("Recruiter", "Nhà Tuyển Dụng"),
+        ROLE_ADM("Admin", "Quản Trị Viên");
 
-        public final String label;
+        public final String enTranslate;
+        public final String vnTranslate;
 
-        Role(String label) {
-            this.label = label;
+        Role(String enTranslate, String vnTranslate) {
+            this.enTranslate = enTranslate;
+            this.vnTranslate = vnTranslate;
         }
+    }
 
-        public static List<String> getUserRoles() {
-            return Stream.of(Role.values()).map(Role::name).collect(Collectors.toList());
-        }
+    public static List<String> getAllUserRole() {
+        return Stream.of(User.Role.values()).map(User.Role::name).collect(Collectors.toList());
     }
 
 }

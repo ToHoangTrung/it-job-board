@@ -6,6 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tht.closure.operator.model.dto.RecruitmentDto;
 import tht.closure.operator.model.entity.Recruitment;
+import tht.closure.operator.service.main.PageResult;
 import tht.closure.operator.service.RecruitmentService;
 
 import javax.validation.Valid;
@@ -20,25 +21,28 @@ public class RecruitmentController {
     @Autowired
     private RecruitmentService recruitmentService;
 
-
-
     @GetMapping("/search")
-    public ResponseEntity<Object> searchRecruitments(@RequestParam String keyword) {
-        List<RecruitmentDto> recruitments = recruitmentService.searchRecruitments(keyword);
+    public ResponseEntity<Object> searchRecruitments(@RequestParam String keyword, @RequestParam Long page) {
+        PageResult<RecruitmentDto> recruitments = recruitmentService.searchRecruitments(keyword, page - 1);
         return ResponseEntity.accepted().body(recruitments);
     }
 
-    @GetMapping("/position")
+    @GetMapping("/get-all-position-filter")
     public ResponseEntity<Object> getAllRecruitmentPosition() {
-        List<RecruitmentDto.PositionDto> positions = new ArrayList<>();
-        Arrays.stream(Recruitment.Position.values()).map(position -> {
-            RecruitmentDto.PositionDto positionDto = new RecruitmentDto.PositionDto();
-            positionDto.setName(position.name());
-            positionDto.setEnTranslate(position.enTranslate);
-            positionDto.setVnTranslate(position.vnTranslate);
-            return positionDto;
-        }).forEachOrdered(positions::add);
+        List<RecruitmentDto.PositionDto> positions = recruitmentService.getAllRecruitmentPosition();
         return ResponseEntity.accepted().body(positions);
+    }
+
+    @GetMapping("/get-all-experience-filter")
+    public ResponseEntity<Object> getAllRecruitmentExperence() {
+        List<RecruitmentDto.ExperienceDto> experiences = recruitmentService.getAllRecruitmentExperence();
+        return ResponseEntity.accepted().body(experiences);
+    }
+
+    @GetMapping("/get-all-city-filter")
+    public ResponseEntity<Object> getAllRecruitmentCity() {
+        List<RecruitmentDto.CityDto> cities = recruitmentService.getAllRecruitmentCity();
+        return ResponseEntity.accepted().body(cities);
     }
 
     @PostMapping("/create")

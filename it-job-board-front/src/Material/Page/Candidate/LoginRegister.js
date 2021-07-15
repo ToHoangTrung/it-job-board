@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import {DefaultTheme} from "../../../theme";
 import '../../Style/MainPage.scss';
 import {useForm} from "react-hook-form";
-import {userGetInfo, userLogin, userRegister} from "../../Feature/UserSlice";
+import {userGetInfo, userLogin, userRegister} from "../../Feature/AuthSlice";
 import {unwrapResult} from "@reduxjs/toolkit";
 import {useDispatch} from "react-redux";
 import {useHistory} from "react-router-dom";
@@ -58,19 +58,6 @@ const Login = (props) => {
 
     const classes = useStyles();
     const {t} = useTranslation('common');
-
-    const [userInfo, setUserInfo] = useState({
-        email: '',
-        password: '',
-    });
-
-    const handleChange = (e) => {
-        const {name, value} = e.target
-        setUserInfo(prevState => ({
-            ...prevState,
-            [name]: value
-        }))
-    }
 
     const handleLoginSubmit = (values) => {
         const { onSubmit } = props;
@@ -223,15 +210,11 @@ const LoginRegister = () => {
                 role: "ROLE_CAN"
             };
             if (!isLogin) {
-                const registerResult = await dispatch(userRegister(payload));
-                unwrapResult(registerResult);
+                unwrapResult(await dispatch(userRegister(payload)));
             }
-            const loginResult = await dispatch(userLogin(payload));
-            unwrapResult(loginResult);
-            const getInfoResult = await dispatch(userGetInfo());
-            const result = unwrapResult(getInfoResult);
-            console.log(result)
-            // history.push("/")
+            unwrapResult(await dispatch(userLogin(payload)));
+            unwrapResult(await dispatch(userGetInfo()));
+            history.push("/")
         } catch (err) {
             console.log(err);
         }

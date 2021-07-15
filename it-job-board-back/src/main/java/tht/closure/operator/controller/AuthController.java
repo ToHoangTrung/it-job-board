@@ -32,7 +32,7 @@ public class AuthController extends AbstractController{
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(jwtResponse);
     }
 
-    @GetMapping("/getInfo")
+    @GetMapping("/get-user-info")
     public ResponseEntity<Object> getUserInfoFromJwt(HttpServletRequest request) {
         UserDto user = authService.getUserInfoFromJwt(request);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(user);

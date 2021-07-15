@@ -2,14 +2,15 @@ package tht.closure.operator.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import tht.closure.operator.model.dto.main.AbstractDto;
+import tht.closure.operator.model.dto.main.MultilingualDto;
+import tht.closure.operator.model.entity.User;
 
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
-public class UserDto extends AbstractDto{
+public class UserDto extends AbstractDto {
 
     @NotNull(message = "Username can not be blank")
     private String username;
@@ -32,4 +33,12 @@ public class UserDto extends AbstractDto{
     public UserDto(){
 
     }
+
+    private CandidateDto candidateInfo;
+
+    private RecruiterDto recruiterInfo;
+
+    private RoleDto role;
+
+    public static class RoleDto extends MultilingualDto {}
 }

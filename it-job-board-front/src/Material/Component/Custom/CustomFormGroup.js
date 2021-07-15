@@ -29,6 +29,7 @@ const CustomFormGroup = ((props) => {
         customStyle,
         labelStyle,
         inputStyle,
+        checked,
     } = props
 
     const classes = useStyles();
@@ -36,19 +37,22 @@ const CustomFormGroup = ((props) => {
     let customInput;
 
     if (type === "select") {
-        console.log(data)
         customInput =
             <Select
-                defaultValue={data[0]}
+                defaultValue={defaultValue}
+                value={value}
+                placeholder={placeholder}
                 isSearchable
                 name="color"
                 options={data}
+                onChange={onChangeValue}
             />
     }
     else {
         customInput =
             <input
                   style={inputStyle}
+                  checked={checked}
                   type={type || "text"}
                   name={name}
                   value={value || ""}

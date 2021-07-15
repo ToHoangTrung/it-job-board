@@ -2,16 +2,14 @@ package tht.closure.operator.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import tht.closure.operator.model.dto.main.AbstractDto;
 
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
 @Setter
-public class CandidateDto extends AbstractDto{
+public class CandidateDto extends AbstractDto {
 
     private String firstName;
 
@@ -20,8 +18,6 @@ public class CandidateDto extends AbstractDto{
     private String cvUrl;
 
     private String description;
-
-    private UserDto user;
 
     private Set<RecruitmentDto> recruitments = new LinkedHashSet<>();
 }

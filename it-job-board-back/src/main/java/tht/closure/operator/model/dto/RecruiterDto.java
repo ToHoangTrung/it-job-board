@@ -2,13 +2,17 @@ package tht.closure.operator.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import tht.closure.operator.model.dto.main.AbstractDto;
+import tht.closure.operator.model.dto.main.MultilingualDto;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
 @Setter
-public class RecruiterDto extends AbstractDto{
+public class RecruiterDto extends AbstractDto {
+
+    private String avatarUrl;
 
     @NotNull(message = "Name can not be blank")
     private String name;
@@ -25,11 +29,15 @@ public class RecruiterDto extends AbstractDto{
 
     private List<SubCatalogDto> subCatalogs;
 
-    private UserDto user;
+    private Integer employeeQuantityMin;
 
-    private Integer employeeQuantity;
+    private Integer employeeQuantityMax;
 
     private OvertimeDto overtime;
+
+    private String overviewContentUrl;
+
+    private String advertiseContentUrl;
 
     @NotNull(message = "Country can not be blank")
     private CountryDto country;
@@ -40,12 +48,11 @@ public class RecruiterDto extends AbstractDto{
 
     private DayOfWeekDto workEndDate;
 
-    public static class OvertimeDto extends MultilingualDto{ }
+    public static class OvertimeDto extends MultilingualDto { }
 
     @Getter
     @Setter
     public static class CountryDto extends MultilingualDto{
-
         private String flagImg;
     }
 

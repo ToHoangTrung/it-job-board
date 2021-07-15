@@ -5,7 +5,7 @@ import tht.closure.operator.model.entity.Candidate;
 
 public class CandidateMapper {
 
-    public static CandidateDto candidateToCandidateDtoNoRelationShip(Candidate entity) {
+    public static CandidateDto candidateToCandidateDto(Candidate entity) {
         CandidateDto dto = new CandidateDto();
         dto.setId(entity.getId());
         dto.setFirstName(entity.getFirstName());
@@ -13,12 +13,6 @@ public class CandidateMapper {
         dto.setDescription(entity.getDescription());
         dto.setCvUrl(entity.getCvUrl());
         dto.setVersion(entity.getVersion());
-        return dto;
-    }
-
-    public static CandidateDto candidateToCandidateDto(Candidate entity) {
-        CandidateDto dto = candidateToCandidateDtoNoRelationShip(entity);
-        dto.setUser(UserMapper.userToUserDtoNoRelationShip(entity.getUser()));
         return dto;
     }
 
@@ -30,7 +24,6 @@ public class CandidateMapper {
         entity.setFirstName(dto.getFirstName());
         entity.setLastName(dto.getLastName());
         entity.setVersion(dto.getVersion());
-        entity.setUser(UserMapper.userDtoToUser(dto.getUser()));
         return entity;
     }
 }

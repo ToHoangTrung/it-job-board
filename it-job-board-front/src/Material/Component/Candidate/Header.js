@@ -5,14 +5,19 @@ import {makeStyles} from "@material-ui/core";
 import {DefaultTheme, NeutralGrayTheme} from '../../../theme';
 import Button from "@material-ui/core/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {getCurrentUser, userLogOut} from "../../Feature/UserSlice";
+import {getCurrentUser, userLogOut} from "../../Feature/AuthSlice";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Link from "@material-ui/core/Link";
 import PersonIcon from '@material-ui/icons/Person';
 import WorkIcon from '@material-ui/icons/Work';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-const UserBlock = (user) => {
+const UserBlock = (props) => {
+
+    const {
+        user,
+    } = props
+
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -25,6 +30,7 @@ const UserBlock = (user) => {
             cursor: "pointer",
             '& a': {
                 fontWeight: 500,
+                padding: 0,
             },
             '& img': {
                 width: 40,
@@ -36,11 +42,10 @@ const UserBlock = (user) => {
                 '& a': {
                     color: DefaultTheme.default6,
                 },
-                background : DefaultTheme.default1,
             }
         },
         dropdown: {
-            width: '50%',
+            width: 300,
             display: 'flex',
             flexDirection: 'column',
             background: 'white',
@@ -55,7 +60,7 @@ const UserBlock = (user) => {
                 justifyContent: 'flex-start',
                 border: `1px solid ${DefaultTheme.gray5}`,
                 textAlign: 'left',
-                padding: '12px 20px',
+                padding: '12px 16px',
                 cursor: 'pointer',
                 '& svg': {
                     fontSize: 16,
@@ -69,6 +74,8 @@ const UserBlock = (user) => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
+    const [showDropdown, setShowDropdown] = useState(false);
+
     const handleLogout = () => {
         dispatch(userLogOut)
         console.log("OK")
@@ -77,14 +84,18 @@ const UserBlock = (user) => {
     return (
         <div className={classes.root}>
             <div className={classes.username}>
-                <Link to={"#"}>To Hoang Trung<ArrowDropDownIcon/></Link>
+                <Link to={"#"} onClick={() => setShowDropdown(!showDropdown)}>{user.username}<ArrowDropDownIcon/></Link>
                 <img src={"https://lh3.googleusercontent.com/a-/AOh14GhGZd8WlI-YmQ4CXKhYGBHwITW5BLujOq1A0HErYQ=s96-c"}/>
             </div>
-            <div className={classes.dropdown}>
-                <Link to={"#"} onClick={handleLogout} className={classes.link}><ExitToAppIcon/>{t('header.logout')}</Link>
-                <Link to={"#"} className={classes.link}><PersonIcon/>{t('header.account')}</Link>
-                <Link to={"#"} className={classes.link}><WorkIcon/>{t('header.apply-job')}</Link>
-            </div>
+            {
+                showDropdown && (
+                    <div className={classes.dropdown} onMouseLeave={() => setShowDropdown(!showDropdown)}>
+                        <Link to={"#"} onClick={handleLogout} className={classes.link}><ExitToAppIcon/>{t('header.logout')}</Link>
+                        <Link to={"#"} className={classes.link}><PersonIcon/>{t('header.account')}</Link>
+                        <Link to={"#"} className={classes.link}><WorkIcon/>{t('header.apply-job')}</Link>
+                    </div>
+                )
+            }
         </div>
     )
 }
@@ -94,10 +105,9 @@ const Header = () => {
     const useStyles = makeStyles((theme) => ({
         root: {
             fontSize: 17,
-            height: 50,
             borderBottom: `1px solid ${NeutralGrayTheme.gray5}`,
             display: 'flex',
-            alignItems: 'stretch',
+            padding: '8px 0px',
             '& a':{
                 fontWeight: 500,
                 color: 'black',
@@ -109,13 +119,10 @@ const Header = () => {
             }
         },
         logo: {
-            display: 'flex',
             height: '100%',
-            alignItems: "center",
             '& img':{
-                marginRight: 'auto',
-                height: 40,
-                width: 40,
+                height: '100%',
+                width: 50,
 
             },
         },
@@ -203,11 +210,11 @@ const Header = () => {
                         <Col xl={3}>
                             <div className={classes.nav} style={{justifyContent: "flex-end"}}>
                                 {
-                                    currentUser.type !== undefined ? (
-                                        <UserBlock/>
+                                    currentUser.id !== undefined ? (
+                                        <UserBlock user={currentUser}/>
                                     ) : (
                                         <div className={classes.action}>
-                                            <Button href="/">
+                                            <Button href="/login">
                                                 {t('header.login')}
                                             </Button>
                                             <Button href="/">

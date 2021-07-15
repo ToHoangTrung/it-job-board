@@ -3,3 +3,4 @@ export const ExceptionErrorCode = {
     InputTypeInValidException: "INPUT-TYPE-INVALID-EX",
     ConcurrentUpdateException: "CONCURRENT-UPDATE-EX"
 }
+

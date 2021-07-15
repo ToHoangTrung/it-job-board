@@ -9,6 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import tht.closure.operator.model.dto.CandidateDto;
+import tht.closure.operator.model.dto.RecruiterDto;
 import tht.closure.operator.model.dto.UserDto;
 import tht.closure.operator.model.entity.Candidate;
 import tht.closure.operator.model.entity.Recruiter;
@@ -24,6 +26,8 @@ import tht.closure.operator.security.jwt.AuthTokenFilter;
 import tht.closure.operator.security.jwt.JwtUtils;
 import tht.closure.operator.security.service.UserDetailsImpl;
 import tht.closure.operator.service.AuthService;
+import tht.closure.operator.util.CandidateMapper;
+import tht.closure.operator.util.RecruiterMapper;
 import tht.closure.operator.util.UserMapper;
 import tht.closure.operator.validator.AuthValidator;
 
@@ -63,11 +67,12 @@ public class AuthServiceImpl implements AuthService {
         authValidator.validateRegisterRequest(registerDto);
         User user = new User(registerDto.getUsername(), registerDto.getEmail(), encoder.encode(registerDto.getPassword()), registerDto.getRole());
         userRepository.save(user);
-        if (registerDto.getRole().equals("CAN")) {
+        if (registerDto.getRole().equals(User.Role.ROLE_CAN.name())) {
             Candidate candidate = new Candidate();
             candidate.setUser(user);
             candidateRepository.save(candidate);
-        } else {
+        }
+        else {
             Recruiter recruiter = new Recruiter();
             recruiter.setUser(user);
             recruiterRepository.save(recruiter);
@@ -98,9 +103,22 @@ public class AuthServiceImpl implements AuthService {
         String token = authTokenFilter.parseJwt(request);
         if (token != null) {
             String username = jwtUtils.getUserNameFromJwtToken(token);
-            System.out.println(username);
+
             User user = userRepository.findByUsername(username);
-            return UserMapper.userToUserDtoNoRelationShip(user);
+            UserDto userDto = UserMapper.userToUserDto(user);
+
+            if (user.getRole().equals(User.Role.ROLE_CAN)) {
+                Candidate candidate = candidateRepository.findByUserId(user.getId());
+                CandidateDto candidateDto = CandidateMapper.candidateToCandidateDto(candidate);
+                userDto.setCandidateInfo(candidateDto);
+            }
+            else if (user.getRole().equals(User.Role.ROLE_REC)) {
+                Recruiter recruiter = recruiterRepository.findByUserId(user.getId());
+                RecruiterDto recruiterDto = RecruiterMapper.recruiterToRecruiterDto(recruiter);
+                userDto.setRecruiterInfo(recruiterDto);
+            }
+
+            return userDto;
         }
         return null;
     }

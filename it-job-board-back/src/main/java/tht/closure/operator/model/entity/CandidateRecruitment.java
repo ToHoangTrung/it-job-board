@@ -2,10 +2,8 @@ package tht.closure.operator.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,7 +11,7 @@ import java.util.stream.Stream;
 @Entity(name = "t_candidate_recruitment")
 @Getter
 @Setter
-public class CandidateRecruitment extends AbstractEntity{
+public class CandidateRecruitment extends AbstractEntity {
 
 
     @ManyToOne(fetch = FetchType.LAZY)

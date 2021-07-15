@@ -30,4 +30,10 @@ public class RecruiterController {
         Set<RecruiterDto> recruiters = recruiterService.searchRecruiters(keyword);
         return ResponseEntity.accepted().body(recruiters);
     }
+
+    @GetMapping("/get-one/{id}")
+    public ResponseEntity<Object> getOneRecruiter(@PathVariable Long id) {
+        RecruiterDto recruiter = recruiterService.getOneRecruiter(id);
+        return ResponseEntity.accepted().body(recruiter);
+    }
 }

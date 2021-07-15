@@ -10,7 +10,7 @@ import java.util.List;
 @Entity(name = "t_sub_catalog")
 @Getter
 @Setter
-public class SubCatalog extends AbstractEntity{
+public class SubCatalog extends AbstractEntity {
 
     private String name;
 
@@ -18,9 +18,9 @@ public class SubCatalog extends AbstractEntity{
     @JoinColumn
     private Catalog catalog;
 
-    @OneToMany(mappedBy = "subCatalog", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "subCatalog")
     private List<RecruitmentSubCatalog> recruitmentSubCatalogs = new ArrayList<>();
 
-    @OneToMany(mappedBy = "subCatalog", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "subCatalog")
     private List<RecruitmentSubCatalog> recruiterSubCatalogs = new ArrayList<>();
 }

@@ -8,4 +8,6 @@ public interface RecruiterService {
     Set<RecruiterDto> searchRecruiters(String keyword);
 
     void updateRecruiterInfo(RecruiterDto recruiterDto);
+
+    RecruiterDto getOneRecruiter(Long id);
 }

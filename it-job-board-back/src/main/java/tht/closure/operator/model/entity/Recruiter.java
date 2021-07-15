@@ -5,13 +5,14 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "t_recruiter")
 @Getter
 @Setter
-public class Recruiter extends AbstractEntity{
+public class Recruiter extends AbstractEntity {
 
     @Column
     private String name;
@@ -26,17 +27,26 @@ public class Recruiter extends AbstractEntity{
     private String location;
 
     @Column
-    private Integer employeeQuantity;
+    private Integer employeeQuantityMin;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @Column
+    private Integer employeeQuantityMax;
+
+    @Column
+    private String overviewContentUrl;
+
+    @Column
+    private String advertiseContentUrl;
+
+    @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(mappedBy = "recruiter", fetch = FetchType.LAZY)
-    private List<Recruitment> recruitments = new ArrayList<>();
+    @OneToMany(mappedBy = "recruiter")
+    private Set<Recruitment> recruitments = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "recruiter", fetch = FetchType.LAZY)
-    private List<RecruiterSubCatalog> recruiterSubCatalogs = new ArrayList<>();
+    @OneToMany(mappedBy = "recruiter")
+    private Set<RecruiterSubCatalog> recruiterSubCatalogs = new LinkedHashSet<>();
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -44,13 +54,13 @@ public class Recruiter extends AbstractEntity{
 
     @Getter
     public enum Type {
-        PRODUCT("Product", "Sản phẩm"),
-        OUTSOURCE("Outsource", "Mã nguồn mở");
+        PRODUCT("Product", "Product"),
+        OUTSOURCE("Outsource", "Outsource");
 
         public final String enTranslate;
         public final String vnTranslate;
 
-        Type(String vnTranslate, String enTranslate) {
+        Type(String enTranslate, String vnTranslate) {
             this.vnTranslate = vnTranslate;
             this.enTranslate = enTranslate;
         }
@@ -79,9 +89,11 @@ public class Recruiter extends AbstractEntity{
     private Country country;
 
     public enum Country {
-        VN("Việt Nam", "Vietnam", "vn.png"),
-        JP("Nhật Bản", "Japan", "jp.png"),
-        KO("Hàn Quốc", "Korea", "ko.png");
+        VIETNAM("Việt Nam", "Vietnam", "vn.png"),
+        JAPAN("Nhật Bản", "Japan", "jp.png"),
+        FRANCE("Pháp", "France", "france.png"),
+        SINGAPORE("Singapore", "Singapore", "singapore.png"),
+        NORWAY("Normay", "Normay", "norway.png");
 
         public final String vnTranslate;
         public final String enTranslate;

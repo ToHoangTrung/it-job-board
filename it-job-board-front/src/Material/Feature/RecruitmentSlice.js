@@ -1,10 +1,19 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axiosClient from "../../axiosClient";
 
-export const searchRecruitments = createAsyncThunk('recruitment/searchRecruitment', async (keyword) => {
+export const fetchRecruitmentByCriteria = createAsyncThunk('recruitment/fetchRecruitmentByCriteria', async (keyword) => {
     try{
-        const response = await axiosClient.get(`/api/recruitment/search`, keyword);
-        return response.data
+        const response = await axiosClient.get(`/api/recruitment/search?${keyword}`);
+        return response.data.content;
+    }catch(err){
+        throw new Object(err.response.data);
+    }
+});
+
+export const fetchRecruitmentDetailById = createAsyncThunk('recruitment/fetchRecruitmentDetailById', async (id) => {
+    try{
+        const response = await axiosClient.get(`/api/recruitment/search?keyword=id:${id}&page=1`);
+        return response.data.content[0];
     }catch(err){
         throw new Object(err.response.data);
     }
@@ -12,7 +21,25 @@ export const searchRecruitments = createAsyncThunk('recruitment/searchRecruitmen
 
 export const fetchAllRecruitmentPosition = createAsyncThunk('recruitment/fetchAllRecruitmentPosition', async () => {
     try{
-        const response = await axiosClient.get(`/api/recruitment/position`);
+        const response = await axiosClient.get(`/api/recruitment/get-all-position-filter`);
+        return response.data
+    }catch(err){
+        throw new Object(err.response.data);
+    }
+});
+
+export const fetchAllRecruitmentCity = createAsyncThunk('recruitment/fetchAllRecruitmentCity', async () => {
+    try{
+        const response = await axiosClient.get(`/api/recruitment/get-all-city-filter`);
+        return response.data
+    }catch(err){
+        throw new Object(err.response.data);
+    }
+});
+
+export const fetchAllRecruitmentExperience = createAsyncThunk('recruitment/fetchAllRecruitmentExperience', async () => {
+    try{
+        const response = await axiosClient.get(`/api/recruitment/get-all-experience-filter`);
         return response.data
     }catch(err){
         throw new Object(err.response.data);
@@ -24,16 +51,24 @@ const recruitmentSlice = createSlice({
     initialState: {
         recruitments: [],
         positions: [],
+        cities: [],
+        experiences: [],
     },
     reducers: {
     },
     extraReducers: {
-        [searchRecruitments.fulfilled]: (state, action) => {
+        [fetchRecruitmentByCriteria.fulfilled]: (state, action) => {
             state.recruitments = action.payload || [];
         },
         [fetchAllRecruitmentPosition.fulfilled]: (state, action) => {
             state.positions = action.payload || [];
-        }
+        },
+        [fetchAllRecruitmentCity.fulfilled]: (state, action) => {
+            state.cities = action.payload || [];
+        },
+        [fetchAllRecruitmentExperience.fulfilled]: (state, action) => {
+            state.experiences = action.payload || [];
+        },
     }
 })
 
@@ -42,3 +77,5 @@ export default recruitmentReducer;
 
 export const selectAllRecruitment  = (state) => state.recruitment.recruitments;
 export const selectAllRecruitmentPosition = (state) => state.recruitment.positions;
+export const selectAllRecruitmentCity = (state) => state.recruitment.cities;
+export const selectAllRecruitmentExperience = (state) => state.recruitment.experiences;

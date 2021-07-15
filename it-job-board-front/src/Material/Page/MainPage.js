@@ -1,17 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Col, Container, Row} from 'react-bootstrap';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Header from '../Component/Candidate/Header';
 import {makeStyles} from "@material-ui/core";
-import Recruitment from "./Candidate/Recruitment";
+import RecruitmentPage from "./Candidate/RecruitmentPage";
 import '../Style/MainPage.scss'
-import RecruitmentDetail from "./Candidate/RecruitmentDetail";
-import RecruiterDetail from "./Candidate/RecruiterDetail";
+import RecruitmentDetailPage from "./Candidate/RecruitmentDetailPage";
+import RecruiterDetailPage from "./Candidate/RecruiterDetailPage";
 import LoginRegister from "./Candidate/LoginRegister";
+import {userGetInfo} from "../Feature/AuthSlice";
+import {unwrapResult} from "@reduxjs/toolkit";
+import {useDispatch} from "react-redux";
+import RecruitmentApplyPage from "./Candidate/RecruitmentApplyPage";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        marginBottom: 100
+        marginBottom: 200
     },
     main: {
         background: '#FBFBFB'
@@ -25,6 +29,15 @@ const useStyles = makeStyles((theme) => ({
 const MainPage = () => {
 
     const classes = useStyles();
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+            unwrapResult(await dispatch(userGetInfo()))
+        }
+        fetchUserInfo();
+    }, []);
 
     return (
         <div className={classes.root}>
@@ -41,9 +54,10 @@ const MainPage = () => {
                         <Col xl={1}></Col>
                         <Col xl={10}>
                             <div style={{margin: '24px auto'}}>
-                                <Route path="/jobs" component={Recruitment} exact/>
-                                <Route path="/jobs/:recruitmentId" component={RecruitmentDetail}/>
-                                <Route path="/companies/:recruiterId" component={RecruiterDetail}/>
+                                <Route path="/jobs/search" component={RecruitmentPage} exact/>
+                                <Route path="/jobs/detail/:recruitmentId" component={RecruitmentDetailPage}/>
+                                <Route path="/jobs/apply/:recruitmentId" component={RecruitmentApplyPage}/>
+                                <Route path="/companies/:recruiterId" component={RecruiterDetailPage}/>
                                 <Route path="/login" component={LoginRegister}/>
                             </div>
                         </Col>

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity(name = "t_recruitment_sub_catalog")
 @Getter
 @Setter
-public class RecruitmentSubCatalog extends AbstractEntity{
+public class RecruitmentSubCatalog extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn

@@ -1,11 +1,12 @@
 package tht.closure.operator.predicate.recruitment;
 
 import com.querydsl.core.types.dsl.*;
-import tht.closure.operator.model.dto.SearchCriteria;
+import tht.closure.operator.model.dto.main.SearchCriteria;
 import tht.closure.operator.model.entity.QRecruitment;
 import tht.closure.operator.model.entity.Recruitment;
+import tht.closure.operator.predicate.AbstractPredicate;
 
-public class RecruitmentPredicate {
+public class RecruitmentPredicate extends AbstractPredicate {
 
     private SearchCriteria criteria;
 
@@ -13,19 +14,52 @@ public class RecruitmentPredicate {
         this.criteria = criteria;
     }
 
+    public final String RECRUITMENT_SEARCH_CRITERIA_HEADLINE = "headline";
+    public final String RECRUITMENT_SEARCH_CRITERIA_SUB_CATALOG_ID = "category";
+    public final String RECRUITMENT_SEARCH_CRITERIA_RECRUITER_ID = "company";
+    public final String RECRUITMENT_SEARCH_CRITERIA_EXPERIENCE_ENUM = "experience";
+    public final String RECRUITMENT_SEARCH_CRITERIA_POSITION_ENUM = "position";
+    public final String RECRUITMENT_SEARCH_CRITERIA_CITY_ENUM = "city";
+
+    public final String RECRUITMENT_SEARCH__CRITERION_CLASS_NAME = "recruitment";
+
     public BooleanExpression getPredicate() {
-        final PathBuilder<Recruitment> entityPath = new PathBuilder<>(Recruitment.class, "recruitment");
+        final PathBuilder<Recruitment> entityPath = new PathBuilder<>(Recruitment.class, RECRUITMENT_SEARCH__CRITERION_CLASS_NAME);
 
         switch (criteria.getKey()) {
-            case "subCatalogId": {
-                if (criteria.getOperation().equalsIgnoreCase(":")) {
+            case RECRUITMENT_SEARCH_CRITERIA_SUB_CATALOG_ID: {
+                if (isEquals(criteria)) {
                     return QRecruitment.recruitment.recruitmentSubCatalogs.any().subCatalog.id.eq((long) Integer.parseInt(getCriteria().getValue().toString()));
                 }
                 break;
             }
-            case "recruiterId": {
-                if (criteria.getOperation().equalsIgnoreCase(":")) {
+            case RECRUITMENT_SEARCH_CRITERIA_RECRUITER_ID: {
+                if (isEquals(criteria)) {
                     return QRecruitment.recruitment.recruiter.id.eq((long) Integer.parseInt(getCriteria().getValue().toString()));
+                }
+                break;
+            }
+            case RECRUITMENT_SEARCH_CRITERIA_POSITION_ENUM: {
+                if (isEquals(criteria)) {
+                    return QRecruitment.recruitment.position.eq(Recruitment.Position.valueOf(criteria.getValue().toString()));
+                }
+                break;
+            }
+            case RECRUITMENT_SEARCH_CRITERIA_EXPERIENCE_ENUM: {
+                if (isEquals(criteria)) {
+                    return QRecruitment.recruitment.experience.eq(Recruitment.Experience.valueOf(criteria.getValue().toString()));
+                }
+                break;
+            }
+            case RECRUITMENT_SEARCH_CRITERIA_CITY_ENUM: {
+                if (isEquals(criteria)) {
+                    return QRecruitment.recruitment.city.eq(Recruitment.City.valueOf(criteria.getValue().toString()));
+                }
+                break;
+            }
+            case RECRUITMENT_SEARCH_CRITERIA_HEADLINE: {
+                if (isEquals(criteria)) {
+                    return QRecruitment.recruitment.headline.containsIgnoreCase(criteria.getValue().toString());
                 }
                 break;
             }
@@ -58,16 +92,4 @@ public class RecruitmentPredicate {
         return criteria;
     }
 
-    public void setCriteria(final SearchCriteria criteria) {
-        this.criteria = criteria;
-    }
-
-    public static boolean isNumeric(final String str) {
-        try {
-            Integer.parseInt(str);
-        } catch (final NumberFormatException e) {
-            return false;
-        }
-        return true;
-    }
 }

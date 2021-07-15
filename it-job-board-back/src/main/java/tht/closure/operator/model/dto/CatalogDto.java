@@ -2,6 +2,7 @@ package tht.closure.operator.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import tht.closure.operator.model.dto.main.AbstractDto;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CatalogDto extends AbstractDto{
+public class CatalogDto extends AbstractDto {
 
     @NotNull(message = "Name can not be blank")
     private String name;

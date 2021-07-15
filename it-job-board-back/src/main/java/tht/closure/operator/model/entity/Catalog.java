@@ -12,7 +12,7 @@ import java.util.List;
 @Entity(name = "t_catalog")
 @Getter
 @Setter
-public class Catalog extends AbstractEntity{
+public class Catalog extends AbstractEntity {
 
     @Column
     private String name;
