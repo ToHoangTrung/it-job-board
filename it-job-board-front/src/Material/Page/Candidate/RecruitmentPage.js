@@ -1,26 +1,26 @@
 import React, {useEffect, useState} from 'react';
 import {Divider, makeStyles} from "@material-ui/core";
-import {Row, Col, Container, Form} from "react-bootstrap";
+import {Col, Container, Form, Row} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import CustomFormGroup from "../../Component/Custom/CustomFormGroup";
 import Button from "@material-ui/core/Button";
-import {DefaultTheme, PolarGreenTheme} from "../../../theme";
+import {DefaultTheme} from "../../../theme";
 import Pagination from '@material-ui/lab/Pagination';
 import {useDispatch, useSelector} from "react-redux";
-import {Link, useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import {fetchAllSubCatalog, selectAllSubCatalog} from "../../Feature/CatalogSlice";
 import {
-    fetchAllRecruitmentCity, fetchAllRecruitmentExperience,
-    fetchAllRecruitmentPosition, fetchRecruitmentByCriteria,
-    selectAllRecruitment, selectAllRecruitmentCity, selectAllRecruitmentExperience,
+    fetchAllRecruitmentCity,
+    fetchAllRecruitmentExperience,
+    fetchAllRecruitmentPosition,
+    fetchRecruitmentByCriteria,
+    selectAllRecruitment,
+    selectAllRecruitmentCity,
+    selectAllRecruitmentExperience,
     selectAllRecruitmentPosition
 } from "../../Feature/RecruitmentSlice";
 import '../../Style/MainPage.scss'
 import {unwrapResult} from "@reduxjs/toolkit";
-import MonetizationOnOutlinedIcon from "@material-ui/icons/MonetizationOnOutlined";
-import TurnedInNotOutlinedIcon from "@material-ui/icons/TurnedInNotOutlined";
-import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
-import EventAvailableOutlinedIcon from "@material-ui/icons/EventAvailableOutlined";
 import RecruitmentCard from "../../Component/Candidate/RecruitmentCard";
 
 const resultFilter = [
@@ -73,10 +73,8 @@ const RecruitmentSearch = (props) => {
     const history = useHistory();
     const [search, setSearch] = useState({
         headline: "",
-        city: "",
         position: "",
         category: "",
-        experience: "",
     });
 
     const handleChange = (event, type) => {
@@ -130,20 +128,6 @@ const RecruitmentSearch = (props) => {
                                  onChangeValue={(e) => handleChange(e, "position")} type={"select"}
                                  data={
                                      positions.map((row) => {
-                                         return { value : row.name, label : row.enTranslate}
-                                     })
-                                 }/>
-                <CustomFormGroup placeholder={t('recruitment-search.placeholder.experience')} name={"experience"} value={search.experience}
-                                 onChangeValue={(e) => handleChange(e, "experience")} type={"select"}
-                                 data={
-                                     experiences.map((row) => {
-                                         return { value : row.name, label : row.enTranslate}
-                                     })
-                                 }/>
-                <CustomFormGroup placeholder={t('recruitment-search.placeholder.city')} name={"city"} value={search.city}
-                                 onChangeValue={(e) => handleChange(e, "city")} type={"select"}
-                                 data={
-                                     cities.map((row) => {
                                          return { value : row.name, label : row.enTranslate}
                                      })
                                  }/>

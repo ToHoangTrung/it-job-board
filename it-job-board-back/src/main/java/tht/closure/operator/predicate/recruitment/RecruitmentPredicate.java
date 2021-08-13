@@ -45,18 +45,6 @@ public class RecruitmentPredicate extends AbstractPredicate {
                 }
                 break;
             }
-            case RECRUITMENT_SEARCH_CRITERIA_EXPERIENCE_ENUM: {
-                if (isEquals(criteria)) {
-                    return QRecruitment.recruitment.experience.eq(Recruitment.Experience.valueOf(criteria.getValue().toString()));
-                }
-                break;
-            }
-            case RECRUITMENT_SEARCH_CRITERIA_CITY_ENUM: {
-                if (isEquals(criteria)) {
-                    return QRecruitment.recruitment.city.eq(Recruitment.City.valueOf(criteria.getValue().toString()));
-                }
-                break;
-            }
             case RECRUITMENT_SEARCH_CRITERIA_HEADLINE: {
                 if (isEquals(criteria)) {
                     return QRecruitment.recruitment.headline.containsIgnoreCase(criteria.getValue().toString());

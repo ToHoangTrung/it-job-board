@@ -71,9 +71,6 @@ public class RecruiterMapper {
             List<SubCatalog> subCatalogs = getSubCatalogsFromRecruiter(entity);
             dto.setSubCatalogs(subCatalogs.stream().map(CatalogMapper::subCatalogToSubCatalogDto).collect(Collectors.toList()));
         }
-        if (entity.getRecruitments() != null) {
-            dto.setRecruitments(entity.getRecruitments().stream().map(RecruitmentMapper::recruitmentToRecruitmentDtoNoRecruiter).collect(Collectors.toList()));
-        }
         if (entity.getUser() != null) {
             dto.setAvatarUrl(entity.getUser().getAvatarUrl());
         }

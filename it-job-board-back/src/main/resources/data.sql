@@ -92,17 +92,17 @@ VALUES
 ('.NET', 1),
 ('Spring', 1);
 
-INSERT INTO T_RECRUITMENT(HEADLINE, BENEFIT_CONTENT_URL, REQUIREMENT_CONTENT_URL, RESPONSIBILITY_CONTENT_URL, SALARY_MIN, SALARY_MAX, START_DATE, END_DATE, POSITION , RECRUITER_ID, LOCATION, EXPERIENCE, CITY)
+INSERT INTO T_RECRUITMENT(HEADLINE, REQUIREMENT_CONTENT_URL, SALARY_MIN, SALARY_MAX, START_DATE, END_DATE, POSITION , RECRUITER_ID, LOCATION)
 VALUES
-('Sr. Backend Engineer (Golang, Java, C++)', 'benefit-content-1.txt','requirement-content-1.txt', 'responsibility-content-1.txt','1000', '1500', '2020-07-06', '2020-08-06', 'JUNIOR', 1, 'Mapletree Business Centre, District 7, Ho Chi Minh', 'ONE_YEAR', 'HCM'),
-('PHP Developer (Senior/ Leader)', 'benefit-content-2.txt','requirement-content-2.txt', 'responsibility-content-2.txt','1000', '2000', '2020-07-06', '2020-08-06', 'SENIOR', 2, '161A Phan Dang Luu, Phu Nhuan, Ho Chi Minh', 'TWO_YEAR', 'HCM'),
-('Full-stack Developer (Java/.NET/Python)', 'benefit-content-3.txt','requirement-content-3.txt', 'responsibility-content-3.txt','1000', '1800', '2020-07-06', '2020-08-06', 'FRESHER', 3, 'TPS Software - Floor 3 - Block C, Waseco Building, 10 Phổ Quang, phường 2, Tan Binh, Ho Chi Minh', 'NONE', 'HCM'),
-('Senior Software Engineers (PHP,Java,SQL)', 'benefit-content-4.txt','requirement-content-4.txt', 'responsibility-content-4.txt','1000', '1500', '2020-07-06', '2020-08-06', 'FRESHER', 4, '12 Ton Dan, District 4, Ho Chi Minh', 'ONE_YEAR', 'HCM'),
-('Junior/Senior QC Engineer (QA QC/Tester)', 'benefit-content-5.txt','requirement-content-5.txt', 'responsibility-content-5.txt','1000', '1500', '2020-07-06', '2020-08-06', 'FRESHER', 5, '182 Le Dai Hanh Street, Ward 15, District 11, Ho Chi Minh', 'TWO_YEAR', 'HCM'),
-('Data Engineer Machine Learning/Python/R', 'benefit-content-6.txt','requirement-content-6.txt', 'responsibility-content-6.txt','1000', '1500', '2020-07-06', '2020-08-06', 'INTERN', 6, '12 Ton Dan, District 4, Ho Chi Minh', 'TWO_YEAR', 'HCM'),
-('.Net Developer (C#, ASP.NET, English)', 'benefit-content-7.txt','requirement-content-7.txt', 'responsibility-content-7.txt','1000', '1800', '2020-07-06', '2020-08-06', 'SENIOR', 7, 'No. 16 Nguyen Truong To Street, Ward 12, District 4, Ho Chi Minh', 'TWO_YEAR', 'HCM'),
-('Java Developer (Spring, OOP)', 'benefit-content-8.txt','requirement-content-8.txt', 'responsibility-content-8.txt','1000', '1500', '2020-07-06', '2020-08-06', 'FRESHER', 8, '62 Tran Huy Lieu, Phu Nhuan, Ho Chi Minh', 'ONE_YEAR', 'HCM'),
-('Senior Backend (NodeJS/Java/PHP)', 'benefit-content-9.txt','requirement-content-9.txt', 'responsibility-content-9.txt','1000', '1500', '2020-07-06', '2020-08-06', 'SENIOR', 9, 'Tầng 10, Tháp 2, Tòa nhà Saigon Centre, 67 Lê Lợi, phường Bến Nghé, District 1, Ho Chi Minh', 'TWO_YEAR', 'HCM');
+('Sr. Backend Engineer (Golang, Java, C++)', 'requirement-content-1.txt', '1000', '1500', '2020-07-06', '2020-08-06', 'JUNIOR', 1, 'Mapletree Business Centre, District 7, Ho Chi Minh'),
+('PHP Developer (Senior/ Leader)', 'requirement-content-2.txt','1000', '2000', '2020-07-06', '2020-08-06', 'SENIOR', 2, '161A Phan Dang Luu, Phu Nhuan, Ho Chi Minh'),
+('Full-stack Developer (Java/.NET/Python)', 'requirement-content-3.txt','1000', '1800', '2020-07-06', '2020-08-06', 'FRESHER', 3, 'TPS Software - Floor 3 - Block C, Waseco Building, 10 Phổ Quang, phường 2, Tan Binh, Ho Chi Minh'),
+('Senior Software Engineers (PHP,Java,SQL)', 'requirement-content-4.txt','1000', '1500', '2020-07-06', '2020-08-06', 'FRESHER', 4, '12 Ton Dan, District 4, Ho Chi Minh'),
+('Junior/Senior QC Engineer (QA QC/Tester)', 'requirement-content-5.txt','1000', '1500', '2020-07-06', '2020-08-06', 'FRESHER', 5, '182 Le Dai Hanh Street, Ward 15, District 11, Ho Chi Minh'),
+('Data Engineer Machine Learning/Python/R', 'requirement-content-6.txt','1000', '1500', '2020-07-06', '2020-08-06', 'INTERN', 6, '12 Ton Dan, District 4, Ho Chi Minh'),
+('.Net Developer (C#, ASP.NET, English)', 'requirement-content-7.txt','1000', '1800', '2020-07-06', '2020-08-06', 'SENIOR', 7, 'No. 16 Nguyen Truong To Street, Ward 12, District 4, Ho Chi Minh'),
+('Java Developer (Spring, OOP)', 'requirement-content-8.txt','1000', '1500', '2020-07-06', '2020-08-06', 'FRESHER', 8, '62 Tran Huy Lieu, Phu Nhuan, Ho Chi Minh'),
+('Senior Backend (NodeJS/Java/PHP)', 'requirement-content-9.txt','1000', '1500', '2020-07-06', '2020-08-06', 'SENIOR', 9, 'Tầng 10, Tháp 2, Tòa nhà Saigon Centre, 67 Lê Lợi, phường Bến Nghé, District 1, Ho Chi Minh');
 
 INSERT INTO T_RECRUITMENT_SUB_CATALOG(RECRUITMENT_ID, SUB_CATALOG_ID)
 VALUES
@@ -176,3 +176,12 @@ VALUES
 (9, 23),
 (9, 2),
 (9, 43);
+
+INSERT INTO T_RECRUITMENT_CANDIDATE(CANDIDATE_ID, RECRUITMENT_ID, TYPE, STATUS)
+VALUES
+(1,1, 'APPLY', 'NEW'),
+(1,2, 'FAVORITE', 'NONE'),
+(1,3, 'FAVORITE', 'NONE'),
+(1,4, 'APPLY', 'NEW'),
+(1,5, 'FAVORITE', 'NONE'),
+(1,6, 'APPLY', 'NEW');

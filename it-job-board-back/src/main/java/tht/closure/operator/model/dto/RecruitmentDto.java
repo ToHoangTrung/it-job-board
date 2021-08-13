@@ -17,14 +17,8 @@ public class RecruitmentDto extends AbstractDto {
     @NotNull(message = "Headline can not be blank")
     private String headline;
 
-    @NotNull(message = "Responsibility can not be blank")
-    private String responsibilityContentUrl;
-
     @NotNull(message = "Requirement can not be blank")
     private String requirementContentUrl;
-
-    @NotNull(message = "Benefit can not be blank")
-    private String benefitContentUrl;
 
     @NotNull(message = "Start Date can not be blank")
     private LocalDate startDate;
@@ -32,14 +26,13 @@ public class RecruitmentDto extends AbstractDto {
     @NotNull(message = "End Date can not be blank")
     private LocalDate endDate;
 
-    private Integer recruitQuantity;
-
     @NotNull(message = "Salary can not be blank")
     private String salaryMin;
 
     @NotNull(message = "Salary can not be blank")
     private String salaryMax;
 
+    @NotNull
     private String location;
 
     private List<SubCatalogDto> subCatalogs = new ArrayList<>();
@@ -47,16 +40,9 @@ public class RecruitmentDto extends AbstractDto {
     @NotNull(message = "Recruiter can not be blank")
     private RecruiterDto recruiter;
 
+    @NotNull
     private PositionDto position;
 
     public static class PositionDto extends MultilingualDto {}
 
-    private ExperienceDto experience;
-
-    public static class ExperienceDto extends MultilingualDto {
-    }
-
-    private CityDto city;
-
-    public static class CityDto extends MultilingualDto{}
 }

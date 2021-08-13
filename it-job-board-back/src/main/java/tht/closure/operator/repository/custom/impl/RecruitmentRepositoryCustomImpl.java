@@ -23,10 +23,6 @@ public class RecruitmentRepositoryCustomImpl implements RecruitmentRepositoryCus
     public PageResult<Recruitment> searchRecruitment(BooleanExpression exp, PagePaging pagePaging) {
         List<Recruitment> recruitments = new JPAQuery<Recruitment>(em)
                 .from(QRecruitment.recruitment).distinct()
-                .innerJoin(QRecruitment.recruitment.recruitmentSubCatalogs, QRecruitmentSubCatalog.recruitmentSubCatalog)
-                .fetchJoin()
-                .innerJoin(QRecruitmentSubCatalog.recruitmentSubCatalog.subCatalog, QSubCatalog.subCatalog)
-                .fetchJoin()
                 .innerJoin(QRecruitment.recruitment.recruiter, QRecruiter.recruiter)
                 .fetchJoin()
                 .innerJoin(QRecruiter.recruiter.user, QUser.user)

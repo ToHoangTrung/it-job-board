@@ -24,10 +24,6 @@ public class RecruiterRepositoryCustomImpl implements RecruiterRepositoryCustom 
                 .fetchJoin()
                 .innerJoin(QRecruiter.recruiter.recruitments, QRecruitment.recruitment)
                 .fetchJoin()
-                .innerJoin(QRecruitment.recruitment.recruitmentSubCatalogs, QRecruitmentSubCatalog.recruitmentSubCatalog)
-                .fetchJoin()
-                .innerJoin(QRecruitmentSubCatalog.recruitmentSubCatalog.subCatalog, QSubCatalog.subCatalog)
-                .fetchJoin()
                 .where(QRecruiter.recruiter.id.eq(id))
                 .fetchOne();
     }

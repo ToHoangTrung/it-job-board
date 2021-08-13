@@ -5,10 +5,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity(name = "t_recruitment")
 @Getter
@@ -19,22 +20,13 @@ public class Recruitment extends AbstractEntity {
     private String headline;
 
     @Column
-    private String responsibilityContentUrl;
-
-    @Column
     private String requirementContentUrl;
-
-    @Column
-    private String benefitContentUrl;
 
     @Column
     private LocalDate startDate;
 
     @Column
     private LocalDate endDate;
-
-    @Column
-    private Integer recruitQuantity;
 
     @Column
     private String location;
@@ -45,11 +37,11 @@ public class Recruitment extends AbstractEntity {
     @Column
     private String salaryMax;
 
-    @OneToMany(mappedBy = "recruitment")
+    @OneToMany(mappedBy = "recruitment", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<RecruitmentSubCatalog> recruitmentSubCatalogs = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "recruitment")
-    private Set<CandidateRecruitment> candidateRecruitments = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "recruitment", cascade = CascadeType.ALL)
+    private Set<RecruitmentCandidate> recruitmentCandidates = new LinkedHashSet<>();
 
     @ManyToOne
     @JoinColumn
@@ -74,41 +66,8 @@ public class Recruitment extends AbstractEntity {
         }
     }
 
-    @Column
-    @Enumerated(EnumType.STRING)
-    private Experience experience;
-
-    public enum Experience {
-        NONE("None", "Không"),
-        ONE_YEAR("1 year of experience", "1 năm kinh nghiệm"),
-        TWO_YEAR("2 year of experience", "2 năm kinh nghiệm"),
-        THREE_YEAR("3 year of experience", "3 năm kinh nghiệm");
-
-        public final String enTranslate;
-        public final String vnTranslate;
-
-        Experience(String enTranslate, String vnTranslate) {
-            this.enTranslate = enTranslate;
-            this.vnTranslate = vnTranslate;
-        }
-    }
-
-    @Column
-    @Enumerated(EnumType.STRING)
-    private City city;
-
-    public enum City {
-        HCM("Ho Chi Minh", "Hồ Chí Minh"),
-        HA_NOI("Ha Noi", "Hà Nội"),
-        DA_NANG("Da Nang", "Đà Nẵng");
-
-        public final String enTranslate;
-        public final String vnTranslate;
-
-        City(String enTranslate, String vnTranslate) {
-            this.enTranslate = enTranslate;
-            this.vnTranslate = vnTranslate;
-        }
+    public static List<String> getAllRecruitmentPosition() {
+        return Stream.of(Recruitment.Position.values()).map(Recruitment.Position::name).collect(Collectors.toList());
     }
 
 }

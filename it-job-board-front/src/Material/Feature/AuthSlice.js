@@ -41,9 +41,10 @@ const authSlice = createSlice({
     },
     reducers: {
         userLogOut: state => {
-            state.currentUser = {}
-            localStorage.setItem('access_token', '')
-            localStorage.setItem('token_type', '')
+            console.log("OK")
+            state.currentUser = {};
+            localStorage.setItem('access_token', '');
+            localStorage.setItem('token_type', '');
         }
     },
     extraReducers: {

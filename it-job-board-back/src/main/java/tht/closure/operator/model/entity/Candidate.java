@@ -28,7 +28,7 @@ public class Candidate extends AbstractEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(mappedBy = "candidate")
-    private Set<CandidateRecruitment> candidateRecruitments = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval=true)
+    private Set<RecruitmentCandidate> recruitmentCandidates = new LinkedHashSet<>();
 
 }

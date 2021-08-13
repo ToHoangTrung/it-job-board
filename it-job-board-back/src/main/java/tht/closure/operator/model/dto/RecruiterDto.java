@@ -25,8 +25,6 @@ public class RecruiterDto extends AbstractDto {
     @NotNull(message = "Location can not be blank")
     private String location;
 
-    private List<RecruitmentDto> recruitments;
-
     private List<SubCatalogDto> subCatalogs;
 
     private Integer employeeQuantityMin;
@@ -47,6 +45,8 @@ public class RecruiterDto extends AbstractDto {
     private DayOfWeekDto workStartDate;
 
     private DayOfWeekDto workEndDate;
+
+    private List<RecruitmentDto> recruitments;
 
     public static class OvertimeDto extends MultilingualDto { }
 

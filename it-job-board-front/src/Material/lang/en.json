@@ -97,7 +97,23 @@
       "phone": "Enter your phone number here",
       "email": "Enter your email here",
       "cv": "Select your CV..."
+    },
+    "apply-btn": "Apply Now"
+  },
+  "saved-recruitment-page": {
+    "tab": {
+      "apply": "Apply Jobs",
+      "favorite": "Favorite Jobs"
+    },
+    "remove-favorite-recruitment": {
+      "headline": "Remove this job out of your favorite list?",
+      "accept": "Remove",
+      "cancel": "Cancel"
     }
+  },
+  "un-login-notification": {
+    "saved-recruitment-page": "Login now to save your job",
+    "login-redirect": "Click here!"
   }
 }
 

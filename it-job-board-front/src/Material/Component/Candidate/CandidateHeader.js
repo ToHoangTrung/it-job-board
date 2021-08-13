@@ -7,10 +7,10 @@ import Button from "@material-ui/core/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentUser, userLogOut} from "../../Feature/AuthSlice";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import Link from "@material-ui/core/Link";
 import PersonIcon from '@material-ui/icons/Person';
 import WorkIcon from '@material-ui/icons/Work';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import {Link} from "react-router-dom";
 
 const UserBlock = (props) => {
 
@@ -58,7 +58,7 @@ const UserBlock = (props) => {
                 fontSize: 14,
                 alignItems: 'center',
                 justifyContent: 'flex-start',
-                border: `1px solid ${DefaultTheme.gray5}`,
+                border: `1px solid ${NeutralGrayTheme.color5}`,
                 textAlign: 'left',
                 padding: '12px 16px',
                 cursor: 'pointer',
@@ -77,8 +77,10 @@ const UserBlock = (props) => {
     const [showDropdown, setShowDropdown] = useState(false);
 
     const handleLogout = () => {
-        dispatch(userLogOut)
-        console.log("OK")
+        // dispatch(userLogOut);
+        localStorage.setItem('access_token', '');
+        localStorage.setItem('token_type', '');
+        window.location.reload();
     }
 
     return (
@@ -100,12 +102,12 @@ const UserBlock = (props) => {
     )
 }
 
-const Header = () => {
+const CandidateHeader = () => {
 
     const useStyles = makeStyles((theme) => ({
         root: {
             fontSize: 17,
-            borderBottom: `1px solid ${NeutralGrayTheme.gray5}`,
+            borderBottom: `1px solid ${NeutralGrayTheme.color5}`,
             display: 'flex',
             padding: '8px 0px',
             '& a':{
@@ -233,4 +235,4 @@ const Header = () => {
     )
 }
 
-export default withTranslation()(Header);
+export default withTranslation()(CandidateHeader);

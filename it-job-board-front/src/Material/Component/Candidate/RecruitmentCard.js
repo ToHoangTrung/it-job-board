@@ -84,6 +84,7 @@ const RecruitmentCard = (props) => {
 
     const {
         recruitment,
+        applyStatus,
     } = props;
 
     const classes = useStyles();
@@ -108,7 +109,13 @@ const RecruitmentCard = (props) => {
                             <div className={classes.info}>
                                 <div className={classes.row}>
                                     <Link to={"/jobs/detail/" + recruitment.id} style={highLight === true ? {color: DefaultTheme.default6} : null} className={classes.headline}>{recruitment.headline}</Link>
-                                    <Button className={classes.applyBtn}>{t('recruitment-card.apply')}</Button>
+                                    <Button className={classes.applyBtn}>
+                                        {
+                                            applyStatus !== undefined ? (
+                                                applyStatus
+                                            ) : t('recruitment-card.apply')
+                                        }
+                                    </Button>
                                 </div>
                                 <div className={classes.row}>
                                     <p style={{color: PolarGreenTheme.color6}} className={classes.icon}><MonetizationOnOutlinedIcon/>${recruitment.salaryMin} - ${recruitment.salaryMax}</p>

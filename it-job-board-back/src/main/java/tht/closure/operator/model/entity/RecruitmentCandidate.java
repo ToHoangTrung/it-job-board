@@ -8,11 +8,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Entity(name = "t_candidate_recruitment")
+@Entity(name = "t_recruitment_candidate")
 @Getter
 @Setter
-public class CandidateRecruitment extends AbstractEntity {
-
+public class RecruitmentCandidate extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
@@ -22,15 +21,22 @@ public class CandidateRecruitment extends AbstractEntity {
     @JoinColumn
     private Candidate candidate;
 
-    public CandidateRecruitment(Candidate candidate, Recruitment recruitment, Type type, Status status) {
+    private String guestName;
+
+    private String guestCvUrl;
+
+    private String guestPhone;
+
+    private String guestEmail;
+
+    public RecruitmentCandidate(Candidate candidate, Recruitment recruitment, Type type, Status status) {
         this.recruitment = recruitment;
         this.candidate = candidate;
         this.type = type;
         this.status = status;
     }
 
-
-    public CandidateRecruitment() {
+    public RecruitmentCandidate() {
 
     }
 
@@ -56,6 +62,7 @@ public class CandidateRecruitment extends AbstractEntity {
     private Status status;
 
     public enum Status {
+        NONE("None",""),
         NEW("New", ""),
         CON("Considering", ""),
         ACC("Accept", ""),

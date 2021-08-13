@@ -8,7 +8,6 @@ import tht.closure.operator.model.dto.SubCatalogDto;
 import tht.closure.operator.model.entity.Catalog;
 import tht.closure.operator.model.entity.QCatalog;
 import tht.closure.operator.model.entity.SubCatalog;
-import tht.closure.operator.repository.CatalogRepository;
 import tht.closure.operator.repository.SubCatalogRepository;
 import tht.closure.operator.service.CatalogService;
 import tht.closure.operator.util.CatalogMapper;
@@ -22,9 +21,6 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class CatalogServiceImpl implements CatalogService {
-
-    @Autowired
-    private CatalogRepository catalogRepository;
 
     @Autowired
     private SubCatalogRepository subCatalogRepository;

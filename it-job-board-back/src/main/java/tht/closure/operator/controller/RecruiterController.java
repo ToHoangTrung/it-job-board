@@ -18,19 +18,6 @@ public class RecruiterController {
     @Autowired
     private RecruiterService recruiterService;
 
-    @PutMapping("/update")
-    @PreAuthorize("hasRole('REC')")
-    public ResponseEntity<Object> updateRecruiterInfo(@Valid @RequestBody RecruiterDto recruiterDto) {
-        recruiterService.updateRecruiterInfo(recruiterDto);
-        return ResponseEntity.accepted().body("Update successfully");
-    }
-
-    @GetMapping("/search")
-    public ResponseEntity<Object> searchRecruiters(@RequestParam String keyword) {
-        Set<RecruiterDto> recruiters = recruiterService.searchRecruiters(keyword);
-        return ResponseEntity.accepted().body(recruiters);
-    }
-
     @GetMapping("/get-one/{id}")
     public ResponseEntity<Object> getOneRecruiter(@PathVariable Long id) {
         RecruiterDto recruiter = recruiterService.getOneRecruiter(id);

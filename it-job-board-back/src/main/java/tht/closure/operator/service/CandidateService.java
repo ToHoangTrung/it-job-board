@@ -1,18 +1,18 @@
 package tht.closure.operator.service;
 
 import tht.closure.operator.model.dto.CandidateDto;
+import tht.closure.operator.model.dto.RecruitmentCandidateDto;
 import tht.closure.operator.model.entity.User;
 
 import java.util.List;
 
 public interface CandidateService {
-    void addRecruitmentToCandidateApplyList(User user, Long recruitmentId);
 
-    void addRecruitmentToCandidateFavoriteList(User user, Long recruitmentId);
+    CandidateDto getCandidateFromUserId(Long userId);
 
-    void removeSavedRecruitmentOfCandidate(User user, List<Long> recruitmentIds);
+    List<RecruitmentCandidateDto> getAllApplyOrFavoriteRecruitmentOfCandidate(CandidateDto candidateDto);
 
-    void updateRecruitmentStatusFromApplyListOfCandidate(User user, Long recruitmentId, String status);
+    void removeCandidateFavoriteRecruitment(CandidateDto candidateDto, Long recruitmentId);
 
-    void updateCandidateInfo(CandidateDto candidateDto);
+    void addOneCandidateFavoriteRecruitment(CandidateDto candidateDto, Long recruitmentId);
 }

@@ -47,6 +47,30 @@ const CustomFormGroup = ((props) => {
                 options={data}
                 onChange={onChangeValue}
             />
+    } else if (type === "multi-select") {
+
+        let selectedOptions = [];
+
+        const handleChange = (options) => {
+            if(options === null) selectedOptions = [];
+            else{
+                options.map(option => {
+                    selectedOptions.push(option.value);
+                });
+            }
+            onChangeValue(name, selectedOptions);
+        }
+
+        customInput =
+            <div style={{width: '100%', zIndex: 1000}}>
+                <Select
+                    value={value}
+                    placeholder={placeholder}
+                    isMulti = {true}
+                    options={data}
+                    closeMenuOnSelect={false}
+                    onChange={handleChange}/>
+            </div>
     }
     else {
         customInput =

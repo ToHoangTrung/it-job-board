@@ -14,7 +14,7 @@ public class RecruitmentSubCatalog extends AbstractEntity {
     @JoinColumn
     private Recruitment recruitment;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn
     private SubCatalog subCatalog;
 }

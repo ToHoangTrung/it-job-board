@@ -10,6 +10,8 @@ const CustomSimpleModal = (props) => {
         deniedBtnText,
         onDeniedValue,
         onAcceptValue,
+        showHeader,
+        showBody,
     } = props
 
 
@@ -29,18 +31,26 @@ const CustomSimpleModal = (props) => {
 
     return (
         <Modal show={show} backdrop="static" keyboard={false} onHide={handleClose}>
-            <Modal.Header>
-                <Modal.Title>{heading}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                {content}
-            </Modal.Body>
+            {
+                showHeader && (
+                    <Modal.Header>
+                        <Modal.Title>{heading}</Modal.Title>
+                    </Modal.Header>
+                )
+            }
+            {
+                showBody && (
+                    <Modal.Body>
+                        {content}
+                    </Modal.Body>
+                )
+            }
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseDenied}>
-                    {deniedBtnText}
-                </Button>
                 <Button variant="danger" onClick={handleCloseAccept}>
                     {acceptBtnText}
+                </Button>
+                <Button variant="secondary" onClick={handleCloseDenied}>
+                    {deniedBtnText}
                 </Button>
             </Modal.Footer>
         </Modal>

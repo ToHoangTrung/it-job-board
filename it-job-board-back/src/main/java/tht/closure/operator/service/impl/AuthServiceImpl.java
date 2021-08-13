@@ -122,4 +122,19 @@ public class AuthServiceImpl implements AuthService {
         }
         return null;
     }
+
+    @Override
+    public CandidateDto getCandidateFromJwt(HttpServletRequest request) {
+        String token = authTokenFilter.parseJwt(request);
+        if (token != null) {
+            String username = jwtUtils.getUserNameFromJwtToken(token);
+
+            User user = userRepository.findByUsername(username);
+            if (user.getRole().equals(User.Role.ROLE_CAN)) {
+                Candidate candidate = candidateRepository.findByUserId(user.getId());
+                return CandidateMapper.candidateToCandidateDto(candidate);
+            }
+        }
+        return null;
+    }
 }

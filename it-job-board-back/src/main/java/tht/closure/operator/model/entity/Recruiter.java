@@ -45,7 +45,7 @@ public class Recruiter extends AbstractEntity {
     @OneToMany(mappedBy = "recruiter")
     private Set<Recruitment> recruitments = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "recruiter")
+    @OneToMany(mappedBy = "recruiter", fetch = FetchType.EAGER)
     private Set<RecruiterSubCatalog> recruiterSubCatalogs = new LinkedHashSet<>();
 
     @Column

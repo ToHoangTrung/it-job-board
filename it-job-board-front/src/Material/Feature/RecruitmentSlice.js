@@ -46,6 +46,23 @@ export const fetchAllRecruitmentExperience = createAsyncThunk('recruitment/fetch
     }
 });
 
+export const fetchAllApplyOrFavoriteRecruitmentOfCandidate = createAsyncThunk('recruitment/fetchAllApplyOrFavoriteRecruitmentOfCandidate', async () => {
+    try{
+        const response = await axiosClient.get(`/api/candidate/get-all/apply-or-favorite/current-user/saved-recruitment`);
+        return response.data
+    }catch(err){
+        throw new Object(err.response.data);
+    }
+});
+
+export const createNewRecruitment = createAsyncThunk('recruitment/createNewRecruitment', async (params) => {
+    try {
+        return await axiosClient.post('/api/recruitment/create-new', params);
+    } catch (err){
+        throw new Object(err.response.data)
+    }
+})
+
 const recruitmentSlice = createSlice({
     name: 'recruitment',
     initialState: {
@@ -68,6 +85,9 @@ const recruitmentSlice = createSlice({
         },
         [fetchAllRecruitmentExperience.fulfilled]: (state, action) => {
             state.experiences = action.payload || [];
+        },
+        [fetchAllApplyOrFavoriteRecruitmentOfCandidate.fulfilled]: (state, action) => {
+            state.recruitments = action.payload || [];
         },
     }
 })
